@@ -1,58 +1,70 @@
 <!doctype html>
 <html>
     <head>
-        <title>Harvey's Page</title>
-        <style type="text/css">
-            * {
-               padding: 0;
-               margin: 0;
-            }
- 
-            body {
-               background: #f4f1e5;
-               color: #544738;
-               font-family: helvetica, sans-serif;
-               padding-left: 20px;
-            }
-            
-            nav ul li {
-                float: left;
-                list-style: none;
-                margin-right: 1em; 
-            }
- 
-            nav li a {
-                color: #544738;
-                text-decoration: none;
-                float: left;
-                font-size: 25px;
-                padding: 12px;
-            }
- 
-            nav li a:hover {
-                color: #7eb9be;
-            }
-        </style>
+      <title>Harvey's Github Page</title>
+      <style type="text/css">
+        #container {
+          width: 100px;
+          height: 100px;
+          position: relative;
+        }
+        #navi, #info {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top:0;
+          left: 0;
+        }
+        #info {
+          z-index: -10;
+          color:red;
+        }
+        #navi {
+          font-size: 40px;
+        }
+        body {
+          font-family: "Courier New";
+        }
+        nav {
+            background: #7C0F0A;
+            padding: 1px;
+        }
+
+        nav ul {
+            list-style-image: none;
+        }
+
+        nav ul li {
+            display: inline;
+            padding-right: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+      </style>
     </head>
-    
     <body>
-        
-        <nav>
+       
+       <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
             </ul>
         </nav>
-        <img src="img/menu_burrito.png">
-        <h1>Harvey</h1>
+        <div>
+
+
+       <div>
+        <h1>Harvey's Github Page</h1>
+        <h3>Assistant Director at the Youth Empowerment Project</h3>
+       </div>
+       <div id='container'>
+        <div id='navi'>all</div>
+        <div id='info'>background</div>
+       </div>
         
-        <h3>Interests</h3>
-            <ul>
-                <li>Burritos and Ethiopian food.</li>
-                <li>Playing Soccer</li>
-                <li>Fixing Stuff</li>
-            </ul>
     </body>
 </html>
