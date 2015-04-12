@@ -1,0 +1,54 @@
+.container, nav {
+  width: 90%;
+  margin: 0 auto;
+}
+
+body {
+  font-family: "Courier New";
+  background: #105B63;
+}
+
+nav {
+    background: #BD4932;
+    padding: 1px;
+    border-radius: 10px;
+}
+
+nav ul {
+    list-style-image: none;
+}
+
+nav ul li {
+    display: inline;
+    padding-right: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #FFD34E;
+
+}
+
+.portfolio-list {
+  list-style: none;
+}
+ul.portfolio-list li {
+  background: #FFFAD5;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  
+}
+
+ul.portfolio-list li a {
+    text-decoration: none;
+    display: block; 
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+
+ul.portfolio-list li :hover {
+    background: #FFFAD5;
+    box-shadow: 3px 3px #000000;
+}

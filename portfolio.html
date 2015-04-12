@@ -1,66 +1,10 @@
 <!doctype html>
 <html>
     <head>
-      <title>Harvey's Github Page</title>    
-      <style type="text/css">
-        
-        .container, nav {
-          width: 90%;
-          margin: 0 auto;
-        }
-
-        
-        body {
-          font-family: "Courier New";
-          background: #105B63;
-        }
-        
-        nav {
-            background: #BD4932;
-            padding: 1px;
-            border-radius: 10px;
-        }
-
-        nav ul {
-            list-style-image: none;
-        }
-
-        nav ul li {
-            display: inline;
-            padding-right: 10px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #FFD34E;
-
-        }
-
-        .portfolio-list {
-          list-style: none;
-        }
-        ul.portfolio-list li {
-          background: #FFFAD5;
-          margin-bottom: 10px;
-          border-radius: 10px;
-          
-        }
-
-        ul.portfolio-list li a {
-            text-decoration: none;
-            display: block; 
-            padding-top:10px;
-            padding-bottom:10px;
-            padding-left: 10px;
-            border-radius: 10px;
-        }
-
-        ul.portfolio-list li :hover {
-            background: #FFFAD5;
-            box-shadow: 3px 3px #000000;
-        }
-
-      </style>
+        <title>Harvey's Github Page</title>    
+        <link rel="stylesheet" type="text/css" href="css/style2.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans|Raleway' rel='stylesheet' type='text/css'>
+        <script src="bower_components/vendee/vendee.js"></script>
     </head>
     <body>
        <nav>
@@ -73,10 +17,24 @@
         <div class="container">  
             <h1>My Work</h1>
             <ul id="portfolio" class="portfolio-list">
-                <li><a href="#">My first project.</a></li>
+                <li><a href="BouncingBox/index.html">Bouncing Box</a></li>
                 <li><a href="#">My second project.</a></li>
                 <li><a href="#">My third project.</a></li>
             </ul>
         </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script>
+           $(document).ready(function() {
+               var vendee = window.opspark.vendee;
+               
+               vendee.load.json('.projects.json').then(function(data) {
+                   data.projects.forEach(function(project){
+                       $("#portfolio").append('<li><a href="' + project.name + '/">' + project.title + ' : ' + project.description + '</a></li>');
+                   });
+               });
+               
+           });
+       </script>
     </body>
 </html>
