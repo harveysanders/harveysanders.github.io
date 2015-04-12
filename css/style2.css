@@ -3,6 +3,8 @@ body {
     color: #454545;
     padding: 10px;
     font-family: courier;
+    font-size: 15px;
+    
 }
 
 h1 {
@@ -15,8 +17,12 @@ h1 {
     max-width: 800px;
     margin: 0 auto;
     background: #E8E8E8;
+    border-radius:15px;
 }
 
+.container p {
+    font-family: 'Raleway', sans-serif;;
+}
 /* Content area within conatiner */
 .content {
     padding: 15px;
@@ -47,6 +53,7 @@ nav {
     max-width: 800px;
     margin: 0 auto;
     margin-bottom: 20px;
+    border-radius:15px;
 }
 
 nav ul {
