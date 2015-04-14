@@ -20,8 +20,8 @@ h1 {
     border-radius:15px;
 }
 
-.container p {
-    font-family: 'Raleway', sans-serif;;
+.container p ul{
+    font-family: 'Raleway', sans-serif;
 }
 /* Content area within conatiner */
 .content {
@@ -69,6 +69,9 @@ nav ul li {
 nav a {
     text-decoration: none;
     color: #fff;
+}
+nav a:hover {
+    color:#ccc;
 }
 
 /* Site Title */
