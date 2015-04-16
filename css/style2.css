@@ -2,7 +2,7 @@ body {
     background: #F7F7F7;
     color: #454545;
     padding: 10px;
-    font-family: courier;
+    font-family: courier, serif;
     font-size: 15px;
     
 }
@@ -20,17 +20,18 @@ h1 {
     border-radius:15px;
 }
 
-.container p ul{
-    font-family: 'Raleway', sans-serif;
+.container p {
+    font-family: 'Raleway', serif;
 }
 /* Content area within conatiner */
 .content {
     padding: 15px;
-    margin-left: 225px;
+    /*margin-left: 225px;*/
 }
 
 .content li {
     margin-left: -20px;
+    font-family: "Raleway", serif;
 }
 
 /* Left aligned sidebar */
