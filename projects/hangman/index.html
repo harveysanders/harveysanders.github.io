@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>A console.log Hangman Game</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    Hit <kbd>F12</kbd> to open up the console to see the game!
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
+    <script src="hangman-utils.js"></script>
+
+    <script>
+        var secretPhrase;
+        secretPhrase = "ooooo";
+        console.log("Use 'guess()' to begin playing!");
+
+
+
+        (function() {
+            'use strict'
+
+            // Write your code below
+
+            var displayCurrent;
+            var guess;
+
+            var drawNext;
+            var dr = hangman.draw;
+            
+            var drawNoose = function() {
+                dr.line(150, 450, 450, 450);
+                dr.line(200, 450, 200, 50);
+                dr.line(200, 450, 200, 50);
+                dr.line(200, 50, 300, 50);
+                dr.line(300, 50, 300, 70);
+            };
+        
+               
+            var drawHead = function() {
+                // TODO: draw head
+                dr.ellipse(300, 100, 50, 50);
+                drawNext = drawBody;
+                console.log("drawing head");
+            };
+            var drawBody = function() {
+                // TODO: draw body
+                dr.line(300,125,300,250);
+                drawNext = drawLeftArm;
+                console.log("drawing body");
+            };
+            var drawLeftArm = function() {
+                // TODO: draw left arm
+                dr.line(250,100,300,175);
+                drawNext = drawRightArm;
+                console.log("drawing left arm");
+            };
+            var drawRightArm = function() {
+                // TODO: draw right Arm
+                dr.line(350,100,300,175);
+                drawNext = drawLeftLeg;
+                console.log("drawing right leg");
+            };
+            var drawLeftLeg = function() {
+                // TODO: draw left leg
+                dr.line(250,300,300,250);
+                drawNext = drawRightLeg;
+                console.log("drawing left leg");
+            };
+            var drawRightLeg = function() {
+                // TODO: draw right leg
+                dr.line(350,300,300,250);
+                dr.text("x", 310, 100);
+                drawNext = null;
+                console.log("done");
+            };
+            
+
+            var drawHangman = function() {
+                console.log("drawing hangman");
+                while (drawNext !== null) {
+                    drawNext();
+                };
+            };
+
+            displayCurrent = function() {
+
+                var numberOfDashes = 0;
+
+                var currentPhrase = hangman.forEachCharacter(secretPhrase, function(character) {
+                    if (character === " ") {
+                        return " ";
+                    }
+                    else if (hangman.hasBeenGuessed(character)) {
+                        return character;
+                    }
+                    else {
+
+                        numberOfDashes = numberOfDashes + 1;
+
+                        return "-";
+                    }
+
+
+                });
+                console.log("Current phrase is:", currentPhrase);
+                if (numberOfDashes === 0) {
+                    //Then they won
+                    alert("Congratulations, you won!");
+
+                    hangman.cornify();
+                }
+            }
+
+            guess = function(characterGuessed) {
+                hangman.recordGuess(characterGuessed);
+                displayCurrent();
+
+            };
+
+            //hangman.draw.rect(10, 30, 100, 200);
+            dr.background(50, 50, 50);
+
+            drawNext = drawHead;
+            drawNoose();
+            drawHangman();
+            displayCurrent();
+            
+            
+            
+            // Export variables you want available in the console here
+            window.displayCurrent = displayCurrent;
+            window.guess = guess;
+            window.drawHangman = drawHangman;
+        })();
+    </script>
+</body>
+
+</html>
