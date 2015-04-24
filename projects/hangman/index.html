@@ -11,11 +11,12 @@
     Hit <kbd>F12</kbd> to open up the console to see the game!
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
+    <script src="/lib/processing.min.js"></script>
     <script src="hangman-utils.js"></script>
 
     <script>
         var secretPhrase;
-        secretPhrase = "ooooo";
+        secretPhrase = "fry your biscuits";
         console.log("Use 'guess()' to begin playing!");
 
 
@@ -30,6 +31,7 @@
 
             var drawNext;
             var dr = hangman.draw;
+            var startingCharacterTotal;
             
             var drawNoose = function() {
                 dr.line(150, 450, 450, 450);
@@ -99,17 +101,17 @@
                     }
                     else {
 
-                        numberOfDashes = numberOfDashes + 1;
+                        numberOfDashes =+ 1;
 
                         return "-";
                     }
-
-
                 });
+
                 console.log("Current phrase is:", currentPhrase);
+                
                 if (numberOfDashes === 0) {
                     //Then they won
-                    alert("Congratulations, you won!");
+                    alert("Congratulations, you win!");
 
                     hangman.cornify();
                 }
@@ -117,17 +119,15 @@
 
             guess = function(characterGuessed) {
                 hangman.recordGuess(characterGuessed);
-                displayCurrent();
+                displayCurrent();                
 
             };
 
-            //hangman.draw.rect(10, 30, 100, 200);
             dr.background(50, 50, 50);
-
             drawNext = drawHead;
             drawNoose();
-            drawHangman();
             displayCurrent();
+            
             
             
             
