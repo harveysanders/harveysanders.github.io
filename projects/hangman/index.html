@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    Hit <kbd>F12</kbd> to open up the console to see the game!
+    Hit <kbd>F12</kbd> to open up the console to see the game!<br>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
     <script src="/lib/processing.min.js"></script>
@@ -44,40 +44,40 @@
                
             var drawHead = function() {
                 // TODO: draw head
-                dr.ellipse(300, 100, 50, 50);
+                dr.ellipse(300, 100, 50, 70);
                 drawNext = drawBody;
-                console.log("drawing head");
+                //console.log("drawing head");
             };
             var drawBody = function() {
                 // TODO: draw body
                 dr.line(300,125,300,250);
                 drawNext = drawLeftArm;
-                console.log("drawing body");
+                //console.log("drawing body");
             };
             var drawLeftArm = function() {
                 // TODO: draw left arm
                 dr.line(250,100,300,175);
                 drawNext = drawRightArm;
-                console.log("drawing left arm");
+                //console.log("drawing left arm");
             };
             var drawRightArm = function() {
                 // TODO: draw right Arm
                 dr.line(350,100,300,175);
                 drawNext = drawLeftLeg;
-                console.log("drawing right leg");
+                //console.log("drawing right leg");
             };
             var drawLeftLeg = function() {
                 // TODO: draw left leg
                 dr.line(250,300,300,250);
                 drawNext = drawRightLeg;
-                console.log("drawing left leg");
+                //console.log("drawing left leg");
             };
             var drawRightLeg = function() {
                 // TODO: draw right leg
                 dr.line(350,300,300,250);
                 dr.text("x", 310, 100);
                 drawNext = null;
-                console.log("done");
+                //console.log("done");
             };
             
 
@@ -86,6 +86,11 @@
                 while (drawNext !== null) {
                     drawNext();
                 };
+            };
+            
+
+            var showLoseScreen = function(){
+                console.log("you lose!!")
             };
 
             displayCurrent = function() {
@@ -119,11 +124,16 @@
 
             guess = function(characterGuessed) {
                 hangman.recordGuess(characterGuessed);
-                displayCurrent();                
+                displayCurrent();
+                if (secretPhrase.indexOf(characterGuessed) === -1) {
+                    if (drawNext !== null){drawNext()} else {
+                        showLoseScreen();
+                    };
+                }                
 
             };
 
-            dr.background(50, 50, 50);
+            dr.background(100, 100, 100);
             drawNext = drawHead;
             drawNoose();
             displayCurrent();
