@@ -3,8 +3,7 @@
 
 <head>
     <title>A console.log Hangman Game</title>
-    <style>
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -13,6 +12,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
     <script src="/lib/processing.min.js"></script>
     <script src="hangman-utils.js"></script>
+
 
     <script>
         var secretPhrase;
@@ -138,6 +138,13 @@
             drawNoose();
             displayCurrent();
             
+
+            /* ------ ---------   GUI -------------------  */
+
+            var handleGuessButton = function() {
+                var guessLetter = document.getElementById('guess_input').value;
+                guess(guessLetter);
+            }
             
             
             
@@ -147,6 +154,12 @@
             window.drawHangman = drawHangman;
         })();
     </script>
+
+    <div>
+        Type a letter to guess the phrase:
+        <input id="guess_input"></input>
+        <button id"guess_button">Guess!</button>
+    </div>
 </body>
 
 </html>
