@@ -1,0 +1,207 @@
+[
+    {
+        "gamesPlayed": 68,
+        "jersey": "42",
+        "loses": 27,
+        "name": "Alexis Ajinca",
+        "playerId": 201582,
+        "position": "Center",
+        "winPercentage": 0.603,
+        "wins": 41
+    },
+    {
+        "gamesPlayed": 68,
+        "jersey": "23",
+        "loses": 29,
+        "name": "Anthony Davis",
+        "playerId": 203076,
+        "position": "Forward-Center",
+        "winPercentage": 0.574,
+        "wins": 39
+    },
+    {
+        "gamesPlayed": 79,
+        "jersey": "1",
+        "loses": 36,
+        "name": "Tyreke Evans",
+        "playerId": 201936,
+        "position": "Guard-Forward",
+        "winPercentage": 0.544,
+        "wins": 43
+    },
+    {
+        "gamesPlayed": 76,
+        "jersey": "3",
+        "loses": 33,
+        "name": "Omer Asik",
+        "playerId": 201600,
+        "position": "Center",
+        "winPercentage": 0.566,
+        "wins": 43
+    },
+    {
+        "gamesPlayed": 35,
+        "jersey": "25",
+        "loses": 17,
+        "name": "Austin Rivers",
+        "playerId": 203085,
+        "position": "Guard",
+        "winPercentage": 0.514,
+        "wins": 18
+    },
+    {
+        "gamesPlayed": 66,
+        "jersey": "44",
+        "loses": 29,
+        "name": "Dante Cunningham",
+        "playerId": 201967,
+        "position": "Forward",
+        "winPercentage": 0.561,
+        "wins": 37
+    },
+    {
+        "gamesPlayed": 5,
+        "loses": 4,
+        "name": "Darius Miller",
+        "playerId": 203121,
+        "position": "",
+        "winPercentage": 0.2,
+        "wins": 1
+    },
+    {
+        "gamesPlayed": 8,
+        "loses": 4,
+        "name": "Elliot Williams",
+        "playerId": 202343,
+        "position": "",
+        "winPercentage": 0.5,
+        "wins": 4
+    },
+    {
+        "gamesPlayed": 61,
+        "jersey": "10",
+        "loses": 26,
+        "name": "Eric Gordon",
+        "playerId": 201569,
+        "position": "Guard",
+        "winPercentage": 0.574,
+        "wins": 35
+    },
+    {
+        "gamesPlayed": 4,
+        "loses": 2,
+        "name": "Gal Mekel",
+        "playerId": 203539,
+        "position": "",
+        "winPercentage": 0.5,
+        "wins": 2
+    },
+    {
+        "gamesPlayed": 37,
+        "jersey": "5",
+        "loses": 20,
+        "name": "Jeff Withey",
+        "playerId": 203481,
+        "position": "Center",
+        "winPercentage": 0.459,
+        "wins": 17
+    },
+    {
+        "gamesPlayed": 50,
+        "jersey": "32",
+        "loses": 23,
+        "name": "Jimmer Fredette",
+        "playerId": 202690,
+        "position": "Guard",
+        "winPercentage": 0.54,
+        "wins": 27
+    },
+    {
+        "gamesPlayed": 21,
+        "loses": 12,
+        "name": "John Salmons",
+        "playerId": 2422,
+        "position": "",
+        "winPercentage": 0.429,
+        "wins": 9
+    },
+    {
+        "gamesPlayed": 40,
+        "jersey": "11",
+        "loses": 20,
+        "name": "Jrue Holiday",
+        "playerId": 201950,
+        "position": "Guard",
+        "winPercentage": 0.5,
+        "wins": 20
+    },
+    {
+        "gamesPlayed": 63,
+        "jersey": "8",
+        "loses": 29,
+        "name": "Luke Babbitt",
+        "playerId": 202337,
+        "position": "Forward",
+        "winPercentage": 0.54,
+        "wins": 34
+    },
+    {
+        "gamesPlayed": 10,
+        "loses": 3,
+        "name": "Nate Wolters",
+        "playerId": 203489,
+        "position": "",
+        "winPercentage": 0.7,
+        "wins": 7
+    },
+    {
+        "gamesPlayed": 28,
+        "jersey": "30",
+        "loses": 10,
+        "name": "Norris Cole",
+        "playerId": 202708,
+        "position": "Guard",
+        "winPercentage": 0.643,
+        "wins": 18
+    },
+    {
+        "gamesPlayed": 45,
+        "jersey": "20",
+        "loses": 18,
+        "name": "Quincy Pondexter",
+        "playerId": 202347,
+        "position": "Forward-Guard",
+        "winPercentage": 0.6,
+        "wins": 27
+    },
+    {
+        "gamesPlayed": 6,
+        "jersey": "2",
+        "loses": 2,
+        "name": "Russ Smith",
+        "playerId": 203893,
+        "position": "Guard",
+        "winPercentage": 0.667,
+        "wins": 4
+    },
+    {
+        "gamesPlayed": 61,
+        "jersey": "33",
+        "loses": 28,
+        "name": "Ryan Anderson",
+        "playerId": 201583,
+        "position": "Forward",
+        "winPercentage": 0.541,
+        "wins": 33
+    },
+    {
+        "gamesPlayed": 12,
+        "jersey": "16",
+        "loses": 5,
+        "name": "Toney Douglas",
+        "playerId": 201962,
+        "position": "Guard",
+        "winPercentage": 0.583,
+        "wins": 7
+    }
+]

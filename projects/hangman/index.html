@@ -119,7 +119,7 @@
                     }
                 });
 
-                console.log("Current phrase is:", currentPhrase);
+                return ("Current phrase is:", currentPhrase);
                 
                 if (numberOfDashes === 0) {
                     //Then they won
@@ -159,7 +159,7 @@
             };
             
             var updatePhraseView = function() {
-                phraseView.innerHTML = "Current phrase is:", currentPhrase;
+                phraseView.innerHTML = "Current phrase is:", displayCurrent();
             };
             
             guessButton.addEventListener('click', handleGuessButton);

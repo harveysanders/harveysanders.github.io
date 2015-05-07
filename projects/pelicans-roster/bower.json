@@ -1,0 +1,31 @@
+{
+  "name": "pelicans-roster",
+  "version": "0.0.0",
+  "authors": [
+    "George Mauer <gmauer@gmail.com>"
+  ],
+  "description": "Operation Spark exercises for working with arrays",
+  "main": "index.html",
+  "keywords": [
+    "operation-spark",
+    "operation",
+    "spark",
+    "exercises",
+    "nba"
+  ],
+  "license": "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+  "homepage": "https://github.com/OperationSpark/pelicans-roster",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "qwest": "~1.5.11",
+    "lodash": "~3.8.0",
+    "jquery": "~2.1.4"
+  }
+}
