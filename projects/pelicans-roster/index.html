@@ -8,6 +8,7 @@
     		display: flex;
     		min-height: 100vh;
     		flex-direction: column;
+    		font-family: "Lucida";
     	}
     	main {
     		flex: 1;
@@ -19,14 +20,18 @@
 			color: rgb(100, 100, 100);
 			text-decoration: line-through;
 		}
-		.unimportant {
-			font: "consolas";
+		.player_id {
+			font-family: "Consolas";
+			font-size: 70%;
+			
 		}
-		li em {
+		.wins {
 			color: #3306f9;
 			font-weight: bold;
 		}
-		
+		li {
+			font-family: Lucida;
+		}
 		
     </style>
 </head>
@@ -102,12 +107,15 @@
         	var getWinsAndName = function(player) {
         		//TODO 4: return a string for the player wins and name
         		console.log("get wins and name for", player.name);
-        		return ("<em>" + player.wins + "</em>" + " by " + player.name );
+        		return ("<em class='wins'>" + player.wins + "</em>" + " by " + player.name );
         	};
         	
         	// TODO 5: remove the disabled attribute marker from the id-name-position radio input html above. Make it work by creating new functions 
 			var getIDNameAndPosition = function(player) {
-				return ("<em class='unimportant'>" + player.playerId + "</em>" + ": " + player.name + " (" + player.position + ")");
+				if (player.position) {
+					return ("<em class='player_id'>" + player.playerId + "</em>" + ": " + player.name + " (" + player.position + ")");
+					
+				} return ("<em class='player_id'>" + player.playerId + "</em>" + ": " + player.name + "<em class= 'player_id'> (No assigned position) </em>");
 			};
         	
         	var getDisplayedPlayerStrings = function() {
