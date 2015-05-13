@@ -83,7 +83,11 @@
 		    <label>
 		        <input type="checkbox" name="hidePlayersUsingWins">
 		        <span class="label">Hide players with less than <input name="minNumberOfWins" value="40"> wins </span>
-		    </label>            
+		    </label>
+            <label>
+                <input type="checkbox" name="hidePlayersUsingFreeThrowPct">
+                <span class-"label">Hide players a free throw averages less than <input name="minFreeThrowPct" value=".500"> <em>(Ex: 0.623)</em></span>
+            </label>            
 		</fieldset>
     </main>
     <footer></footer>
@@ -96,7 +100,10 @@
         	<li> Right click > Inspect Element </li>
     </aside>
 
-
+    <!--local files -----------
+    <script type="text/javascript" src=""></script>
+     -------------------- -->
+     
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/lodash/lodash.min.js"></script>
     <script src="rosterHelpers.js"></script>
@@ -176,7 +183,7 @@
         		return playerIsMinor;
         	}
         	
-        	function hasUnder50Wins(player) {
+        	function hasNumOfWins(player) {
         		var result = false;
         		var minNumberOfWins = $("input[name='minNumberOfWins']").val();
         		
@@ -184,8 +191,11 @@
         			result = true;
         		} return result;
         	}
+
+            //function 
+        	// ------------------ END OF FILTERS --------------------------------------
         	
-        	var getDisplayedPlayerStrings = function() {
+            var getDisplayedPlayerStrings = function() {
         		var pelicansToShow = pelicans;
         		
         		if (filterPlayersWithoutPosition) {
@@ -195,7 +205,7 @@
         			pelicansToShow = pelicansToShow.filter(isMinorPlayer);
         		}
         		if (filterPlayersByWins) {
-        			pelicansToShow = pelicansToShow.filter(hasUnder50Wins);
+        			pelicansToShow = pelicansToShow.filter(hasNumOfWins);
         		}
         		
         		
