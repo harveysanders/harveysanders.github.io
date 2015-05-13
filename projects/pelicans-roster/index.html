@@ -32,6 +32,10 @@
 		li {
 			font-family: Lucida;
 		}
+		footer{
+			color: rgb(100, 100, 200);
+			font-style: italic;
+		}
 		
     </style>
 </head>
@@ -78,10 +82,11 @@
 		    </label>
 		    <label>
 		        <input type="checkbox" name="hidePlayersUsingWins">
-		        <span class="label">Hide players with less than <input name="minNumberOfWins" value="50"> wins </span>
+		        <span class="label">Hide players with less than <input name="minNumberOfWins" value="40"> wins </span>
 		    </label>            
 		</fieldset>
     </main>
+    <footer></footer>
     <aside>
         Remember, you can open the console with
         <ul> 
@@ -98,7 +103,7 @@
     <script>
     (function() {
         "use strict"
-        $.getJSON("pelicans-simple.json").then(function(pelicans) {
+        $.getJSON("pelicans-extended.json").then(function(pelicans) {
         	var displayType;
         	var shouldSort;
         	
@@ -106,6 +111,9 @@
         	var filterMinorPlayers = false;
         	var filterPlayersByWins = false;
         	var minNumberOfWins = false;
+        	
+        	var footerContents = "";
+        	
 
         	var getName = function(player) {
         		//TODO 2: return player name
@@ -118,8 +126,8 @@
         		//TODO 3: return a string with the player name and number
         		//console.log("get name and number for", player.name);
         		
-        		if (player.jersey) {
-        			return (player.name + " - " + player.jersey);
+        		if (player.info.jersey) {
+        			return (player.name + " - " + player.info.jersey);
         		} return player.name;
         	};
 
@@ -157,7 +165,6 @@
 				} else { 
 					playerHasPosition = false;
 				} 
-				console.log(player.name + " has position? " + playerHasPosition);
 				return playerHasPosition;
 			}
         	
@@ -209,13 +216,17 @@
         			displayStrings = pelicansToShow.map(getIDNameAndPosition);
         		};
         		// etc
-
+				footerContents = pelicansToShow.length + " of " + pelicans.length + " pelicans shown.";
+				
         		return displayStrings;
         	}	
 
         	var updateDisplay = function() {
         		var displayedStrings = getDisplayedPlayerStrings();
-
+				
+				
+				$("footer").html(footerContents);
+				
         		// TODO 6: If shouldSort is true call displayStrings.sort() and put the result back into the displayStrings variable. Enable the checkbox input in html
 				
 				if (shouldSort) {
@@ -228,8 +239,12 @@
 
         		$("[id=players-display]").html( newDisplayHtml );
         		//console.log("display Type = " + displayType);
+        		
+        		
         	}
 
+        	
+        	
         	$("[name=whatToShow]").on("change", function(e){
         		displayType = $(e.target).val();
         		updateDisplay();
