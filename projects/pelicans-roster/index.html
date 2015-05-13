@@ -36,6 +36,10 @@
 			color: rgb(100, 100, 200);
 			font-style: italic;
 		}
+		.inputBox {
+			width: 30px;
+			color: rgb(23, 20, 34);
+		}
 		
     </style>
 </head>
@@ -82,11 +86,11 @@
 		    </label>
 		    <label>
 		        <input type="checkbox" name="hidePlayersUsingWins">
-		        <span class="label">Hide players with less than <input name="minNumberOfWins" value="40"> wins </span>
+		        <span class="label">Hide players with less than <input class="inputBox" name="minNumberOfWins" value="40"> wins </span>
 		    </label>
             <label>
                 <input type="checkbox" name="hidePlayersUsingFreeThrowPct">
-                <span class-"label">Hide players a free throw averages less than <input name="minFreeThrowPct" value=".500"> <em>(Ex: 0.623)</em></span>
+                <span class-"label">Hide players free throw average less than <input class="inputBox" name="minFreeThrowPct" value=".500"> <em>(Ex: 0.623)</em></span>
             </label>            
 		</fieldset>
     </main>
@@ -117,7 +121,9 @@
         	var filterPlayersWithoutPosition = false;
         	var filterMinorPlayers = false;
         	var filterPlayersByWins = false;
-        	var minNumberOfWins = false;
+        	var minNumberOfWins;
+        	var filterPlayersByFreeThrowPct = false;
+        	var minFreeThrowPct;
         	
         	var footerContents = "";
         	
@@ -185,9 +191,20 @@
         	
         	function hasNumOfWins(player) {
         		var result = false;
-        		var minNumberOfWins = $("input[name='minNumberOfWins']").val();
+        		//var minNumberOfWins = $("input[name='minNumberOfWins']").val();
         		
         		if (player.wins >= minNumberOfWins) {
+        			result = true;
+        		} return result;
+        	}
+        	
+        	function hasFreeThrowPct(player) {
+        		var result = false;
+        		var freeThrowPct = player.averages.freeThrowsMade / player.averages.freeThrowsAttempted;
+        		var minFreeThrowPct = $("input[name='minFreeThrowPct']").val();
+        		//console.log(player.name + " freeThrowPct: " + freeThrowPct);
+        		
+        		if (freeThrowPct > minFreeThrowPct) {
         			result = true;
         		} return result;
         	}
@@ -207,7 +224,9 @@
         		if (filterPlayersByWins) {
         			pelicansToShow = pelicansToShow.filter(hasNumOfWins);
         		}
-        		
+        		if (filterPlayersByFreeThrowPct) {
+        			pelicansToShow = pelicansToShow.filter(hasFreeThrowPct);
+        		}
         		
         		
         		var displayStrings = [];
@@ -241,7 +260,7 @@
 				
 				if (shouldSort) {
 					displayedStrings = displayedStrings.sort();
-				};
+				}
 				
 				var newDisplayHtml = displayedStrings.map(function(string) { 
 					return "<li>" + string + "</li>"; 
@@ -270,7 +289,7 @@
 			// are showing
 			$("[name=hidePlayersWithoutPosition]").on('click',function(e) { 
 			    filterPlayersWithoutPosition = $(e.target).is(':checked');
-			    console.log("clicked on hidePlayersWithoutPositon. filterPlayersWithoutPosition = ",filterPlayersWithoutPosition);
+			    console.log("clicked on hidePlayersWithoutPosition. filterPlayersWithoutPosition = ",filterPlayersWithoutPosition);
 			    updateDisplay();
 			});
 			// As above, sets filterMinorPlayers to true/false depending on if
@@ -294,7 +313,16 @@
 			    console.log("clicked on minNumberOfWins. minNumberOfWins = ",minNumberOfWins);
 			    updateDisplay();
 			});
-
+			$("[name=hidePlayersUsingFreeThrowPct").on('click', function(e) {
+			    filterPlayersByFreeThrowPct = $(e.target).is(':checked');
+			    console.log("changed input on hidePlayersUsingFreeThrowPct. filterPlayersByFreeThrowPct: " + filterPlayersByFreeThrowPct );
+				updateDisplay();
+			});
+			$("[name=minFreeThrowPct]").on('input',function(e) {
+				minFreeThrowPct = $("[name=minFreeThrowPct]").val();
+				console.log("clicked on minFreeThrowPct. minFreeThrowPct = " + minFreeThrowPct);
+				updateDisplay();
+			});
         	updateDisplay();
 
             window.pelicans = pelicans;
