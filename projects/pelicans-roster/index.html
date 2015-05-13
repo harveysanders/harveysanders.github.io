@@ -66,7 +66,21 @@
 
     	<ul id="players-display">
     	</ul>
-
+		<h2>Part 2</h2>
+		<fieldset>
+		    <label>
+		        <input type="checkbox" name="hidePlayersWithoutPosition">
+		        <span class="label">Hide players without a position</span>
+		    </label>
+		    <label>
+		        <input type="checkbox" name="showOnlyMajorPlayers">
+		        <span class="label">Show only major players (anyone who has played in over 40 games)</span>
+		    </label>
+		    <label>
+		        <input type="checkbox" name="hidePlayersUsingWins">
+		        <span class="label">Hide players with less than <input name="minNumberOfWins" value="50"> wins </span>
+		    </label>            
+		</fieldset>
     </main>
     <aside>
         Remember, you can open the console with
@@ -87,17 +101,22 @@
         $.getJSON("pelicans-simple.json").then(function(pelicans) {
         	var displayType;
         	var shouldSort;
+        	
+        	var filterPlayersWithoutPosition = false;
+        	var filterMinorPlayers = false;
+        	var filterPlayersByWins = false;
+        	var minNumberOfWins = false;
 
         	var getName = function(player) {
         		//TODO 2: return player name
         		
-        		console.log("get name for", player.name);
+        		//console.log("get name for", player.name);
         		return player.name;
         	};
 
         	var getNameAndNumber = function(player) {
         		//TODO 3: return a string with the player name and number
-        		console.log("get name and number for", player.name);
+        		//console.log("get name and number for", player.name);
         		
         		if (player.jersey) {
         			return (player.name + " - " + player.jersey);
@@ -106,7 +125,7 @@
 
         	var getWinsAndName = function(player) {
         		//TODO 4: return a string for the player wins and name
-        		console.log("get wins and name for", player.name);
+        		//console.log("get wins and name for", player.name);
         		return ("<em class='wins'>" + player.wins + "</em>" + " by " + player.name );
         	};
         	
@@ -117,22 +136,77 @@
 					
 				} return ("<em class='player_id'>" + player.playerId + "</em>" + ": " + player.name + "<em class= 'player_id'> (No assigned position) </em>");
 			};
+			
+			// -------------------------------- FILTERS -----------------------------------
+			
+			function isGuard(player) {
+				var positionIsGuard;
+				if(player.position === 'Guard') {
+					positionIsGuard = true;
+				}
+				else {
+					positionIsGuard = false;
+				}
+				return positionIsGuard;
+			}
+			
+			function hasPosition(player) {
+				var playerHasPosition;
+				if (player.position) {
+					playerHasPosition = true;
+				} else { 
+					playerHasPosition = false;
+				} 
+				console.log(player.name + " has position? " + playerHasPosition);
+				return playerHasPosition;
+			}
+        	
+        	function isMinorPlayer(player) {
+        		var playerIsMinor;
+        		if (player.gamesPlayed <= 40) {
+        			playerIsMinor = true;
+        		} else playerIsMinor = false;
+        		return playerIsMinor;
+        	}
+        	
+        	function hasUnder50Wins(player) {
+        		var result = false;
+        		var minNumberOfWins = $("input[name='minNumberOfWins']").val();
+        		
+        		if (player.wins >= minNumberOfWins) {
+        			result = true;
+        		} return result;
+        	}
         	
         	var getDisplayedPlayerStrings = function() {
+        		var pelicansToShow = pelicans;
+        		
+        		if (filterPlayersWithoutPosition) {
+        			pelicansToShow = pelicansToShow.filter(hasPosition);
+        		} 
+        		if (filterMinorPlayers) {
+        			pelicansToShow = pelicansToShow.filter(isMinorPlayer);
+        		}
+        		if (filterPlayersByWins) {
+        			pelicansToShow = pelicansToShow.filter(hasUnder50Wins);
+        		}
+        		
+        		
+        		
         		var displayStrings = [];
 
         		// TODO 1: write if statements that call the correct functions
         		// if displayType === "names" use getName to map every item in players and store the result in displayString
         		if (displayType === "names") {
-        			displayStrings = pelicans.map(getName);
+        			displayStrings = pelicansToShow.map(getName);
         		
         		// else if displayType === "names-numbers", do the same thing but with getNameAndNumber
         		} else if (displayType === "names-numbers") {
-        			displayStrings = pelicans.map(getNameAndNumber);
+        			displayStrings = pelicansToShow.map(getNameAndNumber);
         		} else if (displayType === "wins-names") {
-        			displayStrings = pelicans.map(getWinsAndName);
+        			displayStrings = pelicansToShow.map(getWinsAndName);
         		} else if (displayType === "id-name-position") {
-        			displayStrings = pelicans.map(getIDNameAndPosition);
+        			displayStrings = pelicansToShow.map(getIDNameAndPosition);
         		};
         		// etc
 
@@ -153,7 +227,7 @@
 				}).join("\n");
 
         		$("[id=players-display]").html( newDisplayHtml );
-        		console.log("diplay Type = " + displayType);
+        		//console.log("display Type = " + displayType);
         	}
 
         	$("[name=whatToShow]").on("change", function(e){
@@ -164,6 +238,37 @@
         		shouldSort = $(e.target).is(':checked');
         		updateDisplay();
         	});
+        	
+        	// changes the value of filterPlayersWithoutPosition to true or false
+			// depending on if the checkbox with name="hidePlayersWithoutPosition"
+			// is checked, and then calls updateDisplay() to change which players 
+			// are showing
+			$("[name=hidePlayersWithoutPosition]").on('click',function(e) { 
+			    filterPlayersWithoutPosition = $(e.target).is(':checked');
+			    console.log("clicked on hidePlayersWithoutPositon. filterPlayersWithoutPosition = ",filterPlayersWithoutPosition);
+			    updateDisplay();
+			});
+			// As above, sets filterMinorPlayers to true/false depending on if
+			// checkbox with name="showOnlyMajorPlayers" is checked
+			$("[name=showOnlyMajorPlayers]").on('click',function(e) {
+			    filterMinorPlayers = $(e.target).is(':checked');
+			    console.log("clicked on showOnlyMajorPlayers. filterMinorPlayers = ",filterMinorPlayers);
+			    updateDisplay();
+			});
+			// As above, sets filterPlayersByWins to true/false depending on if
+			// checkbox with name="hidePlayersUsingWins" is checked
+			$("[name=hidePlayersUsingWins]").on('click',function(e) {
+			    filterPlayersByWins = $(e.target).is(':checked');
+			    console.log("clicked on hidePlayersUsingWins. filterPlayersByWins = ",filterPlayersByWins);
+			    updateDisplay();
+			});
+			// updates the value of minNumberOfWins to match that of the text field
+			// with name="minNumberOfWins" whenever that field changes
+			$("[name=minNumberOfWins]").on('input',function(e) {
+			    minNumberOfWins = $("[name=minNumberOfWins]").val();
+			    console.log("clicked on minNumberOfWins. minNumberOfWins = ",minNumberOfWins);
+			    updateDisplay();
+			});
 
         	updateDisplay();
 
