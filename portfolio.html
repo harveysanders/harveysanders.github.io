@@ -33,7 +33,7 @@
            $(document).ready(function() {
                var vendee = window.opspark.vendee;
                
-               vendee.load.json('.projects.json').then(function(data) {
+               vendee.load.json('projects/projects.json').then(function(data) {
                    data.projects.forEach(function(project){
                        $("#portfolio").append('<li><a href="' + project.name + '/">' + project.title + ' : ' + project.description + '</a></li>');
                    });
