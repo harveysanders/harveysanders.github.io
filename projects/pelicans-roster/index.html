@@ -3,12 +3,16 @@
 
 <head>
     <title>Pelicans App</title>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
     <style>
     	body {
     		display: flex;
     		min-height: 100vh;
     		flex-direction: column;
-    		font-family: "Lucida";
+    		color: rgb(183, 153, 80);
+    		font-family: 'Titillium Web', sans-serif;
+    		background-color: rgb(0, 32, 81);
+    		
     	}
     	main {
     		flex: 1;
@@ -26,21 +30,25 @@
 			
 		}
 		.wins {
-			color: #3306f9;
+			color: rgb(244, 0, 33);
 			font-weight: bold;
 		}
 		li {
-			font-family: Lucida;
+			font-family: 'Titillium Web', sans-serif;
+			font-size: 85%;
 		}
 		footer{
-			color: rgb(100, 100, 200);
+			color: rgb(244, 0, 33);
 			font-style: italic;
 		}
 		.inputBox {
 			width: 30px;
 			color: rgb(23, 20, 34);
 		}
-		
+		img {
+			float: right;
+			padding-top:20px;
+		}
     </style>
 </head>
 
@@ -71,9 +79,9 @@
 	    	</label>
 
     	</fieldset>
-
-    	<ul id="players-display">
-    	</ul>
+		
+		
+		<img src="img/Pelicans_Partial.gif" width=100px>
 		<h2>Part 2</h2>
 		<fieldset>
 		    <label>
@@ -93,16 +101,13 @@
                 <span class-"label">Hide players free throw average less than <input class="inputBox" name="minFreeThrowPct" value=".500"> <em>(Ex: 0.623)</em></span>
             </label>            
 		</fieldset>
+		
+		<ul id="players-display">
+    	</ul>
+    	
+    	
     </main>
     <footer></footer>
-    <aside>
-        Remember, you can open the console with
-        <ul> 
-        	<li> <kbd>F12</kbd> </li>
-        	<li> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> </li>
-        	<li> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd> </li>
-        	<li> Right click > Inspect Element </li>
-    </aside>
 
     <!--local files -----------
     <script type="text/javascript" src=""></script>
@@ -147,7 +152,7 @@
         	var getWinsAndName = function(player) {
         		//TODO 4: return a string for the player wins and name
         		//console.log("get wins and name for", player.name);
-        		return ("<em class='wins'>" + player.wins + "</em>" + " by " + player.name );
+        		return ("<em class='wins'>" + player.wins + " wins</em>" + " by " + player.name );
         	};
         	
         	// TODO 5: remove the disabled attribute marker from the id-name-position radio input html above. Make it work by creating new functions 
