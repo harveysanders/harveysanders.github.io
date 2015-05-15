@@ -90,3 +90,6 @@ ul#portfolio li:hover {
     text-decoration: none;
     color: #454545;
 }
+#portfolio .description {
+    font-size: 80%;
+}
