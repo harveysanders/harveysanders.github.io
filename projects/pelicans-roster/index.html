@@ -3,7 +3,7 @@
 
 <head>
     <title>Pelicans App</title>
-    <link href='https://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web|Unna' rel='stylesheet' type='text/css'>
     <style>
     	body {
     		display: flex;
@@ -49,6 +49,12 @@
 			float: right;
 			padding-top:20px;
 		}
+		
+		.jerseyNum {
+			font-family: 'Unna', sans-serif;
+			font-size:120%;
+		}
+		
     </style>
 </head>
 
@@ -145,7 +151,7 @@
         		//console.log("get name and number for", player.name);
         		
         		if (player.info.jersey) {
-        			return (player.name + " - " + player.info.jersey);
+        			return (player.name + " - <span class='jerseyNum'>" + player.info.jersey + "</span>");
         		} return player.name;
         	};
 
