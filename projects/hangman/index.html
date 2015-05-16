@@ -155,11 +155,13 @@
                 var guessLetter = document.getElementById('guess_input').value;
                 guess(guessLetter);
                 console.log(guessLetter);
-                guessLetter = "";
+                document.getElementById('guess_input').value = "";
+                updatePhraseView();
             };
             
             var updatePhraseView = function() {
                 phraseView.innerHTML = "Current phrase is:", displayCurrent();
+                console.log("phraseView updated");
             };
             
             guessButton.addEventListener('click', handleGuessButton);

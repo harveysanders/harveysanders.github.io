@@ -1,0 +1,71 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>
+            Flying Box
+        </title>
+        <style>
+            .box {
+                background-color: black;
+                border: 1px solid gray;
+                display: block;
+                width: 80px;
+                height: 80px;
+                font-size: 300%;
+                color: red;
+                text-align: center;
+                font-family: century gothic, sans-serif;
+                line-height: 1.5;
+                
+                /*position the box*/
+                position: absolute;
+                top: 280px;
+                left: 320px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="box">0</div>
+        </main>
+    </body>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        (function() {
+            var update, position, fullWidth, fullHeight, points, increasePoints, direction, speed;
+            position = 0;
+            fullWidth = $('main').width();
+            fullHeight = $(window).height();
+            points = 0;
+            direction = 1;
+            speed = 1000;
+            
+            
+            update = function() {
+                 
+                /*position = position + direction*speed;
+                if(position > fullWidth) {
+                    direction = -1;
+                }
+                if (position < 0) {
+                    direction = 1;
+                } */
+                var horizRandomPos = Math.random() * fullWidth;
+                var vertiRandomPos = Math.random() * fullHeight;
+                
+                $('.box').css('left', horizRandomPos);
+                $('.box').css('top', vertiRandomPos);
+                $('.box').text(points);
+                console.log("full Height: " + fullHeight);
+            };
+            
+            increasePoints = function() {
+               points += 1;
+               speed = speed - 50;
+               setInterval(update, speed);
+            };
+            //setInterval(update, speed);
+            $('.box').on('click', increasePoints);
+        }).call();
+    </script>
+</html>
