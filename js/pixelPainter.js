@@ -61,7 +61,7 @@ $( document ).ready(function(){
                 var resolution = $("#ppResInput").val();
                 $('.sketch_grid').html("");
                 createGrid(resolution);
-                changePixelOnHover();
+                changePixelOnHoverToRandom();
             });
 
               
