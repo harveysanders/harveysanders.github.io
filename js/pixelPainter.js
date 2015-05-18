@@ -41,20 +41,29 @@ $( document ).ready(function(){
                 });
             };
             
-            var changePixelOnHover = function() {
+
+            var changePixelOnHoverToRandom = function() {
                 $('.pixel').mouseenter(function() {
                     $( this ).css({'backgroundColor': randomHexColor()});
                 });
             }
 
             createGrid(16);
-            changePixelOnHover();
-                
-            $('#resetButton').click(function() {
-                var resolution = parseInt(prompt("How many pixels per side would you like?\n(Max:100)"));
+            changePixelOnHoverToRandom();
+            
+            $('#ppResInput').on('input', function() {
+                if ($('#ppResInput').val() > 100) {
+                    $('#ppResInput').val(100);
+                }
+            });      
+            
+            $('#ppResolutionSetButton').click(function() {
+                var resolution = $("#ppResInput").val();
                 $('.sketch_grid').html("");
                 createGrid(resolution);
                 changePixelOnHover();
-            });    
+            });
+
+              
             
        	});

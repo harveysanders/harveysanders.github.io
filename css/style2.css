@@ -93,3 +93,15 @@ ul#portfolio li:hover {
 #portfolio .description {
     font-size: 80%;
 }
+#pixelPainterContainer{
+    display: flex;
+    min-width: 625px;
+}
+#pixelPainterUI {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4px;
+}
+#pixelPainterUI span {
+    padding:2px;
+}

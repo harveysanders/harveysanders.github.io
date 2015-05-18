@@ -23,13 +23,27 @@
 
         <div class="container">  
             <div class="content">
+                
                 <div class ="portfolioList">
                     <h1>My Work</h1>
                     <ul id="portfolio" class="portfolio-list">
                         <li><a href ="Pixel Painter">Pixel Painter</a></li>
                     </ul>
                 </div>
-                <div class ="sketch_grid"></div>
+                
+                <div id= "pixelPainterContainer">
+                    <div class ="sketch_grid"></div>
+                    <div id="pixelPainterUI">
+                        <span>
+                            Resoulution (pixels per side):<input size=1 id="ppResInput" type="text"></input>
+                            <button  type="submit" id="ppResolutionSetButton">Set</button>
+                        </span>
+                        <!--<span>
+                            <input type="checkbox"></input>Paint with random colors
+                        </span> -->
+                    </div>
+                </div>
+
             </div>
         </div>
 
