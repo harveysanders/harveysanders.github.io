@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Operation Spark || Motion Poem</title>
+		<meta name="description" content="Operation Spark Motion Poem">
+		<meta name="author" content="operationspark.org">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	    <link href="css/style.css" rel="stylesheet">
+
+		<!-- all core CreateJS and 3rd party libraries are listed here: -->
+		<script src="bower_components/lodash/dist/lodash.min.js"></script>
+		<script src="bower_components/easeljs/lib/easeljs-0.8.0.min.js"></script>
+		<script src="bower_components/preloadjs/lib/preloadjs-0.6.0.min.js"></script>
+		<script src="bower_components/soundjs/lib/soundjs-0.6.0.min.js"></script>
+		<script src="bower_components/opspark-draw/draw.js"></script>
+
+	    <!-- our app javascript code -->
+	    <script src="js/motion-poem.js"></script>
+	    <script src="js/opspark.js"></script>
+
+		<script type="text/javascript">
+			window.onload = function(){
+				/*
+				 * By declaring the stage and canvas variables here, we 
+				 * make them available to scopes initialized within this 
+				 * closure.
+				 */ 
+				var stage;
+			    var canvas;
+
+			    /*
+			     * Variables created within this closure will be protected 
+			     * from any global scope and other libraries we may use, 
+			     * therefore preventing any clashing of namespaces.
+			     */
+			    (function(window, document){
+					window.opspark = window.opspark || {};
+			        opspark.app = opspark.makeApp();
+			        console.log('app initialized!');
+				})(window, document);
+				
+				
+			};
+			function stopDrawing() {
+				
+			}
+		</script>
+	</head>
+
+	<body>
+		<div>
+				<!-- canvas element that serves as the stage for our app or game -->
+				<canvas id="canvas" width="400" height="400"></canvas>
+				<span id = "lineDocumentation">draw.line(fromX, fromY, toX, toY, color, thickness, shape)</span>
+				<button id="startButton">Start</button>
+				<button id="stopButton">Stop</button>
+			
+		</div>
+		
+	</body>
+</html>
