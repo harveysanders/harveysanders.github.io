@@ -3,12 +3,16 @@
 
 <head>
     <title>Pelicans App</title>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web|Unna' rel='stylesheet' type='text/css'>
     <style>
     	body {
     		display: flex;
     		min-height: 100vh;
     		flex-direction: column;
-    		font-family: "Lucida";
+    		color: rgb(183, 153, 80);
+    		font-family: 'Titillium Web', sans-serif;
+    		background-color: rgb(0, 32, 81);
+    		
     	}
     	main {
     		flex: 1;
@@ -26,15 +30,29 @@
 			
 		}
 		.wins {
-			color: #3306f9;
+			color: rgb(244, 0, 33);
 			font-weight: bold;
 		}
 		li {
-			font-family: Lucida;
+			font-family: 'Titillium Web', sans-serif;
+			font-size: 85%;
 		}
 		footer{
-			color: rgb(100, 100, 200);
+			color: rgb(244, 0, 33);
 			font-style: italic;
+		}
+		.inputBox {
+			width: 30px;
+			color: rgb(23, 20, 34);
+		}
+		img {
+			float: right;
+			padding-top:20px;
+		}
+		
+		.jerseyNum {
+			font-family: 'Unna', sans-serif;
+			font-size:120%;
 		}
 		
     </style>
@@ -67,9 +85,9 @@
 	    	</label>
 
     	</fieldset>
-
-    	<ul id="players-display">
-    	</ul>
+		
+		
+		<img src="img/Pelicans_Partial.gif" width=100px>
 		<h2>Part 2</h2>
 		<fieldset>
 		    <label>
@@ -82,22 +100,26 @@
 		    </label>
 		    <label>
 		        <input type="checkbox" name="hidePlayersUsingWins">
-		        <span class="label">Hide players with less than <input name="minNumberOfWins" value="40"> wins </span>
-		    </label>            
+		        <span class="label">Hide players with less than <input class="inputBox" name="minNumberOfWins" value="40"> wins </span>
+		    </label>
+            <label>
+                <input type="checkbox" name="hidePlayersUsingFreeThrowPct">
+                <span class-"label">Hide players free throw average less than <input class="inputBox" name="minFreeThrowPct" value=".500"> <em>(Ex: 0.623)</em></span>
+            </label>            
 		</fieldset>
+		
+		<ul id="players-display">
+    	</ul>
+    	
+    	
     </main>
     <footer></footer>
-    <aside>
-        Remember, you can open the console with
-        <ul> 
-        	<li> <kbd>F12</kbd> </li>
-        	<li> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> </li>
-        	<li> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd> </li>
-        	<li> Right click > Inspect Element </li>
-    </aside>
 
-
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!--local files -----------
+    <script type="text/javascript" src=""></script>
+     -------------------- -->
+     
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/lodash/lodash.min.js"></script>
     <script src="rosterHelpers.js"></script>
     <script>
@@ -110,7 +132,9 @@
         	var filterPlayersWithoutPosition = false;
         	var filterMinorPlayers = false;
         	var filterPlayersByWins = false;
-        	var minNumberOfWins = false;
+        	var minNumberOfWins;
+        	var filterPlayersByFreeThrowPct = false;
+        	var minFreeThrowPct;
         	
         	var footerContents = "";
         	
@@ -127,14 +151,14 @@
         		//console.log("get name and number for", player.name);
         		
         		if (player.info.jersey) {
-        			return (player.name + " - " + player.info.jersey);
+        			return (player.name + " - <span class='jerseyNum'>" + player.info.jersey + "</span>");
         		} return player.name;
         	};
 
         	var getWinsAndName = function(player) {
         		//TODO 4: return a string for the player wins and name
         		//console.log("get wins and name for", player.name);
-        		return ("<em class='wins'>" + player.wins + "</em>" + " by " + player.name );
+        		return ("<em class='wins'>" + player.wins + " wins</em>" + " by " + player.name );
         	};
         	
         	// TODO 5: remove the disabled attribute marker from the id-name-position radio input html above. Make it work by creating new functions 
@@ -176,16 +200,30 @@
         		return playerIsMinor;
         	}
         	
-        	function hasUnder50Wins(player) {
+        	function hasNumOfWins(player) {
         		var result = false;
-        		var minNumberOfWins = $("input[name='minNumberOfWins']").val();
+        		//var minNumberOfWins = $("input[name='minNumberOfWins']").val();
         		
         		if (player.wins >= minNumberOfWins) {
         			result = true;
         		} return result;
         	}
         	
-        	var getDisplayedPlayerStrings = function() {
+        	function hasFreeThrowPct(player) {
+        		var result = false;
+        		var freeThrowPct = player.averages.freeThrowsMade / player.averages.freeThrowsAttempted;
+        		var minFreeThrowPct = $("input[name='minFreeThrowPct']").val();
+        		//console.log(player.name + " freeThrowPct: " + freeThrowPct);
+        		
+        		if (freeThrowPct > minFreeThrowPct) {
+        			result = true;
+        		} return result;
+        	}
+
+            //function 
+        	// ------------------ END OF FILTERS --------------------------------------
+        	
+            var getDisplayedPlayerStrings = function() {
         		var pelicansToShow = pelicans;
         		
         		if (filterPlayersWithoutPosition) {
@@ -195,9 +233,11 @@
         			pelicansToShow = pelicansToShow.filter(isMinorPlayer);
         		}
         		if (filterPlayersByWins) {
-        			pelicansToShow = pelicansToShow.filter(hasUnder50Wins);
+        			pelicansToShow = pelicansToShow.filter(hasNumOfWins);
         		}
-        		
+        		if (filterPlayersByFreeThrowPct) {
+        			pelicansToShow = pelicansToShow.filter(hasFreeThrowPct);
+        		}
         		
         		
         		var displayStrings = [];
@@ -231,7 +271,7 @@
 				
 				if (shouldSort) {
 					displayedStrings = displayedStrings.sort();
-				};
+				}
 				
 				var newDisplayHtml = displayedStrings.map(function(string) { 
 					return "<li>" + string + "</li>"; 
@@ -260,7 +300,7 @@
 			// are showing
 			$("[name=hidePlayersWithoutPosition]").on('click',function(e) { 
 			    filterPlayersWithoutPosition = $(e.target).is(':checked');
-			    console.log("clicked on hidePlayersWithoutPositon. filterPlayersWithoutPosition = ",filterPlayersWithoutPosition);
+			    console.log("clicked on hidePlayersWithoutPosition. filterPlayersWithoutPosition = ",filterPlayersWithoutPosition);
 			    updateDisplay();
 			});
 			// As above, sets filterMinorPlayers to true/false depending on if
@@ -284,7 +324,16 @@
 			    console.log("clicked on minNumberOfWins. minNumberOfWins = ",minNumberOfWins);
 			    updateDisplay();
 			});
-
+			$("[name=hidePlayersUsingFreeThrowPct").on('click', function(e) {
+			    filterPlayersByFreeThrowPct = $(e.target).is(':checked');
+			    console.log("changed input on hidePlayersUsingFreeThrowPct. filterPlayersByFreeThrowPct: " + filterPlayersByFreeThrowPct );
+				updateDisplay();
+			});
+			$("[name=minFreeThrowPct]").on('input',function(e) {
+				minFreeThrowPct = $("[name=minFreeThrowPct]").val();
+				console.log("clicked on minFreeThrowPct. minFreeThrowPct = " + minFreeThrowPct);
+				updateDisplay();
+			});
         	updateDisplay();
 
             window.pelicans = pelicans;

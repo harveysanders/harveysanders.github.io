@@ -25,7 +25,6 @@ h1 {
     /*margin-left: 225px;*/
 }
 .content li {
-    margin-left: -20px;
     font-family: "Raleway", serif;
 }
 /* Left aligned sidebar */
@@ -72,20 +71,37 @@ nav h1 {
     color: #ffffff;
 }
 /* Portfolio page */
-ul.portfolio {
+ul#portfolio {
     list-style-type: none;
     padding-left: 0;
 }
-ul.portfolio li {
+ul#portfolio li {
     background: #fff;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 4px;
+    border-radius: 15px;
     margin-bottom: 10px;
+    padding-left: 10px;
+
 }
-ul.portfolio li:hover {
+ul#portfolio li:hover {
     background: #eee;
 }
-.portfolio a {
+#portfolio a {
     text-decoration: none;
     color: #454545;
+}
+#portfolio .description {
+    font-size: 80%;
+}
+#pixelPainterContainer{
+    display: flex;
+    min-width: 625px;
+}
+#pixelPainterUI {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4px;
+}
+#pixelPainterUI span {
+    padding:2px;
 }
