@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+
+	<style>
+		/****************************
+		 * Write your CSS style code here
+		 ***************************/
+		.container {
+    		border: 1px solid black;
+    		padding: 20px;
+    		background-color: #72C9DA;
+    		width: 400px;
+    		font-family: 'Century Gothic';
+		}
+		
+		input {
+    		width: 100%;
+		}
+		
+		.container #errorMessage {
+			color: #B92216;
+			font-size: 11px;
+			width:100%;
+			display: none;
+		}
+		
+		#spinner {
+			position: relative;
+			left: 350px;
+			top:20px;
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- -----------------------
+	 Write your HTML structure code here
+	 ----------------------- -->
+     <div class="container">
+            Username: 
+            <input type="text" id="Username"/>
+            Password: 
+            <input type="password" id="Password"/>
+			<span id="errorMessage">Username and Password do not match. Please try again.</span>
+			<span id="spinner" class="spinner">
+				<!-- 
+				<img src = "spinner.gif">
+				-->
+			</span><br>
+            <button id="loginButton">Login</button>
+        
+        </div>	
+ 
+ 	<!-- local sources
+ 	<script src="jquery-2.1.3.min.js"></script>
+ 	<script src="login-exercise-lib.js"></script>
+ 	<script src="spin.min.js"></script>
+ 	-->
+ 	
+ 	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+ 	<script src="login-exercise-lib.js"></script>
+ 	<script src="https://fgnass.github.io/spin.js/spin.min.js"></script>
+	<script> 
+		$( document ).ready(function(){
+			'use strict'
+			/****************************
+			 * Write your Javascript behavior code here
+			 ***************************/
+			 
+			 var username;
+			 var password;
+			 
+			 $("#loginButton").click(function() {
+			 	username = $('#Username').val();
+			 	password = $('#Password').val();
+			 	
+			 	//console.log(username);
+			 	//console.log(password);
+			 	
+			 	var loginIsCorrect = window.loginApp.login(username, password);
+			 	
+			 	if (loginIsCorrect) {
+			 		$('#loginButton').prop('disabled', true);
+			 		$('#errorMessage').hide();
+			 		
+			 		$('#spinner').show();
+			 		
+			 		//5 sec reset
+			 		setTimeout(function(){
+			 			$('#spinner').hide();
+			 			spinner.stop(target);
+			 			$('#loginButton').prop('disabled', false);
+			 			$('input, textarea').val("");
+			 		}, 5000);
+			 		
+			 		//spin.js
+			 	
+			 		var opts = {
+  						lines: 9, // The number of lines to draw
+  						length: 6, // The length of each line
+  						width: 3, // The line thickness
+  						radius: 5, // The radius of the inner circle
+  						corners: 1, // Corner roundness (0..1)
+  						rotate: 0, // The rotation offset
+  						direction: 1, // 1: clockwise, -1: counterclockwise
+  						color: '#000', // #rgb or #rrggbb or array of colors
+  						speed: 1, // Rounds per second
+  						trail: 77, // Afterglow percentage
+  						shadow: false, // Whether to render a shadow
+  						hwaccel: false, // Whether to use hardware acceleration
+  						className: 'spinner', // The CSS class to assign to the spinner
+  						zIndex: 2e9, // The z-index (defaults to 2000000000)
+  						top: '50%', // Top position relative to parent
+  						left: '50%' // Left position relative to parent
+					};
+					
+					var target = document.getElementById('spinner');
+					var spinner = new Spinner(opts).spin(target);
+					console.log(spinner);
+			 		console.log(opts);
+			 		
+			 	
+			 	} else {
+			 		$('#errorMessage').show();
+			 	} 
+			 	
+			 	
+			 });
+			 
+			 
+		}).call();
+	</script>
+</body>
+</html>
