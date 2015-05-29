@@ -7,11 +7,14 @@
 		/****************************
 		 * Write your CSS style code here
 		 ***************************/
+		body {
+			background-color:rgb(221,221,255);
+		}
 		.container {
     		border: 1px solid black;
     		padding: 20px;
     		background-color: #72C9DA;
-    		width: 400px;
+    		width: 300px;
     		font-family: 'Century Gothic';
 		}
 		
@@ -32,6 +35,12 @@
 			top:20px;
 			display: none;
 		}
+		.centered {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
 	</style>
 </head>
 
@@ -39,7 +48,7 @@
 	<!-- -----------------------
 	 Write your HTML structure code here
 	 ----------------------- -->
-     <div class="container">
+     <div class="container centered">
             Username: 
             <input type="text" id="Username"/>
             Password: 
