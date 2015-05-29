@@ -16,6 +16,8 @@
     	}
     	main {
     		flex: 1;
+            max-width: 600px;
+            margin: 0 auto;
     	}
     	label {
     		display: block;
@@ -40,6 +42,7 @@
 		footer{
 			color: rgb(244, 0, 33);
 			font-style: italic;
+            padding-bottom: 20px;
 		}
 		.inputBox {
 			width: 30px;
@@ -60,58 +63,59 @@
 
 <body>
     <main>
-	    <p>Select some of the options below to view some data on pelicans players</p>
-    	<fieldset>
-	    	<label>
-	    		<input type="radio" name="whatToShow" value="names" >
-	    		<span class="label">Show player names only <em>(Anthony Davis)</em></span>
-	    	</label>
-	    	<label>
-	    		<input type="radio" name="whatToShow" value="names-numbers" >
-	    		<span class="label">Show player names and number <em>(Anthony Davis - 23)</em></span>
-	    	</label>
-	    	<label>
-	    		<input type="radio" name="whatToShow" value="wins-names" >
-	    		<span class="label">Show player wins and names <em>(39 by Anthony Davis)</em></span>
-	    	</label>
+        <div class="container"> 
+    	    <p>Select some of the options below to view some data on pelicans players</p>
+        	<fieldset>
+    	    	<label>
+    	    		<input type="radio" name="whatToShow" value="names" >
+    	    		<span class="label">Show player names only <em>(Anthony Davis)</em></span>
+    	    	</label>
+    	    	<label>
+    	    		<input type="radio" name="whatToShow" value="names-numbers" >
+    	    		<span class="label">Show player names and number <em>(Anthony Davis - 23)</em></span>
+    	    	</label>
+    	    	<label>
+    	    		<input type="radio" name="whatToShow" value="wins-names" >
+    	    		<span class="label">Show player wins and names <em>(39 by Anthony Davis)</em></span>
+    	    	</label>
 
-	    	<label>
-	    		<input type="radio" name="whatToShow" value="id-name-position" >
-	    		<span class="label">Show player id, name, and position <em>(203076: Anthony Davis (Forward-Center))</em></span>
-	    	</label>
-	    	<label>
-	    		<input type="checkbox" name="shouldSort" >
-	    		<span class="label">Sort players</span>
-	    	</label>
+    	    	<label>
+    	    		<input type="radio" name="whatToShow" value="id-name-position" >
+    	    		<span class="label">Show player id, name, and position <em>(203076: Anthony Davis (Forward-Center))</em></span>
+    	    	</label>
+    	    	<label>
+    	    		<input type="checkbox" name="shouldSort" >
+    	    		<span class="label">Sort players</span>
+    	    	</label>
 
-    	</fieldset>
-		
-		
-		<img src="img/Pelicans_Partial.gif" width=100px>
-		<h2>Part 2</h2>
-		<fieldset>
-		    <label>
-		        <input type="checkbox" name="hidePlayersWithoutPosition">
-		        <span class="label">Hide players without a position</span>
-		    </label>
-		    <label>
-		        <input type="checkbox" name="showOnlyMajorPlayers">
-		        <span class="label">Show only major players (anyone who has played in over 40 games)</span>
-		    </label>
-		    <label>
-		        <input type="checkbox" name="hidePlayersUsingWins">
-		        <span class="label">Hide players with less than <input class="inputBox" name="minNumberOfWins" value="40"> wins </span>
-		    </label>
-            <label>
-                <input type="checkbox" name="hidePlayersUsingFreeThrowPct">
-                <span class-"label">Hide players free throw average less than <input class="inputBox" name="minFreeThrowPct" value=".500"> <em>(Ex: 0.623)</em></span>
-            </label>            
-		</fieldset>
-		
-		<ul id="players-display">
-    	</ul>
+        	</fieldset>
+    		
+    		
+    		<img src="img/Pelicans_Partial.gif" width=100px>
+    		<h2>Part 2</h2>
+    		<fieldset>
+    		    <label>
+    		        <input type="checkbox" name="hidePlayersWithoutPosition">
+    		        <span class="label">Hide players without a position</span>
+    		    </label>
+    		    <label>
+    		        <input type="checkbox" name="showOnlyMajorPlayers">
+    		        <span class="label">Show only major players (anyone who has played in over 40 games)</span>
+    		    </label>
+    		    <label>
+    		        <input type="checkbox" name="hidePlayersUsingWins">
+    		        <span class="label">Hide players with less than <input class="inputBox" name="minNumberOfWins" value="40"> wins </span>
+    		    </label>
+                <label>
+                    <input type="checkbox" name="hidePlayersUsingFreeThrowPct">
+                    <span class-"label">Hide players free throw average less than <input class="inputBox" name="minFreeThrowPct" value=".500"> <em>(Ex: 0.623)</em></span>
+                </label>            
+    		</fieldset>
+    		
+    		<ul id="players-display">
+        	</ul>
     	
-    	
+    	</div>
     </main>
     <footer></footer>
 
