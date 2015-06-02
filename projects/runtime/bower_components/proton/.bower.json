@@ -1,0 +1,26 @@
+{
+  "name": "Proton",
+  "homepage": "http://a-jie.github.io/Proton",
+  "authors": [
+    "a-jie <a-jie.cn@msn.com>"
+  ],
+  "description": "Proton is an easily customizable html5 particle engine including five different types of renderers.",
+  "main": "build/proton-1.0.0.min.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "66db41b6c2",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "66db41b6c24c63349a3d5d65d1c3f319c83830ed"
+  },
+  "_source": "git://github.com/a-jie/Proton.git",
+  "_target": "*",
+  "_originalSource": "proton"
+}
