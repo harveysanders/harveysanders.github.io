@@ -19,7 +19,10 @@
         // container which will be returned
         var background;
         var backgroundBox;
-        
+        var tank;
+        var backClouds;
+        var cityscape;
+
         // add objects for display in background
         // called at the start of game and whenever the page is resized
         function render() {
@@ -36,11 +39,12 @@
             backgroundBox.x = 300;
             backgroundBox.y = 200;
             
-            var tank = draw.bitmap('img/TankCommando2.png', canvasWidth-200, (canvasHeight /2)-125);
             var backgroundFill = draw.rect(canvasWidth,canvasHeight /2 ,'#150c09');
             backgroundFill.y = canvasHeight/2 ;
-            var cityscape = draw.bitmap('img/cityscape-silhouette.png', null, canvasHeight/2 -362);
-            var backClouds = draw.bitmap('img/errieclouds.png');
+
+            tank = draw.bitmap('img/TankCommando2.png', canvasWidth-200, (canvasHeight /2)-125);
+            cityscape = draw.bitmap('img/cityscape-silhouette.png', null, canvasHeight/2 -362);
+            backClouds = draw.bitmap('img/errieclouds.png');
             
             background.addChild(backClouds);
             background.addChild(backgroundFill);
@@ -57,8 +61,9 @@
             var canvasHeight = app.canvas.height;
             var groundY = ground.y;
             backgroundBox.x += 1;
-            backClouds.x += .5;
-            cityscape.x += 1;
+            backClouds.x -= .75;
+            cityscape.x -= .25;
+            tank.x -= .5;
 
         }
 
