@@ -65,6 +65,10 @@
             cityscape.x -= .25;
             tank.x -= .5;
 
+            if(backgroundBox.x < -100) {
+                backgroundBox.x = canvasWidth;
+            }
+
         }
 
         background = new createjs.Container();
