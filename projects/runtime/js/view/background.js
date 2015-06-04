@@ -18,8 +18,9 @@
 
         // container which will be returned
         var background;
+        var backgroundBox;
         
-        // add objects for display inb ackground
+        // add objects for display in background
         // called at the start of game and whenever the page is resized
         function render() {
             // useful variables
@@ -30,12 +31,22 @@
             background.removeAllChildren();
 
             // TODO: 3 - YOUR DRAW CODE GOES HERE
-            var circle = draw.circle(3, '#cccccc');
-            background.addChild(circle);
             
-            // XXX: not quite right
-            var backgroundFill = draw.rect(canvasWidth,canvasHeight /2 ,'#000');
+            backgroundBox = draw.rect(100, 100, 'ccc');
+            backgroundBox.x = 300;
+            backgroundBox.y = 200;
+            
+            var tank = draw.bitmap('img/TankCommando2.png', canvasWidth-200, (canvasHeight /2)-125);
+            var backgroundFill = draw.rect(canvasWidth,canvasHeight /2 ,'#150c09');
+            backgroundFill.y = canvasHeight/2 ;
+            var cityscape = draw.bitmap('img/cityscape-silhouette.png', null, canvasHeight/2 -362);
+            var backClouds = draw.bitmap('img/errieclouds.png');
+            
+            background.addChild(backClouds);
             background.addChild(backgroundFill);
+            background.addChild(cityscape);
+            background.addChild(tank);
+            background.addChild(backgroundBox);
         }
         
         // Perform background animation
@@ -45,6 +56,9 @@
             var canvasWidth = app.canvas.width;
             var canvasHeight = app.canvas.height;
             var groundY = ground.y;
+            backgroundBox.x += 1;
+            backClouds.x += .5;
+            cityscape.x += 1;
 
         }
 

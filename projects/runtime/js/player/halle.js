@@ -155,7 +155,7 @@
         // INITIALIZE ANIMATIONS ///////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
         
-        _dust = particleManager.makeEmitter(1, 3, null, new Proton.Velocity(new Proton.Span(1, 2), new Proton.Span(0, 360), 'polar'), [new Proton.RandomDrift(5, 0)]);
+        _dust = particleManager.makeEmitter(1, 3, 'eeeeee', new Proton.Velocity(new Proton.Span(1, 2), new Proton.Span(260, 300), 'polar'), [new Proton.RandomDrift(5, 0)]);
         
         _walk = new createjs.Sprite(spritesheet, "walk");
         configureSprite(_walk);
