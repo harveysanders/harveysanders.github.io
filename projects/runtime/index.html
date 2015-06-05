@@ -65,7 +65,7 @@
                     app = opspark.makeApp({update: update}),
                     canvas = app.canvas, 
                     view = app.view,
-                    fps = draw.fps('#000');
+                    fps = draw.fps('#eee');
                 
                 var 
                     space, 
@@ -88,7 +88,7 @@
                 view.addChild(background);
                 view.addChild(ground);
                 var help = draw.textfield('MOVES || w: jump | e: flying jump | s: duck | space: fire | q boooom!!', 
-                    '20px Arial',
+                    '14px Courier New',
                     '#ccc', 'left');
                 help.x = 10;
                 help.y = ground.y + ground.getBounds().height + 10;

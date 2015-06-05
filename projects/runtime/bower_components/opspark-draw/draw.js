@@ -334,7 +334,7 @@
         
         fps: function (color) {
             color = (color) ? color : '#FFF';
-            var _textfield = new createjs.Text("-- fps", "bold 15px Arial", color);
+            var _textfield = new createjs.Text("-- fps", "bold 15px Courier New", color);
             var _fps = new createjs.Container();
             _fps.textfield = _textfield;
             _fps.addChild(_textfield);
