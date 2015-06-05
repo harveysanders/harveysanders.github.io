@@ -86,7 +86,7 @@
                 
                 var background = opspark.makeBackground(app, ground);
                 view.addChild(background);
-                
+                view.addChild(ground);
                 var help = draw.textfield('MOVES || w: jump | e: flying jump | s: duck | space: fire | q boooom!!', 
                     '20px Arial',
                     '#ccc', 'left');
@@ -130,6 +130,9 @@
                 
                 // TODO: 1 - add a head's up display
                 var hud = opspark.makeHud();
+                
+                
+                
                 view.addChild(hud);
                 
                 window.hud = hud;
