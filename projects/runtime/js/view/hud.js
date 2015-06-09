@@ -9,12 +9,10 @@
     
     /*
 
-    Create a head-up display for our game showing a scoreand an 
+    Create a heads-up display for our game showing a scoreand an 
     "integrity meter" which indicates our health. The returned object is a 
     create.js container which can be added to our game using the following code:
       
-    Example:
-
         var hud = opspark.makeHud();
         view.addChild(hud);
 

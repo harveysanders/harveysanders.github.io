@@ -3,6 +3,12 @@
  * of the CreateJS Graphic API to reduce boiler-plate and that also supports
  * calculation of width and height properties on shapes.
  * 
+ * dependencies: easeljs-0.8.1.min.js
+ * 
+ * In your index.html file, include:
+ * 
+ * <script src="bower_components/easeljs/lib/easeljs-0.8.1.min.js"></script>
+ * 
  * For CreateJS Graphic API not wrapped by this version, use the Graphic API directly.
  * See: http://www.createjs.com/Docs/EaselJS/classes/Graphics.html
  *
@@ -15,6 +21,8 @@
     const TYPE_LINEAR       = 'linear';
     
     window.opspark = window.opspark || {};
+    
+    var createjs = window.createjs;
     
     function sortNumbersAscending(a, b) { return a - b; }
     function sortNumbersDescending(a, b) { return b - a; }
@@ -85,7 +93,7 @@
             width: width,
             height: height,
             xOffset: (xOffset) ? xOffset : 0,
-        	yOffset: (yOffset) ? yOffset : 0
+            yOffset: (yOffset) ? yOffset : 0
         };
         if (radius) { dimensions.radius = radius; }
         return dimensions;
@@ -188,58 +196,58 @@
             draw.setDimensionsOn(shape, dimensions);
             shape.dimensions.cornerRadius = radius;
             return shape;
-    	},
-    	
-    	roundRectComplex: function (width, 
-    	                            height, 
-    	                            radiusTopLeft, 
-    	                            radiusTopRight, 
-    	                            radiusBottomRight, 
-    	                            radiusBottomLeft, 
-    	                            color, 
-    	                            strokeColor, 
-    	                            strokeStyle, 
-    	                            xOffset, 
-    	                            yOffset, 
-    	                            onShape) {
-    	    var dimensions = buildDimensions(TYPE_RECTANGULAR, width, height, xOffset, yOffset);
-    	    
-        	var shape = (onShape) ? onShape : new createjs.Shape();
-        	shape.graphics
-        		.setStrokeStyle(strokeStyle)
-        		.beginStroke(strokeColor)
-        		.beginFill(color)
-        		.drawRoundRectComplex(dimensions.xOffset, 
-        		                      dimensions.yOffset, 
-        		                      width, 
-        		                      height, 
-        		                      radiusTopLeft, 
-        		                      radiusTopRight, 
-        		                      radiusBottomRight, 
-        		                      radiusBottomLeft);
-        		                      
-	        draw.setDimensionsOn(shape, dimensions);
-	        shape.dimensions.radiusTopLeft = radiusTopLeft;
-	        shape.dimensions.radiusTopRight = radiusTopRight;
-	        shape.dimensions.radiusBottomRight = radiusBottomRight;
-	        shape.dimensions.radiusBottomLeft = radiusBottomLeft;
+        },
+        
+        roundRectComplex: function (width, 
+                                    height, 
+                                    radiusTopLeft, 
+                                    radiusTopRight, 
+                                    radiusBottomRight, 
+                                    radiusBottomLeft, 
+                                    color, 
+                                    strokeColor, 
+                                    strokeStyle, 
+                                    xOffset, 
+                                    yOffset, 
+                                    onShape) {
+            var dimensions = buildDimensions(TYPE_RECTANGULAR, width, height, xOffset, yOffset);
+            
+            var shape = (onShape) ? onShape : new createjs.Shape();
+            shape.graphics
+                .setStrokeStyle(strokeStyle)
+                .beginStroke(strokeColor)
+                .beginFill(color)
+                .drawRoundRectComplex(dimensions.xOffset, 
+                                      dimensions.yOffset, 
+                                      width, 
+                                      height, 
+                                      radiusTopLeft, 
+                                      radiusTopRight, 
+                                      radiusBottomRight, 
+                                      radiusBottomLeft);
+                                      
+            draw.setDimensionsOn(shape, dimensions);
+            shape.dimensions.radiusTopLeft = radiusTopLeft;
+            shape.dimensions.radiusTopRight = radiusTopRight;
+            shape.dimensions.radiusBottomRight = radiusBottomRight;
+            shape.dimensions.radiusBottomLeft = radiusBottomLeft;
             return shape;
-    	},
+        },
 
-    	circle: function (radius, color, strokeColor, strokeStyle, xOffset, yOffset, onShape) { 
-        	var dimensions = buildDimensions(TYPE_CIRCULAR, radius * 2, radius * 2, xOffset, yOffset, radius);
-        	
-        	var shape = (onShape) ? onShape : new createjs.Shape();
-        	shape.graphics
-        		.setStrokeStyle(strokeStyle)
-        		.beginStroke(strokeColor)
-        		.beginFill(color)
-        		.drawCircle(dimensions.xOffset, dimensions.yOffset, radius);
-        	
-        	draw.setDimensionsOn(shape, dimensions);
-        	shape.radius = radius;
-        	return shape;
-    	},
+        circle: function (radius, color, strokeColor, strokeStyle, xOffset, yOffset, onShape) { 
+            var dimensions = buildDimensions(TYPE_CIRCULAR, radius * 2, radius * 2, xOffset, yOffset, radius);
+            
+            var shape = (onShape) ? onShape : new createjs.Shape();
+            shape.graphics
+                .setStrokeStyle(strokeStyle)
+                .beginStroke(strokeColor)
+                .beginFill(color)
+                .drawCircle(dimensions.xOffset, dimensions.yOffset, radius);
+            
+            draw.setDimensionsOn(shape, dimensions);
+            shape.radius = radius;
+            return shape;
+        },
 
         drawEllipse: function (width, height, color, strokeColor, strokeStyle, xOffset, yOffset, onShape) {
             var dimensions = buildDimensions(TYPE_RECTANGULAR, width, height, xOffset, yOffset);
@@ -254,77 +262,104 @@
             return draw.setDimensionsOn(shape, dimensions);
         },
 
-    	polyStar: function (radius, sides, pointSize, angle, color, strokeColor, strokeStyle, xOffset, yOffset, onShape) {
-    		var dimensions = buildDimensions(TYPE_CIRCULAR, radius * 2, radius * 2, xOffset, yOffset, radius);
-    		
-        	var shape = (onShape) ? onShape : new createjs.Shape();
-        	shape.graphics
-        		.setStrokeStyle(strokeStyle)
-        		.beginStroke(strokeColor)
-        		.beginFill(color)
-        		.drawPolyStar(dimensions.xOffset, dimensions.yOffset, radius, sides, pointSize || 0, angle);
-        	
-        	draw.setDimensionsOn(shape, dimensions);
-        	shape.radius = radius;
-        	return shape;
-    	},
-    	
-    	
-    	randomCircleInArea: function (area, randomizeAlpha, addCross, borderColor, borderThickness, randomRadialProps) {
-    	    var props, circle;
-    	    
-    	    props = (randomRadialProps) ? randomRadialProps : draw.randomRadialProps(area);
-			
-			if (addCross) {
-			    // always make sure the cross is visible - it won't be if randomizeAlpha is false //
-			    randomizeAlpha = true;
-    			circle = draw.line(-(props.radius), 0, props.radius, 0, borderColor  || '#000', 2);
-    		    draw.line(0, -(props.radius), 0, props.radius, borderColor || '#000', 2, circle);
-			}
-			
-			if (borderColor && !borderThickness) { borderThickness = 1; }
-			
-			// first draw the circle's border - don't use stroke //
-			circle = draw.circle(props.radius+borderThickness, borderColor, null, null, null, null, circle);
-			draw.circle(props.radius, props.color, null, null, null, null, circle);
-			circle.x = props.x;
-			circle.y = props.y;
-			
-		    
-			
-			if (randomizeAlpha) {circle.alpha = Math.random(); }
-			
-			return circle;
-    	},
-    	
-    	randomRadialProps: function (area, radiusMin, radiusMax, redMax, greenMax, blueMax) {
-    	    return {
-    	        radius: randomIntBetween(radiusMin || 5, radiusMax || 20),
-    	        color: randomColor(redMax || 255, greenMax || 255, blueMax || 255),
-    	        x: randomIntBetween(0, area.width),
-    	        y: randomIntBetween(0, area.height)
-    	    };
-    	},
-
+        polyStar: function (radius, sides, pointSize, angle, color, strokeColor, strokeStyle, xOffset, yOffset, onShape) {
+            var dimensions = buildDimensions(TYPE_CIRCULAR, radius * 2, radius * 2, xOffset, yOffset, radius);
+            
+            var shape = (onShape) ? onShape : new createjs.Shape();
+            shape.graphics
+                .setStrokeStyle(strokeStyle)
+                .beginStroke(strokeColor)
+                .beginFill(color)
+                .drawPolyStar(dimensions.xOffset, dimensions.yOffset, radius, sides, pointSize || 0, angle);
+            
+            draw.setDimensionsOn(shape, dimensions);
+            shape.radius = radius;
+            return shape;
+        },
+        
+        
+        randomCircle: function (randomizeAlpha, addCross, borderColor, borderThickness, randomRadialProps) {
+            var props, circle;
+            
+            props = (randomRadialProps) ? randomRadialProps : draw.randomRadialProps();
+            
+            if (addCross) {
+                // always make sure the cross is visible - it won't be if randomizeAlpha is false //
+                randomizeAlpha = true;
+                circle = draw.line(-(props.radius), 0, props.radius, 0, borderColor  || '#000', 2);
+                draw.line(0, -(props.radius), 0, props.radius, borderColor || '#000', 2, circle);
+            }
+            
+            if (borderColor && !borderThickness) { borderThickness = 1; }
+            
+            // first draw the circle's border - don't use stroke //
+            circle = draw.circle(props.radius+borderThickness, borderColor, null, null, null, null, circle);
+            draw.circle(props.radius, props.color, null, null, null, null, circle);
+            circle.x = props.x;
+            circle.y = props.y;
+            
+            
+            
+            if (randomizeAlpha) {circle.alpha = Math.random(); }
+            
+            return circle;
+        },
+        
+        randomCircleInArea: function (area, randomizeAlpha, addCross, borderColor, borderThickness, randomRadialProps) {
+            var props, circle;
+            
+            props = (randomRadialProps) ? randomRadialProps : draw.randomRadialProps(area);
+            
+            if (addCross) {
+                // always make sure the cross is visible - it won't be if randomizeAlpha is false //
+                randomizeAlpha = true;
+                circle = draw.line(-(props.radius), 0, props.radius, 0, borderColor  || '#000', 2);
+                draw.line(0, -(props.radius), 0, props.radius, borderColor || '#000', 2, circle);
+            }
+            
+            if (borderColor && !borderThickness) { borderThickness = 1; }
+            
+            // first draw the circle's border - don't use stroke //
+            circle = draw.circle(props.radius+borderThickness, borderColor, null, null, null, null, circle);
+            draw.circle(props.radius, props.color, null, null, null, null, circle);
+            circle.x = props.x;
+            circle.y = props.y;
+            
+            
+            
+            if (randomizeAlpha) {circle.alpha = Math.random(); }
+            
+            return circle;
+        },
+        
+        randomRadialProps: function (area, radiusMin, radiusMax, redMax, greenMax, blueMax) {
+            return {
+                radius: randomIntBetween(radiusMin || 5, radiusMax || 20),
+                color: randomColor(redMax || 255, greenMax || 255, blueMax || 255),
+                x: (area ? randomIntBetween(area.x || 0, area.width) : 0),
+                y: (area ? randomIntBetween(area.y || 0, area.height) : 0)
+            };
+        },
+        
         bitmap: function(src,x,y) {
             var bitmap = new createjs.Bitmap(src);
             bitmap.x = x;
             bitmap.y = y;
             return bitmap;
         },
-    	
-    	textfield: function (text, sizeAndFont, color, align, baseline, x, y) {
-    	    var tf = new createjs.Text(text, sizeAndFont || "15px Arial", color || "#666666");
-			tf.textBaseline = baseline || "top";
-			tf.textAlign = align || "center";
-			tf.x = x;
-			tf.y = y;
-			return tf;
-    	},
-    	
-    	randomColor: randomColor,
-    	randomRGBRange: randomRGBRange,
-    	
+        
+        textfield: function (text, sizeAndFont, color, align, baseline, x, y) {
+            var tf = new createjs.Text(text, sizeAndFont || "15px Arial", color || "#666666");
+            tf.textBaseline = baseline || "top";
+            tf.textAlign = align || "center";
+            tf.x = x;
+            tf.y = y;
+            return tf;
+        },
+        
+        randomColor: randomColor,
+        randomRGBRange: randomRGBRange,
+        
         getStartPointX: getStartPointX,
         getStartPointY: getStartPointY,
         getEndPointX: getEndPointX,
@@ -345,6 +380,6 @@
         }
     };
     
-	window.opspark.draw = draw;
+    window.opspark.draw = draw;
 
 }(window));

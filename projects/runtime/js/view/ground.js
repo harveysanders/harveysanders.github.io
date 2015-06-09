@@ -25,6 +25,8 @@
         function resize(argument) {
             render();
         }
+
+        app.ground = ground;
         
         return ground;
     };

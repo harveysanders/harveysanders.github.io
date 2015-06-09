@@ -1,6 +1,6 @@
 {
   "name": "racket",
-  "version": "0.0.22",
+  "version": "0.1.0",
   "homepage": "https://github.com/OperationSpark/racket",
   "authors": [
     "John Fraboni <john@operationspark.org>"

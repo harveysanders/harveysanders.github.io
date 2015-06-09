@@ -3,6 +3,8 @@
     
     window.opspark = window.opspark || {};
     
+    var physikz = window.opspark.racket.physikz;
+    
     var 
         KEYCODE_SPACE = 32,
         KEYCODE_UP = 38,
@@ -15,10 +17,13 @@
         KEYCODE_A = 65,
         KEYCODE_D = 68;
     
-    window.opspark.makePlayerManager = function (player, view, projectileManager) {
-        var _activeKeys;
-        
-        _activeKeys = [];
+    var rules, view, activeKeys, _player;
+    
+    window.opspark.makePlayerManager = function (player, app, projectileManager) {
+        _player = player;
+        rules = app.rules;
+        view = app.view;
+        activeKeys = [];
         
         player.on('fire', function () {
             projectileManager.fire(player);
@@ -27,7 +32,9 @@
         
         var _playerManager = {
             player: player,
-            update: update
+            update: update,
+            hitTest: hitTest,
+            handleCollision: handleCollision
         };
         
         function update() {
@@ -49,7 +56,7 @@
         
         function onKeyActivity(e){
             e = e || window.event;
-            _activeKeys[e.keyCode] = e.type === 'keydown';
+            activeKeys[e.keyCode] = e.type === 'keydown';
             
             if (e.type === 'keyup') {
                 onKeyUp(e);
@@ -59,20 +66,20 @@
         }
         
         function onKeyDown(e) {
-            if (_activeKeys[KEYCODE_E]) {
+            if (activeKeys[KEYCODE_E]) {
                 player.jumpfly();
-            } else if (_activeKeys[KEYCODE_W]) {
+            } else if (activeKeys[KEYCODE_W]) {
                 player.jump();
-            } else if (_activeKeys[KEYCODE_Q]) {
+            } else if (activeKeys[KEYCODE_Q]) {
                 player.die();
-            } else if (_activeKeys[KEYCODE_S]) {
+            } else if (activeKeys[KEYCODE_S]) {
                 player.duck();
             }
             
-            if (_activeKeys[KEYCODE_UP]) { 
+            if (activeKeys[KEYCODE_UP]) { 
             }
             
-            if (_activeKeys[KEYCODE_SPACE]) { 
+            if (activeKeys[KEYCODE_SPACE]) { 
                 player.shoot();
             }
         }
@@ -107,4 +114,27 @@
         
         return _playerManager;
     };
+    
+    function hitTest(body) {
+        _player.hitzones().forEach(function(hitzone) {
+            var distanceProperties = physikz.getDistanceProperties(hitzone.localToGlobal(0,0), body);
+            var hitResult = physikz.hitTestRadial(distanceProperties.distance, hitzone, body);
+            if (hitResult.isHit) {
+                handleCollision(distanceProperties, hitResult, physikz.getImpactProperties(hitzone, body));
+            }
+        });
+    }
+    
+    function handleCollision(distanceProperties, hitResult, impactProperties) {
+        /*
+         * The velocity of Halle's hitzones (bodyA in this context) will 
+         * not effected by any impact, in short, they will not move, so 
+         * treat only bodyB (body in this context) .
+         */
+        
+        var body = distanceProperties.bodyB; // the obstacle
+        body.handleCollision(impactProperties.impact, impactProperties.bodyA); // orb handling collision with hitzone //
+        impactProperties.bodyA.handleCollision(impactProperties.impact, body); // halle's hitzone handling collision with orb //
+    }
+    
 }(window));

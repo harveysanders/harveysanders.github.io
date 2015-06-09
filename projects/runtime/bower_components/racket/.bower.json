@@ -1,6 +1,6 @@
 {
   "name": "racket",
-  "version": "0.0.22",
+  "version": "0.1.0",
   "homepage": "https://github.com/OperationSpark/racket",
   "authors": [
     "John Fraboni <john@operationspark.org>"
@@ -23,13 +23,13 @@
     "test",
     "tests"
   ],
-  "_release": "0.0.22",
+  "_release": "0.1.0",
   "_resolution": {
     "type": "version",
-    "tag": "0.0.22",
-    "commit": "c6c181c8f46c40289dad1b715a711ac3349ad44e"
+    "tag": "0.1.0",
+    "commit": "9ead00e67dcee568c25b722624717f918f64d3bf"
   },
   "_source": "git://github.com/OperationSpark/racket.git",
-  "_target": "~0.0.22",
+  "_target": "~0.1.0",
   "_originalSource": "racket"
 }

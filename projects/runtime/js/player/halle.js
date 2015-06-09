@@ -61,6 +61,7 @@
                 var hitFace = _.extend(draw.circle(20, 'rgba(0, 0, 0, .3'), physikz.makeBody('hitzone'));
                 hitFace.y = hitHead.radius * 2;
                 var hitBody = _.extend(draw.circle(20, 'rgba(0, 0, 0, .3'), physikz.makeBody('hitzone'));
+                hitHead.handleCollision = hitFace.handleCollision = hitBody.handleCollision = handleCollision;
                 hitBody.y = hitBody.radius + hitHead.radius * 2;
                 hitzones.addChild(hitHead);
                 hitzones.addChild(hitFace);
@@ -73,6 +74,10 @@
                 }
             });
         };
+        
+        function handleCollision(impact, body) {
+            console.log(body.type);
+        }
         
         function setAsset(asset) {
             // var bounds = asset.getTransformedBounds();

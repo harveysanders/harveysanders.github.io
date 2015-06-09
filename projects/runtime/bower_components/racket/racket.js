@@ -1,3 +1,18 @@
+/**
+ * racket : Not optimally desgiend, but to assist in some gaming utility and 
+ * physics for animation.
+ * 
+ * The racket namespace currently contains the two libraries:
+ * 
+ * 1. physikz: supports cheap physics and collision detection.
+ * 2. num: a lib of utility methods to work with numbers.
+ * 
+ * dependencies: See the bower.json file for current dependency versions, and 
+ * ensure you add dependencies to your index.html file, as in:
+ * 
+ * <script src="bower_components/lodash/lodash.min.js"></script>
+ *
+ */
 (function (window) {
     window.opspark = window.opspark || {};
     
@@ -17,6 +32,46 @@
     // degrees = radians * 180 / Math.PI //
     function radiansToDegrees(radians) {
         return radians * 180 / Math.PI;
+    }
+    
+    function getDistance(pointOne, pointTwo) {
+        var distanceX = pointTwo.x - pointOne.x;
+        var distanceY = pointTwo.y - pointOne.y;
+        return Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+    }
+    
+    function getDistanceProperties(bodyA, bodyB) {
+        var distanceX = bodyB.x - bodyA.x;
+        var distanceY = bodyB.y - bodyA.y;
+        return {
+            bodyA: bodyA,
+            bodyB: bodyB,
+            distanceX: distanceX,
+            distanceY: distanceY,
+            distance: Math.sqrt(distanceX * distanceX + distanceY * distanceY)
+        };
+    }
+    
+    function hitTestRadial(distance, bodyA, bodyB) { 
+        var radiusCombined = bodyA.radius + bodyB.radius;
+        return {
+            bodyA: bodyA,
+            bodyB: bodyB,
+            isHit: (distance < radiusCombined),
+            radiusCombined: radiusCombined
+        };
+    }
+    
+    function getImpactProperties(bodyA, bodyB) {
+        var combinedVolatility = bodyA.volatility + bodyB.volatility;
+        var combinedDensity = bodyA.density * bodyB.density;
+        return {
+            bodyA: bodyA,
+            bodyB: bodyB,
+            combinedVolatility: combinedVolatility,
+            combinedDensity: combinedDensity,
+            impact: (combinedVolatility ? combinedVolatility * combinedDensity : combinedDensity)
+        };
     }
     
     var racket = {
@@ -92,84 +147,52 @@
              * getDistance: Using the Pythagorean Theorem, returns the 
              *      distance between two points.
              *
-             * @return Number
+             * @return A Number representing the distance between two points.
              */
-            getDistance: function (pointOne, pointTwo) {
-                var dx = pointTwo.x - pointOne.x;
-                var dy = pointTwo.y - pointOne.y;
-                return Math.sqrt(dx * dx + dy * dy);
-            },
+            getDistance: getDistance,
             
             /*
-             * hitTestRadial: Returns true if the distance is less than 
-             *      the sum of the two radius.
+             * getDistanceProperties: Using the Pythagorean Theorem, returns an 
+             *      distanceobject with properties distance, distanceX, and distanceY.
              *
-             * @return Boolean
+             * @return Object  An object with properties pointOne, pointTwo, 
+             *      distance, distanceX, and distanceY.
              */
-            hitTestRadial: function (distance, radiusOne, radiusTwo) { 
-                return (distance < radiusOne + radiusTwo);
-            },
+            getDistanceProperties: getDistanceProperties,
             
-            updateSpace: function (space, spring) {
+            /*
+             * Takes to bodies, returns an object with their combinedVolatility, 
+             *      combinedDensity, and impact.
+             */
+            getImpactProperties: getImpactProperties,
+            
+            /*
+             * hitTestRadial: Expects the distance betwo bodies with a radius property. Returns 
+             *      an object with the result of the radial hit test, with the 
+             *      property isHit being true if the distance between the x/y of 
+             *      the radial shapes is less than the sum of their two radius.
+             *
+             * @return Object
+             */
+            hitTestRadial: hitTestRadial,
+            
+            /*
+             * Takes an Array of bodies to manage as the space, a hitTest 
+             *      function to preform between each body in the space, and a 
+             *      handleCollision function designed to respond to collision. 
+             */
+            updateSpace: function (space, hitTest, handleCollision) {
                 for(var i = space.length - 1; i > 0; i--) {
                     var bodyA = space[i];
                     for(var j = i - 1; j > -1; j--) {
                         var bodyB = space[j];
-                        
-                        var dx = bodyB.x - bodyA.x;
-                        var dy = bodyB.y - bodyA.y;
-                        var distance = Math.sqrt(dx * dx + dy * dy);
-                        var radiusCombined = bodyA.radius + bodyB.radius;
-                        
-                        if(distance < radiusCombined) {
-                            var tx = bodyA.x + dx / distance * radiusCombined;
-                            var ty = bodyA.y + dy / distance * radiusCombined;
-                            var ax = (tx - bodyB.x) * spring;
-                            var ay = (ty - bodyB.y) * spring;
-                            bodyA.velocityX -= ax;
-                            bodyA.velocityY -= ay;
-                            bodyB.velocityX += ax;
-                            bodyB.velocityY += ay;
-                            
-                            var combinedVolatility = bodyA.volatility + bodyB.volatility;
-                            var combinedDensity = bodyA.density * bodyB.density;
-                            var impact = (combinedVolatility ? combinedVolatility * combinedDensity : combinedDensity);
-                            // console.log(combinedVolatility);
-                            // console.log(combinedDensity);
-                            // console.log(impact);
-                            bodyA.handleCollision(impact, bodyB);
-                            bodyB.handleCollision(impact, bodyA);
+                        var distanceProperties = getDistanceProperties(bodyA, bodyB);
+                        var hitResult = hitTest(distanceProperties.distance, bodyA, bodyB);
+                        if(hitResult.isHit) {
+                            handleCollision(distanceProperties, hitResult, getImpactProperties(bodyA, bodyB));
                         }
                     }
                 }
-                
-                // var total = bodies.length;
-                // for(var i = 0; i < total - 1; i++) {
-                //     var bodyA = bodies[i];
-                //     for(var j = i + 1; j < total; j++) {
-                //         var bodyB = bodies[j];
-                        
-                //         var dx = bodyB.x - bodyA.x;
-                //         var dy = bodyB.y - bodyA.y;
-                //         var distance = Math.sqrt(dx * dx + dy * dy);
-                //         var radiusCombined = bodyA.radius + bodyB.radius + 6;
-                        
-                //         if(distance < radiusCombined) {
-                //             var tx = bodyA.x + dx / distance * radiusCombined;
-                //             var ty = bodyA.y + dy / distance * radiusCombined;
-                //             var ax = (tx - bodyB.x) * spring;
-                //             var ay = (ty - bodyB.y) * spring;
-                //             bodyA.velocityX -= ax;
-                //             bodyA.velocityY -= ay;
-                //             bodyB.velocityX += ax;
-                //             bodyB.velocityY += ay;
-                            
-                //             var impact = bodyA.volatility + bodyB.volatility;
-                //             bodyA.handleCollision(impact);
-                //             bodyB.handleCollision(impact);
-                //         }
-                //     }
-                // }
             },
             
             makeBody: function (type, velocityX, velocityY, rotationalVelocity, integrity, density, volatility) {
@@ -195,7 +218,9 @@
         num: {
             randomIntBetween: randomIntBetween,
             sortNumbersAscending: sortNumbersAscending,
-            sortNumbersDecending: sortNumbersDecending
+            sortNumbersDecending: sortNumbersDecending,
+            degreesToRadians: degreesToRadians,
+            radiansToDegrees: radiansToDegrees
         }
     };
     window.opspark.racket = racket;

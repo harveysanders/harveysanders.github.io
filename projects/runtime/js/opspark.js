@@ -4,7 +4,7 @@
     var 
         createjs = window.createjs;
         
-    window.opspark.makeApp = function (updateable, resizeable) {
+    window.opspark.makeApp = function (rules, updateable, resizeable) {
         var 
             _stage, 
             _canvas, 
@@ -20,6 +20,8 @@
         _app = {
             canvas: _canvas,
             stage: _stage,
+            space: [],
+            rules: rules,
             view: new createjs.Container(),
             
             addResizeable: function(resizeable) {

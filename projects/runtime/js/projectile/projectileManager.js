@@ -21,7 +21,7 @@
             var projectile = _.extend(draw.circle(5, '#FE1EFE'), physikz.makeBody('projectile'));
             
             // TODO : get from settings JSON //
-            projectile.volatility = 1;
+            projectile.volatility = 10;
             projectile.velocityMax = 10;
             
             projectile.handleCollision = function (impact) {

@@ -28,6 +28,7 @@
         <script src="js/util/spin.min.js"></script>
         <script src="js/util/point.js"></script>
         <script src="js/spritesheet.js"></script>
+        <script src="js/world/rules.js"></script>
         <script src="js/particle/particleManager.js"></script>
         <script src="js/orb/orbManager.js"></script>
         <script src="js/projectile/projectileManager.js"></script>
@@ -36,10 +37,13 @@
         <script src="js/player/halle.js"></script>
         <script src="js/player/playerManager.js"></script>
         <script src="js/opspark.js"></script>
+        <script src="js/game.js"></script>
 
        <!-- add any additional scripts here -->
        <script type="text/javascript" src="js/view/hud.js"></script>
-        <script type="text/javascript" src="js/view/background.js"></script>
+       <script type="text/javascript" src="js/view/background.js"></script>
+       <script type="text/javascript" src="js/level01.js"></script>
+       
         <style type="text/css">
             /*override default styles here*/
         </style>
@@ -56,16 +60,17 @@
                     opspark = window.opspark,
                     draw = opspark.draw,
                     physikz = opspark.racket.physikz,
+                    world = opspark.world,
                     
                     data = 'assets/spritesheet/halle/data-v9.json',
-                    app = opspark.makeApp({update: update}),
+                    app = opspark.makeApp(world.makeRules()),
                     canvas = app.canvas, 
                     view = app.view,
                     fps = draw.fps('#000');
                 
                 var 
                     space, 
-                    position,
+                    rules,
                     ground,
                     spritesheet,
                     halle,
@@ -74,13 +79,16 @@
                     playerManager, 
                     particleManager;
                 
-                space = [];
+                var debugHalleHitZones = true;
+
+                space = app.space;
+                rules = app.rules,
                 particleManager = opspark.makeParticleManager(app.stage);
                 ground = opspark.makeGround(app);
 
-                // TODO: 2
+                // TODO 2 : add background
                 
-                var background = opspark.makeBackground(app, ground);
+                var background = opspark.makeBackground(app,ground);
                 view.addChild(background);
                 
                 var help = draw.textfield('MOVES || w: jump | e: flying jump | s: duck | space: fire | q your mom!', 
@@ -94,21 +102,19 @@
                     .then(function (ss) {
                         spritesheet = ss;
                         
-                        halle = window.opspark.makeHalle(spritesheet, particleManager, false);
+                        halle = window.opspark.makeHalle(spritesheet, particleManager,debugHalleHitZones);
                         halle.x = halle.getBounds().width * 2;
                         halle.y = ground.y - halle.getBounds().height + 3;
                         app.addUpdateable(halle);
                         view.addChild(halle);
                         
-                        halle.hitzones().forEach(function(hitzone) {
-                            space.push(hitzone);
-                        });
-                        
                         playerManager = opspark.makePlayerManager(
                             halle, 
-                            view, 
+                            app, 
                             opspark.makeProjectileManager(view, space, particleManager));
+                        
                         app.addUpdateable(playerManager);
+                        app.addUpdateable({update: update});
                     });
                 
                 view.addChild(fps);
@@ -116,19 +122,21 @@
                 
                 function update() {
                     space.forEach(function (body) {
-                        // TODO : Umm, figure out static zones who do not collide with each other, er something //
-                        if (body.type !== 'hitzone') {
-                            physikz.updatePosition(body);
-                        }
-                        physikz.updateSpace(space, 0.005);
+                        physikz.updatePosition(body);
+                        physikz.updateSpace(space, physikz.hitTestRadial, rules.handleCollision);
+                        playerManager.hitTest(body);
                     });
                 }
                 
-                // TODO: 1 - add a head's up display
-                var hud = opspark.makeHud();
+                // TODO 1 : add a heads-up display to game
+                hud = opspark.makeHud();
                 view.addChild(hud);
+
+                // TODO 3 : create game manager
+                var game = opspark.createGameManager(app, hud);
+                opspark.runLevelInGame(game);
                 
-                window.hud = hud;
+
             })();
         </script>
     </body>
