@@ -18,8 +18,13 @@
 
         // container which will be returned
         var background;
-        
-        // add objects for display inb ackground
+        var backgroundBox;
+        var tank;
+        var backClouds;
+        var cityscape;
+        var cityscape2;
+
+        // add objects for display in background
         // called at the start of game and whenever the page is resized
         function render() {
             // useful variables
@@ -30,12 +35,27 @@
             background.removeAllChildren();
 
             // TODO: 3 - YOUR DRAW CODE GOES HERE
-            var circle = draw.circle(3, '#cccccc');
-            background.addChild(circle);
             
-            // XXX: not quite right
-            var backgroundFill = draw.rect(canvasWidth,canvasHeight /2 ,'#000');
+            backgroundBox = draw.rect(100, 100, 'ccc');
+            backgroundBox.x = 300;
+            backgroundBox.y = 200;
+            
+            var backgroundFill = draw.rect(canvasWidth,canvasHeight /2 ,'#150c09');
+            backgroundFill.y = canvasHeight/2 ;
+
+            tank = draw.bitmap('img/TankCommando2.png', canvasWidth-200, (canvasHeight /2)-125);
+            cityscape = draw.bitmap('img/cityscape-silhouette.png', null, canvasHeight/2 -362);
+            cityscape2 = draw.bitmap('img/cityscape-silhouette.png', null, canvasHeight/2 -362);
+            cityscape2.x = 1144; //cityscape.getBounds().width;
+            backClouds = draw.bitmap('img/errieclouds.png');
+            
+            background.addChild(backClouds);
             background.addChild(backgroundFill);
+            background.addChild(cityscape);
+            background.addChild(backgroundBox);
+            background.addChild(cityscape2);
+            background.addChild(tank);
+            
         }
         
         // Perform background animation
@@ -45,6 +65,18 @@
             var canvasWidth = app.canvas.width;
             var canvasHeight = app.canvas.height;
             var groundY = ground.y;
+            backgroundBox.x -= 1;
+            backClouds.x -= .75;
+            cityscape.x -= .2;
+            cityscape2.x -= .2;
+            tank.x -= .5;
+
+            if( (cityscape.x + 2288) < canvasWidth) {
+                cityscape.x = canvasWidth;
+            }
+            if (cityscape2.x + 2288 < canvasWidth) {
+                cityscape2.x = canvasWidth;
+            }
 
         }
 
