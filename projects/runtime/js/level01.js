@@ -15,9 +15,9 @@
             number: 1, 
             speed: -3,
             gameItems: [
-                {type: 'sawblade',x:400,y:groundY},
-                {type: 'sawblade',x:600,y:groundY},
-                {type: 'sawblade',x:900,y:groundY}
+                {type: 'sawblade',x:900,y:20},
+                {type: 'sawblade',x:1100,y:110},
+                {type: 'sawblade',x:1900,y:20}
             ]
         };
 
@@ -25,11 +25,12 @@
         game.setDebugMode(true);
 
         // BEGIN EDITING YOUR CODE HERE
-        var hitZoneSize = 25;
-        var damageFromObstacle = 50;
+        
         
         
         var createSawBlade = function(x,y) {
+            var hitZoneSize = 25;
+            var damageFromObstacle = 40;
             var myObstacle = game.createObstacle(hitZoneSize, damageFromObstacle);
             var sawbladeImg = draw.bitmap('img/sawblade.png');
             sawbladeImg.x = -25;
@@ -39,19 +40,22 @@
             myObstacle.addChild(sawbladeImg);
             game.addGameItem(myObstacle);
         }
-            
         
-        createSawBlade(400, 50);
-        createSawBlade(500, 20);
-        createSawBlade(600, 110);
         
-        /*
-        var createObstacle = function(type,x,y){
-            
+        var createGameItem = function(gameItem){
+            switch(gameItem.type) {
+                case "sawblade":
+                    createSawBlade(gameItem.x, gameItem.y);
+                    break;
+                default:
+                    console.log(gameItem.type);
+                    console.log("default switch");
+                    break;
+            }
         }
        
-        levelData.gameItems.forEach(createObstacle)
-        */
+        levelData.gameItems.forEach(createGameItem);
+        
         
         
         

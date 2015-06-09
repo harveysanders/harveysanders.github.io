@@ -110,7 +110,7 @@
 
         function createObstacle(radius,damage) {
             var gameItem = createGameItem('obstacle',radius);
-            gameItem.velocityX = -2;
+            gameItem.velocityX = -5;
 
             gameItem.onPlayerCollision = function() {
                 changeIntegrity(-damage);

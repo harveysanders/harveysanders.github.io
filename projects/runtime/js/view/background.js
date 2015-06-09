@@ -18,7 +18,6 @@
 
         // container which will be returned
         var background;
-        var backgroundBox;
         var tank;
         var backClouds;
         var cityscape;
@@ -35,11 +34,6 @@
             background.removeAllChildren();
 
             // TODO: 3 - YOUR DRAW CODE GOES HERE
-            
-            backgroundBox = draw.rect(100, 100, 'ccc');
-            backgroundBox.x = 300;
-            backgroundBox.y = 200;
-            
             var backgroundFill = draw.rect(canvasWidth,canvasHeight /2 ,'#150c09');
             backgroundFill.y = canvasHeight/2 ;
 
@@ -52,7 +46,6 @@
             background.addChild(backClouds);
             background.addChild(backgroundFill);
             background.addChild(cityscape);
-            background.addChild(backgroundBox);
             background.addChild(cityscape2);
             background.addChild(tank);
             
@@ -65,10 +58,9 @@
             var canvasWidth = app.canvas.width;
             var canvasHeight = app.canvas.height;
             var groundY = ground.y;
-            backgroundBox.x -= 1;
             backClouds.x -= .75;
-            cityscape.x -= .2;
-            cityscape2.x -= .2;
+            cityscape.x -= .1;
+            cityscape2.x -= .1;
             tank.x -= .5;
 
             if( (cityscape.x + 2288) < canvasWidth) {
