@@ -27,8 +27,9 @@
         _active = [];
         
         _spawnY = [
-            (canvas.height / 2) - 113, // circles will miss halle's head if she ducks //
-            (canvas.height / 2) - 50
+            // (canvas.height / 2) - 113,  // circles will miss halle's head if she ducks //
+            (canvas.height / 2) - 50,   // circles should be blown up //
+            (canvas.height / 2)         // circles should be jumpable //
             ];
             
         // NOTE: might use this later //
@@ -53,7 +54,8 @@
         function makeObject() {
             var orb;
             
-            orb = draw.randomCircle(false, true, '#999', 2);
+            // randomizeAlpha, addCross, borderColor, borderThickness, randomRadialProps
+            orb = draw.randomCircle(true, true, '#999', 2, draw.randomRadialProps(null, 25, 25));
             orb = _.extend(orb, physikz.makeBody('orb'));
             decommission(orb);
             //hud.updateOf(orb.radius);
@@ -84,7 +86,7 @@
         function commission(orb) {
             orb.x = canvas.width + orb.radius;
             orb.y = _spawnY[num.randomIntBetween(0, _spawnY.length-1)];
-            orb.alpha = 1;
+            orb.alpha = Math.random();
         }
         
         function decommission(orb) {

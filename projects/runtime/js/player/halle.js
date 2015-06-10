@@ -15,6 +15,8 @@
             _jump,
             _jumpfly,
             _duck,
+            _duckin,
+            _duckout,
             _shootStart,
             _shootEnd,
             _stopside,
@@ -27,6 +29,7 @@
          * context of the Halle object.
          */
         var halle, hitzones;
+        
         
         /*
          * Halle : The Constructor of our Halle Class.
@@ -60,7 +63,14 @@
                 hitHead.y = hitHead.radius;
                 var hitFace = _.extend(draw.circle(20, 'rgba(0, 0, 0, .3'), physikz.makeBody('hitzone'));
                 hitFace.y = hitHead.radius * 2;
+                
+                // var hitzone40 = new createjs.Bitmap(window.opspark.hitzone40);
+                // hitzone40.regX = hitzone40.image.width / 2;
+                // hitzone40.regY = hitzone40.image.height / 2;
+                // var hitBody = _.extend(hitzone40, physikz.makeBody('hitzone'));
+                
                 var hitBody = _.extend(draw.circle(20, 'rgba(0, 0, 0, .3'), physikz.makeBody('hitzone'));
+                hitBody.radius = 20;
                 hitHead.handleCollision = hitFace.handleCollision = hitBody.handleCollision = handleCollision;
                 hitBody.y = hitBody.radius + hitHead.radius * 2;
                 hitzones.addChild(hitHead);
@@ -76,7 +86,6 @@
         };
         
         function handleCollision(impact, body) {
-            console.log(body.type);
         }
         
         function setAsset(asset) {
@@ -91,12 +100,12 @@
         
         p.jump = function(resume) {
             setAsset(_jump);
-            tweenHitForAction(_jump.y + halle.y, null, 150, 150);
+            tweenHitForAction(_jump.y + halle.y, null, 150, 150, 0, -30);
         };
         
         p.jumpfly = function() {
             setAsset(_jumpfly);
-            tweenHitForAction(_jumpfly.y + halle.y, null, 200, 150, 500);
+            tweenHitForAction(_jumpfly.y + halle.y, null, 150, 150, 500);
         };
         
         p.run = function() {
@@ -111,6 +120,30 @@
             setAsset(_duck);
             tweenHitForAction(halle.y + halle.getBounds().height / 4, null, 100, 150, 220);
         };
+        
+        p.duckin = function () {
+            setAsset(_duckin);
+            tweenHitForDuckin(halle.y + halle.getBounds().height / 4, null, 100);
+        };
+        function tweenHitForDuckin(toY, toX, time) {
+            createjs.Tween.get(hitzones)
+                 .to({y: toY, x:toX || halle.x}, time)
+                 .call(handleComplete);
+            function handleComplete() {
+            }
+        }
+        
+        p.duckout = function () {
+            setAsset(_duckout);
+            tweenHitForDuckout(halle.y, halle.x, 220);
+        };
+        function tweenHitForDuckout(toY, toX, time) {
+            createjs.Tween.get(hitzones)
+                 .to({y: toY, x:toX || halle.x}, time)
+                 .call(handleComplete);
+            function handleComplete() {
+            }
+        }
         
         p.shoot = function () {
             setAsset(_shootStart);
@@ -137,6 +170,10 @@
             return hitzones.children;
         };
         
+        p.hitzoneContainer = function() {
+            return hitzones;
+        }
+        
         p.getProjectilePoint = function () {
             return halle.localToGlobal(35, 60);
         };
@@ -148,9 +185,9 @@
         
         function tweenHitForAction(toY, toX, timeIn, timeOut, between, toRotation) {
             createjs.Tween.get(hitzones)
-                 .to({y: toY, x:toX || halle.x}, timeIn)
+                 .to({y: toY, x:toX || halle.x, rotation: toRotation || halle.rotation}, timeIn)
                  .wait(between || 0)
-                 .to({y: halle.y, x: halle.x}, timeOut)
+                 .to({y: halle.y, x: halle.x, rotation: 0}, timeOut)
                  .call(handleComplete);
             function handleComplete() {
             }
@@ -209,6 +246,20 @@
         configureSprite(_duck);
         _duck.y = -7;
         _duck.on('animationend', function (e) {
+            setAsset(_walk);
+        });
+        
+        _duckin = new createjs.Sprite(spritesheet, "duckin");
+        configureSprite(_duckin);
+        _duckin.y = -7;
+        _duckin.on('animationend', function (e) {
+            _duckin.stop();
+        });
+        
+        _duckout = new createjs.Sprite(spritesheet, "duckout");
+        configureSprite(_duckout);
+        _duckout.y = -7;
+        _duckout.on('animationend', function (e) {
             setAsset(_walk);
         });
         

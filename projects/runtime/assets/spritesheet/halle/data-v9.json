@@ -5,7 +5,7 @@
 "framerate": 30,
 
 "images": [
-    "assets/spritesheet/halle/halle-v9.png"
+    "runtime/assets/spritesheet/halle/halle-v9.png"
 ],
 
 "frames": [
@@ -271,6 +271,8 @@
 "animations": {
     "diefront": [0, 63, "false"],
     "duck": [64, 91, "false"],
+    "duckin": [64, 78, "false"],
+    "duckout": [78, 91, "false"],
     "shootend": [104, 122, "false"],
     
     "shootstart": {

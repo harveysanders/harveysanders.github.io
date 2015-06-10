@@ -17,13 +17,14 @@
         KEYCODE_A = 65,
         KEYCODE_D = 68;
     
-    var rules, view, activeKeys, _player;
+    var rules, view, activeKeys, _player, _state;
     
     window.opspark.makePlayerManager = function (player, app, projectileManager) {
         _player = player;
         rules = app.rules;
         view = app.view;
         activeKeys = [];
+        _state = 'walking';
         
         player.on('fire', function () {
             projectileManager.fire(player);
@@ -38,7 +39,6 @@
         };
         
         function update() {
-            
         }
         
         function activate() {
@@ -73,7 +73,8 @@
             } else if (activeKeys[KEYCODE_Q]) {
                 player.die();
             } else if (activeKeys[KEYCODE_S]) {
-                player.duck();
+                player.duckin();
+                _state = 'ducking';
             }
             
             if (activeKeys[KEYCODE_UP]) { 
@@ -85,6 +86,10 @@
         }
         
         function onKeyUp(e) {
+            if (_state === 'ducking') {
+                player.duckout();
+                _state = 'walking';
+            }
         }
         
         function onPlayerExploded(e) {
@@ -117,7 +122,20 @@
     
     function hitTest(body) {
         _player.hitzones().forEach(function(hitzone) {
-            var distanceProperties = physikz.getDistanceProperties(hitzone.localToGlobal(0,0), body);
+            var c = _player.hitzoneContainer();
+            //console.log(canvas.width / 2);
+            var cp = c.localToGlobal(c.x + hitzone.x, c.y + hitzone.y);
+            
+            //console.log('y:', cp.y);
+            var tranformedBounds = c.getTransformedBounds();
+            //console.log('ty:', tranformedBounds.y);
+            
+            var ctp = c.localToGlobal(tranformedBounds.x + hitzone.x, tranformedBounds.y + hitzone.y);
+            
+            var hitzonePoint = _player.localToGlobal(hitzone.x, hitzone.y);
+            
+            //console.log('hzpY:', hitzonePoint.y);
+            var distanceProperties = physikz.getDistanceProperties(hitzonePoint, body);
             var hitResult = physikz.hitTestRadial(distanceProperties.distance, hitzone, body);
             if (hitResult.isHit) {
                 handleCollision(distanceProperties, hitResult, physikz.getImpactProperties(hitzone, body));

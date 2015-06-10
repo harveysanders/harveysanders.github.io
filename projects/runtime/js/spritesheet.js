@@ -22,7 +22,7 @@
                 var file = imagePath.substring(imagePath.lastIndexOf("/") + 1, imagePath.length);
                 
                 manifest = [
-                    {src: file, id: textureData.id},
+                    {src: file, id: textureData.id}
                 ];
                 
                 loader = new createjs.LoadQueue(false);
