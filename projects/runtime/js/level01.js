@@ -16,7 +16,7 @@
             number: 1, 
             speed: -3,
             gameItems: [
-                {type: 'scaryhead',x:800,y:30},
+                {type: 'sawblade',x:800,y:30},
                 //{type: 'sawblade',x:900,y:20},
                 //{type: 'sawblade',x:1100,y:110},
                 //{type: 'sawblade',x:1900,y:20},
@@ -38,11 +38,11 @@
             var damageFromObstacle = 40;
             var myObstacle = game.createObstacle(hitZoneSize, damageFromObstacle);
             var sawbladeImg = draw.bitmap('img/sawblade.png');
-            sawbladeImg.rotationalVelocity = 2;
             sawbladeImg.x = -25;
             sawbladeImg.y = -25;
             myObstacle.x = x;
             myObstacle.y = groundY-y;
+            myObstacle.rotationalVelocity = -22;
             myObstacle.addChild(sawbladeImg);
             game.addGameItem(myObstacle);
         }
@@ -52,11 +52,11 @@
             var damageFromObstacle = 40;
             var myObstacle = game.createObstacle(hitZoneSize, damageFromObstacle);
             var scaryhead = draw.bitmap('img/scaryhead_small.png');
-            scaryhead.rotationalVelocity = 2;
             scaryhead.x = -26;
             scaryhead.y = -30;
             myObstacle.x = x;
             myObstacle.y = groundY-y;
+            //myObstacle.rotationalVelocity = 10;
             myObstacle.addChild(scaryhead);
             game.addGameItem(myObstacle);
         }
@@ -76,11 +76,23 @@
             }
         }
        
-        levelData.gameItems.forEach(createGameItem);
-        
-        
-        
-        
+        //levelData.gameItems.forEach(createGameItem);
+
+        var enemy = game.createGameItem('enemy', 25);
+        var scaryhead = draw.bitmap('img/scaryhead_small.png');
+        scaryhead.x = -29
+        scaryhead.y = -29;
+        enemy.addChild(scaryhead);
+        enemy.x = 400;
+        enemy.y = groundY-50;
+        game.addGameItem(enemy);
+        enemy.velocityX = -1;
+        enemy.rotationalVelocity = 1;
+
+        enemy.onPlayerCollision = function() {
+            console.log('the enemy has hit Halle')
+        };
+
 
     }
 })(window);
