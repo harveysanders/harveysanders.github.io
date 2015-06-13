@@ -45,12 +45,12 @@
             myObstacle.rotationalVelocity = -22;
             myObstacle.addChild(sawbladeImg);
             game.addGameItem(myObstacle);
-        }
+        };
         
         var createEnemy = function(x,y) {
             var enemy = game.createGameItem('enemy', 25);
             var scaryhead = draw.bitmap('img/scaryhead_small.png');
-            scaryhead.x = -29
+            scaryhead.x = -29;
             scaryhead.y = -29;
             enemy.addChild(scaryhead);
             enemy.x = x;
@@ -60,7 +60,7 @@
             enemy.rotationalVelocity = 1;
 
             enemy.onPlayerCollision = function() {
-                console.log('the enemy has hit Halle')
+                console.log('the enemy has hit Halle');
                 game.changeIntegrity(-10);
             };
 
@@ -84,12 +84,12 @@
                     console.log("default switch");
                     break;
             }
-        }
+        };
         
         
         
         levelData.gameItems.forEach(createGameItem);
 
 
-    }
+    };
 })(window);
