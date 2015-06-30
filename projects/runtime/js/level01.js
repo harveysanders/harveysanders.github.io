@@ -23,7 +23,7 @@
                 {type: 'sawblade',x:1900,y:20},
                 {type: 'sawblade',x:2900,y:320},
                 {type: 'sawblade',x:3200,y:120}
-                ]
+            ]
         };
 
         // set this to true or false depending on if you want to see hitzones
