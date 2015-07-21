@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    </head>
+    </head>
+    <body>
+        <div class="contents text-center">
+            <h1>Sum!</h1>
+            <div class="well">
+                <form id="input-form" style="padding-bottom: 20px;">
+                    <input type="number" id="num-one"/>
+                    
+                    <!--TODO 1 : Create an input element of type number with id num-two -->
+                    <input type="number" id="num-two" />
+                    
+                    <input type="submit" value="Submit"/>
+                </form>
+                <div id="result"></div>
+            </div>
+            <button id="btn-clear-form" type="button" class="btn btn-primary">Clear</button>
+        </div>
+        <script>
+            $(document).ready(function() {
+                function onFormSubmit(e) {
+                    event.preventDefault();
+                    
+                    // TODO 2 : create var a, and assign to the expression: document.getElementById("num-one").value;
+                    var a = parseInt(document.getElementById("num-one").value);
+                    
+                    // TODO 3 : create var b, and assign it to the value of the element with id "num-two" (see TODO 1 for example)
+                    var b = parseInt(document.getElementById("num-two").value);
+                    
+                    // TODO 4: create var result and assign to it the sum of a and b //
+                    var result = a + b;
+                    
+                    document.getElementById("result").innerHTML = result;
+                }
+                
+                var $form = $("#input-form");
+                $form.on('submit', onFormSubmit);
+                $btnClearFrom = $("#btn-clear-form").on('click', clearForm);
+                function clearForm(){
+                    $("#input-form").find("input[type=number]").val("");
+                    $("#result").empty();
+                }
+            });
+        </script>
+    </body>
+</html>
