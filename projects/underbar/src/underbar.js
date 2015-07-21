@@ -196,6 +196,11 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
+    console.log('collection: ' + collection);
+    console.log('is Array? ' + collection.isArray);
+    _.reduce(collection, function(allTrue, isTrue){
+      return iterator(allTrue) && iterator(isTrue);
+    });
 
   };
 
