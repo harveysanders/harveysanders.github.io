@@ -12,12 +12,12 @@
             <h1>Sum!</h1>
             <div class="well">
                 <form id="input-form" style="padding-bottom: 20px;">
-                    <input type="number" id="num-one"/>
+                    <input type="number" id="num-one" step="any"/>
                     
                     <!--TODO 1 : Create an input element of type number with id num-two -->
-                    <input type="number" id="num-two" />
+                    <input type="number" id="num-two" step="any" />
                     
-                    <input type="submit" value="Submit"/>
+                    <input type="submit" value="Submit" />
                 </form>
                 <div id="result"></div>
             </div>
@@ -29,10 +29,10 @@
                     event.preventDefault();
                     
                     // TODO 2 : create var a, and assign to the expression: document.getElementById("num-one").value;
-                    var a = parseInt(document.getElementById("num-one").value);
+                    var a = parseFloat(document.getElementById("num-one").value);
                     
                     // TODO 3 : create var b, and assign it to the value of the element with id "num-two" (see TODO 1 for example)
-                    var b = parseInt(document.getElementById("num-two").value);
+                    var b = parseFloat(document.getElementById("num-two").value);
                     
                     // TODO 4: create var result and assign to it the sum of a and b //
                     var result = a + b;
