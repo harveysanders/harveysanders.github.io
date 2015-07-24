@@ -26,6 +26,11 @@ animals.unshift(polloLoco);
 var winAmpMascot = { species: 'llama', tagline: 'it really whips the llama\'s ass!', noises: ['spit!', 'hee haw', 'ahroooga', 'pfff'] };
 animals.push(winAmpMascot);
 
+var tasmanianDevil = {
+    species: 'sarcophilus harrisii',
+    tagline: 'bad a$$ ',
+    noises: ['', '', '', ''] };
+
 var friends = [];
 friends.push(polloLoco.species, winAmpMascot.species);
 
@@ -37,7 +42,7 @@ relationships.matches = matches;
 relationships.matches.push(quackers.species, animal.species);
 
 for(var i=0; i<animals.length; i++) {
-	//add relationships to each animal in animals with key relationships
+	//add relationships to each animal in animals with key of relationships
 	animals[i].relationships = relationships;
 }
 

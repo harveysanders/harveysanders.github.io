@@ -34,6 +34,12 @@ for (i=0; i<animalFriends.length; i++) {
 }
 console.log("Animal Friends: " + animalFriendsNames.join(','));
 
+var deleteFriend = function(friend){
+	for(i=0; i<animalFriends; i++) {
+		animalFriends.pop(friend);
+	}
+};
+
 //Scenario 2 ----------------
 
 for (var i=0; i<animals.length; i++) {
@@ -53,4 +59,81 @@ function isFriend(user) {
 		} 
 	}
 }
+
+// Scenario 3 ----------------------------------------
+
+var findSpecies = function(species) {
+	for(i=0; i<animals.length; i++) {
+		for (var key in animals[i]) {
+			if (species === animals[i][key]){
+				console.log('species found!');
+				console.log(logPersonalData(animals[i]));
+			}
+		}
+	}
+};
+
+//Add new friend??
+
+//Scenario 4 -------------------------------------
+var loggedInUser = animals[0];
+var changeSpecies = function(user, species) {
+	user.species = species;
+};
+
+var changeNoises = function(user, noises) {
+	user.noises = noises;
+};
+
+//Add new match to everyone
+for (i=0; i<animals.length; i++) {
+	//animals[i].relationships.matches.push("sarcophilus harrisii");
+}
+animals[0].relationships.matches.push('sarcophilus harrisii');
+//4.5 change something else
+
+//Scenario 5 ------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
