@@ -1,0 +1,285 @@
+<h1 id="more-matchy-outline">More Matchy Outline</h1>
+<ul>
+  <li>Welcome!</li>
+  <li>
+    <p><strong>Pre-Project Work</strong></p>
+    <ul>
+      <li>Function Scope Exercises </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>App Helper Functions</strong></p>
+    <ul>
+      <li>Scenario 0: General Helper Functions</li>
+      <li>Scenario 1: Profile Page</li>
+      <li>Scenario 2: Browse</li>
+      <li>Scenario 3: Search and Add Friends</li>
+      <li>Scenario 4: Edit Profile</li>
+      <li>Scenario 5: Edit Animal Collection </li>
+      <li>Using Underscore.js</li>
+    </ul>
+  </li>
+</ul>
+<hr>
+<h2 id="welcome">Welcome</h2>
+<p>We are glad to see you here with JavaScript functions. Today is a project day so we will be pairing up on the pairing machines again. Try to work with a new pair this time. </p>
+<h4 id="what-s-the-format-of-today-s-class-">What&#39;s the format of today&#39;s class?</h4>
+<p>Today we will jump right into a project that directly applies what we learned yesterday. </p>
+<h4 id="what-is-the-goal-of-the-project-that-we-will-be-working-on-today-">What is the goal of the project that we will be working on today?</h4>
+<p>Today we will create helper functions for our dating app. There is a lot of overlap so feel free to copy and paste from your previous work on Matchy into this project.</p>
+<h4 id="what-will-i-need-to-do-well-in-the-class-">What will I need to do well in the class?</h4>
+<ul>
+  <li>You should have some exposure to JavaScript syntax fundamentals, such as loops and control flow, objects and arrays. <strong>If you are relatively new to these concepts, please tell a TA quickly so we can take extra care in keep you on track during the exercises.</strong></li>
+  <li>Some of the instructions are written with the assumption you&#39;re using <a href="www.google.com/chrome/">Google Chrome</a>. While you are welcome to use any browser you like, Chrome has some of the best dev tools available, and it&#39;s highly recommended
+    you try it for the duration of this class.</li>
+  <li>Any plain text editor will suffice for you to edit the exercise files. <a href="http://www.sublimetext.com/download">Sublime Text</a> is a good choice.</li>
+</ul>
+<h4 id="what-if-i-finish-an-exercise-with-extra-time-">What if I finish an exercise with extra time?</h4>
+<p>If you finish one of the assignments ahead of schedule, your best bet is to research and reinforce any previous concepts you&#39;d felt shaky on, since each lecture is designed to build on a firm understanding of the previous ones. If you feel strong
+  in all the material you&#39;ve covered already, talk to an instructor and we will find some extra credit for you.</p>
+<hr>
+<h1 id="pre-project-directions">Pre-Project Directions</h1>
+<h2 id="before-you-get-started">Before You Get Started</h2>
+<p>Explore the files in the <em>functions*</em> folder.</p>
+<p>Run the <strong>SpecRunner.html</strong> file in a browser. </p>
+<p>This document shows one passed test and a series of failed tests.</p>
+<p>The <strong>functions.js</strong> file holds all the tests and you will be editing this file and using the <strong>SpecRunner.html</strong> to check your progress. This is just a javascript file so you can use console.log to help debug and inspect these
+  functions.</p>
+<p>A test block starts with an <code>it</code> function. The <code>it</code> function takes two arguments. The first one is a statement describing the rule addressed by the test. The second is a function that will either evaluate to true or false. The expect
+  statement (<code>expect(ACTUAL === &#39;inner&#39;).to.be.true;</code>) will evaluate if the statement between the parens <code>ACTUAL === &#39;inner&#39;</code> is true. You can almost read it like plain English. The expect statement below &quot;expects
+  that the variable ACTUAL equals the value &#39;inner&#39; to be true&quot;.</p>
+<pre><code>  it(&#39;a function has access to its own local scope variables&#39;, 
+
+  function () {
+    var fn = function () {
+      var name = &#39;inner&#39;;
+      ACTUAL = name;
+    };
+    fn();
+    expect(ACTUAL === &#39;inner&#39;).to.be.true;
+  });
+</code></pre>
+<h2 id="function-scope-exercises">Function Scope Exercises</h2>
+<p>It is your mission to go through the <strong>function.js</strong> file and change all the <code>&#39;???&#39;</code> in such a way that all the tests pass. </p>
+<hr>
+<h1 id="day-4-project-directions">More Matchy Project Directions</h1>
+<h2 id="before-you-get-started">Before You Get Started</h2>
+<p>Run the <strong>index.html</strong> file in the browser. </p>
+<p>This document appears to be blank but makes all your javascript files available in the console so that you do not need to copy/paste every time. </p>
+<p>When you complete a section, feel free to comment out any console.logs so that you don&#39;t clutter up your console as you are testing your code. </p>
+<p>Your code goes into the <strong>part1.js</strong> file.</p>
+<hr>
+<h2 id="helper-functions">Helper Functions</h2>
+<p>You may remember these scenarios from your Matchy project. Don&#39;t fret if you weren&#39;t able to make it up to this point, you will still be able to complete the following exercises. Note that these exercises emulate real problems you will encounter
+  when making an app. Your task is to respond with solutions to the challenges presented. This is a free-form exercise so be creative!</p>
+<p><strong>You will be placing all your code into the part1.js file.</strong></p>
+<h3 id="scenario-0-general-helper-functions">Scenario 0: General Helper Functions</h3>
+<p>Write the following helper functions as a warm-up. You may use some or all of them as you create your app.</p>
+<ul>
+  <li>
+    <input type="checkbox"><code>objKeyPrinter</code> loops through the properties of any object and returns a string of all the keys.
+    <ul>
+      <li>example input: <code>{ species: &#39;duck&#39;, tagline: &#39;Afflac&#39;, noises: [&#39;quack&#39;, &#39;honk&#39;, &#39;sneeze&#39;, &#39;growl&#39;] }</code> </li>
+      <li>example output: <code>&quot;species tagline noises&quot;</code> </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <input type="checkbox"><code>objValuePrinter</code> loops through all the properties in a given object and returns a string of all the values that are strings.
+    <ul>
+      <li>example input: <code>{ species: &#39;duck&#39;, tagline: &#39;Afflac&#39;, noises: [&#39;quack&#39;, &#39;honk&#39;, &#39;sneeze&#39;, &#39;growl&#39;] }</code> </li>
+      <li>example output: <code>&quot;duck Afflac&quot;</code> </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <input type="checkbox"><code>arrValuePrinter</code> takes a given array and returns the values as a string
+    <ul>
+      <li>example input: <code>[&#39;quack&#39;, &#39;honk&#39;, &#39;sneeze&#39;, &#39;growl&#39;]</code> </li>
+      <li>example output: <code>&quot;quack honk sneeze growl&quot;</code></li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <input type="checkbox"><code>dataTypeChecker</code> takes either an array or an object and returns either <code>&#39;array&#39;</code> or <code>&#39;object&#39;</code> as appropriate.
+    <ul>
+      <li>example input: <code>[&#39;quack&#39;, &#39;honk&#39;, &#39;sneeze&#39;, &#39;growl&#39;]</code> </li>
+      <li>example output: <code>&quot;array&quot;</code></li>
+      <li>example input: <code>{}</code> </li>
+      <li>example output: <code>&quot;object&quot;</code></li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <input type="checkbox"><code>capitalizeVals</code> takes an object, capitalizes the first letter of each string value in the object, and returns the object. Ignore any non-string values like arrays, numbers or objects.
+    <ul>
+      <li>example input: <code>{ species: &#39;duck&#39;, tagline: &#39;Afflac&#39;, noises: [&#39;quack&#39;, &#39;honk&#39;, &#39;sneeze&#39;, &#39;growl&#39;] }</code> </li>
+      <li>example output: <code>{ species: &#39;Duck&#39;, tagline: &#39;Afflac&#39;, noises: [&#39;quack&#39;, &#39;honk&#39;, &#39;sneeze&#39;, &#39;growl&#39;] }</code></li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <input type="checkbox"><code>strCapitalizer</code> takes a string, capitalizes the first letter of each word, and returns the string.
+    <ul>
+      <li>example input: <code>&quot;my name is bristol&quot;</code>
+        <ul>
+          <li>example output: <code>&quot;My Name Is Bristol&quot;</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <input type="checkbox"><code>unique</code> takes an array, removes any duplicate values and returns the array.
+    <ul>
+      <li>input: <code>[1,2,3,3,4]</code> </li>
+      <li>output: <code>[1,2,3,4]</code></li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <input type="checkbox"><code>extend</code> takes two objects and copies the properties of the first object on to the second. It does not return anything.
+  </li>
+</ul>
+<h3 id="scenario-1-animal-profile-page">Scenario 1: Animal Profile Page</h3>
+<p>In our first scenario, we want to create a profile page for one of our animals. We will create functions that will help organize our data and present it to the user in a human-readable way.</p>
+<h5 id="1a-log-the-animal-personal-data">1a: Log the Animal Personal Data</h5>
+<ul>
+  <li>
+    <p><input type="checkbox">Write a function named <code>welcomeMessage</code> that takes an animal object like this one: <code>{ species: &#39;duck&#39;, tagline: &#39;Afflac&#39;, noises: [&#39;quack&#39;, &#39;honk&#39;, &#39;sneeze&#39;, &#39;growl&#39;] }</code> and returns
+      a string that says &quot;Welcome, \
+      <species>!&quot;.</p>
+    <ul>
+      <li>Your result should look like this: <code>&quot;Welcome, Duck!&quot;</code></li>
+      <li>use your <code>strCapitalizer</code> function inside <code>welcomeMessage</code> to ensure correct capitalization.</li>
+    </ul>
+  </li>
+  <li>
+    <p><input type="checkbox">Write a function named <code>profileData</code> that takes an animal object like the duck example in the previous exercise. It returns a string that includes both the species and tagline with their corresponding values. The result should look like
+      this:</p>
+    <ul>
+      <li><code>&quot;species: duck, tagline: Afflac&quot;</code></li>
+      <li>note: do not include the noises array for now</li>
+      <li>use <code>strCapitalizer</code> inside of <code>profileData</code> to ensure proper capitalization
+        <ul>
+          <li>new output will look like this: <code>&quot;Species: Duck, Tagline: Afflac&quot;</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><input type="checkbox">Edit your profileData function to include the noises array with its values</p>
+    <ul>
+      <li><code>&quot;species: duck, tagline: Afflac, noises: quack, honk, sneeze, growl&quot;</code> </li>
+    </ul>
+  </li>
+</ul>
+<h5 id="1b-animal-relationship-data">1b: Animal Relationship Data</h5>
+<ul>
+  <li>
+    <p><input type="checkbox">Create a function called <code>relationshipLogger</code> that takes an animal object and returns the relationship object if it contains one. Otherwise, have your function log <code>&quot;You have no relationships :(&quot;</code> </p>
+  </li>
+  <li>
+    <p><input type="checkbox">Write a function that takes two parameters, the species name and an animal object. The function returns the relationship between the species and animal. </p>
+    <ul>
+      <li>Suggested outputs:&#39;\
+        <species> is a match of \
+          <animal>&#39;, &#39;\
+            <species> is a friend of \
+              <animal>&#39;, &#39;\
+                <species> and \
+                  <animal> have no relation yet&#39;, etc. </li>
+      <li>Make sure you test all these different scenarios so that</li>
+    </ul>
+  </li>
+  <li>
+    <p><input type="checkbox"><code>addFriend</code> is a function that allows your animal object to add a friend. It takes a species (this could be just the name or the entire object depending on how you want to architect your app) and an animal object and adds that species on
+      to the animal object </p>
+    <ul>
+      <li>Remember the friendslist in the relationship obejct? That is where you should store data on about friends on your animal object</li>
+    </ul>
+  </li>
+  <li>
+    <p><input type="checkbox">Similar to <code>addFriend</code>, <code>addMatch</code> should add a match to your animal object. </p>
+  </li>
+</ul>
+<h3 id="scenario-2-browse-animals-page">Scenario 2: Browse Animals Page</h3>
+<p>In this scenario, we will show all the animals in our collection so that a user can browse through and see who is out there on our app. This page or the profile page might be the homepage application.</p>
+<ul>
+  <li><input type="checkbox"><code>nonFriends</code> is a function that shows which animals in your collection are not in your friendlist. You don&#39;t want current friends to show up while you are browsing for new friends.
+    <ul>
+      <li>You can choose to present this data in a way that makes the most sense to you and how you want to present this data to your user. </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="scenario-3-search-and-add-friends">Scenario 3: Search and Add Friends</h3>
+<p>All social networking sites have a search component so that you can find a particular user. You also need to be able to add friends and matches. Let&#39;s do these exercises and see what that might look like in code. </p>
+<ul>
+  <li>
+    <p><input type="checkbox"><code>search</code> takes a seach query and returns an array of animal objects that contain an exact match anywhere in the body of the object. </p>
+    <ul>
+      <li>Note: the match must be exact for this to work and won&#39;t work with objects or arrays. Just primitive types (numbers, strings, booleans, etc.) </li>
+      <li>You will be searching through your entire animals collection</li>
+    </ul>
+  </li>
+  <li>
+    <p><input type="checkbox">Extra credit: How can you make this work with any type of nested data structure? Assuming we might want to change the structure of our data in the future and won&#39;t want it to break our code.</p>
+  </li>
+  <li>
+    <p><input type="checkbox">Write a function that ensures that no friends in your friendslist are repeated. It might take an array and return that array without any duplicate entries.</p>
+  </li>
+</ul>
+<h3 id="scenario-4-edit-animal-profile-page">Scenario 4: Edit Animal Profile Page</h3>
+<p>What if you wanted to edit your profile page? Let&#39;s create the logic that goes into that!</p>
+<ul>
+  <li><input type="checkbox">Create a function that takes your animal object, the key you wish to change and the new value.
+    <ul>
+      <li>if the the property doesn&#39;t yet exist, add it! </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="scenario-5-edit-animal-collection-data">Scenario 5: Edit Animal Collection Data</h3>
+<p>What if you wanted to change the data on the whole collection? For example, species doesn&#39;t really make sense since we are using it more like a name. This might be for the administrator of the website/database</p>
+<ul>
+  <li>
+    <p><input type="checkbox">Write a function that creates a new animal object and adds it to the animals collection. You might want to pass in the species values, friends, etc as arguments into your function. </p>
+    <ul>
+      <li>How could the arugments keyword come in handy here?</li>
+    </ul>
+  </li>
+  <li>
+    <p><input type="checkbox"><code>cleanseData</code> is a function that takes the animals collection and a series of key names. It will remove any properties on the animal objects that are not given as arguments</p>
+    <ul>
+      <li>input <code>cleansData([{&#39;a&#39;: &#39;b&#39;, &#39;c&#39;: &#39;d&#39;},{&#39;a&#39;: &#39;q&#39;}], &#39;a&#39;);</code></li>
+      <li>output <code>[{&#39;a&#39;: &#39;b&#39;},{&#39;a&#39;: &#39;q&#39;}]</code></li>
+    </ul>
+  </li>
+</ul>
+<h3 id="using-underscore-js">Using Underscore.js</h3>
+<p><a href="http://underscorejs.org/">Underscore.js</a> is one of the most popular utility libraries. It provides a collection of helper methods to simplify your development. Rewrite your functions above to incorporate some underscore.js methods. You can
+  use as many as you want! <strong><a href="http://underscorejs.org/">Read through the documentation</a></strong> to familiarize yourself with what underscore.js can do. Here are some commonly used methods to get you started:</p>
+<ul>
+  <li>
+    <p><input type="checkbox"><a href="http://underscorejs.org/#where">where</a> <code>_.where(list, properties)</code></p>
+    <ul>
+      <li>Looks through each value in the list, returning an array of all the values that contain all of the key-value pairs listed in properties.</li>
+      <li>What function above could you use this with?</li>
+    </ul>
+  </li>
+  <li>
+    <p><input type="checkbox"><a href="http://underscorejs.org/#each">each</a> <code>_.each(list, iterator, [context])</code> Alias: forEach </p>
+    <ul>
+      <li>Iterates over a list of elements, yielding each in turn to an iterator function. The iterator is bound to the context object, if one is passed. Each invocation of iterator is called with three arguments: (element, index, list). If list is a JavaScript
+        object, iterator&#39;s arguments will be (value, key, list). Delegates to the native forEach function if it exists, and returns the original list for chaining.</li>
+      <li>What helper function can we replace with each?</li>
+    </ul>
+  </li>
+</ul>
+<p>The underscore library is already loaded in your index.html file so you do not need to worry about that. Just get to coding!</p>

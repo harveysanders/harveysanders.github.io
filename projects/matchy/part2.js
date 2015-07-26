@@ -4,6 +4,7 @@
 //console.log(animals);
 
 var profileAnimal = animals[3];
+var loggedInUser = animals[0];
 
 // 	1a ----- Log Personal Data ----------------------------------
 var logPersonalData = function(profileAnimal){ 
@@ -41,13 +42,14 @@ var deleteFriend = function(friend){
 };
 
 //Scenario 2 ----------------
-
-for (var i=0; i<animals.length; i++) {
-	//log i.e.'1. Dog: Who Let the Dogs out?''
-	console.log((i+1) + '. ' + animals[i].name + ': ' + animals[i].tagline);
+function logAllAnimals() {
+	for (var i=0; i<animals.length; i++) {
+		//log i.e.'1. Dog: Who Let the Dogs out?''
+		console.log((i+1) + '. ' + animals[i].name + ': ' + animals[i].tagline);
+	}
 }
 
-//2b ------------ filter out friends of signed-in (first) animal 
+// Extra Credit --2b ------------ filter out friends of signed-in (first) animal 
 
 //not friends callback function
 function isFriend(user) {
@@ -76,7 +78,7 @@ var findAnimal = function(name) {
 //Add new friend??
 
 //Scenario 4 -------------------------------------
-var loggedInUser = animals[0];
+
 var changeName = function(user, name) {
 	user.name = name;
 };
@@ -94,44 +96,10 @@ animals[0].relationships.matches.push('sarcophilus harrisii');
 
 //Scenario 5 ------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//reset all friendslists
+var resetAllFriends = function() {
+	animals[0].relationships.friends = [];
+};
 
 
 

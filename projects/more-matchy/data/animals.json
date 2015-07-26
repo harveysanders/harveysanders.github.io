@@ -1,0 +1,38 @@
+[
+    { 
+        "species": "dog", 
+        "tagline": "Doggie style is my thang", 
+        "noises": ["woof", "bark", "whine", "growl"], 
+        "relationships": {
+            "friends": ["horse", "cat"],
+            "matches": ["bird", "rabbit"]
+        }
+    },
+    { 
+        "species": "horse", 
+        "tagline": "I'm your stallion", 
+        "noises": ["nahhh", "snort", "neehhh", "pufffff"],
+        "relationships": {
+            "friends": ["dog", "cat"],
+            "matches": ["bird", "rabbit"]
+        }
+    },
+    { 
+        "species": "rabbit", 
+        "tagline": "I'm a jack-rabbit, baby!", 
+        "noises": ["fluff", "scratchy-scratch", "thump", "sot"],
+        "relationships": {
+            "friends": ["dog", "cat"],
+            "matches": ["bird", "horse"]
+        }
+    },
+    { 
+        "species": "cat", 
+        "tagline": "Keep it cool", 
+        "noises": ["Meoh", "scratchy-scratch", "screech", "sissst"],
+        "relationships": {
+            "friends": ["dog", "rabbit"],
+            "matches": ["bird", "horse"]
+        }
+    }
+]
