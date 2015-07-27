@@ -50,6 +50,21 @@ function logAllAnimals() {
 }
 
 // Extra Credit --2b ------------ filter out friends of signed-in (first) animal 
+//for each friend in user's friend list, check if animal name matches
+
+function nonFriends(user, animals) {
+	var self = user.name;
+	var userFriends = user.relationships.friends;
+	var result = [];
+
+	for (var animalIndex=0; animalIndex<animals.length; animalIndex++) {
+		for (var i=0; i<userFriends.length; i++) {
+			if (animals[animalIndex].name !== self && userFriends[i] !== animals[animalIndex].name) {
+				result.push(animals[animalIndex].name);
+			}
+		}
+	}return unique(result);
+}
 
 //not friends callback function
 function isFriend(user) {
