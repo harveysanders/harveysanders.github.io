@@ -1,21 +1,79 @@
 //Use this file to implement Part One of your project
 
 var animal,
-	testObj
+	animals,
+	friends,
+	relationships,
+	matches,
+
+	quackers,
+	polloLoco,
+	winAmpMascot,
+	markTheShark,
+	tasmanianDevil
 	;
 
 //test animal
-animal = { 
-	species: 'duck',
-	tagline: 'Afflac',
-	noises: ['quack', 'honk', 'sneeze', 'growl']
-};
 
-testObj = {
-	str: 'bacbajfd',
-	num: 43
-};
+//test Data
+animals = [];
 
+quackers = { 
+	name: 'duck', 
+	tagline: 'Afflack', 
+	noises: ['quack', 'honk', 'sneeze', 'growl'],
+	relationships: {
+		friends: [ 'duck', 'llama'],
+		matches: []
+	} 
+};
+animals.push(quackers);
+
+polloLoco = { 
+	name: 'chicken',
+	tagline: 'finger lickin\' good', 
+	noises: ['bok bok', 'cluck cluck', 'bwok bwok', 'smk smk'],
+	relationships: {
+		friends: ['Great White Shark'],
+		matches: ['llama', 'duck']
+	}  
+};
+animals.unshift(polloLoco);
+
+winAmpMascot = { 
+	name: 'llama', 
+	tagline: 'it really whips the llama\'s ass!', 
+	noises: ['spit!', 'hee haw', 'ahroooga', 'pfff'],
+	relationships: {
+		friends: [],
+		matches: []
+	}  
+};
+animals.push(winAmpMascot);
+
+markTheShark = {
+	name: "Great White Shark",
+	tagline: "Don't swim with the sharks!",
+	noises: ['dun-nuh, dun-nuh, dun-nuh', 'swiiiiish', 'chomp!!', 'gurggle..'],
+	relationships: {
+		friends: ['chicken', 'duck'],
+		matches: ['sarcophilus harrisii']
+	} 
+};
+animals.push(markTheShark);
+
+tasmanianDevil = {
+    name: 'sarcophilus harrisii',
+    tagline: 'bad a$$ ',
+    noises: ['', '', '', ''],
+	relationships: {
+		friends: [],
+		matches: []
+	}  };
+
+// --------------------------------------------------------
+
+// ---------------- Scenario 0: General Helper Functions ------------------
 //objKeyPrinter loops through the properties of any object and returns a string of all the keys.
 // example input: { species: 'duck', tagline: 'Afflac', noises: ['quack', 'honk', 'sneeze', 'growl'] }
 // example output: "species tagline noises"
@@ -48,7 +106,7 @@ function objValuePrinter(object){
 function arrValuePrinter(array) {
 	var result = "";
 	for (var i=0; i<array.length; i++) {
-		result += array[i] + "";
+		result += array[i] + " ";
 	}return result;
 }
 
@@ -108,5 +166,100 @@ function extend (copyFrom, pasteTo) {
 		pasteTo[prop] = copyFrom[prop]; //use array syntax to dynamically add property names!
 	}
 }
+
+//Addtional Helper Functions
+
+function getAnimalName(animal) {
+	return animal.name;
+}
+
+// ---------------- Scenario 1: Animal Profile Page ----------------------
+function welcomeMessage (animal) {
+	return "Welcome, " + strCapitalizer(getAnimalName(animal)) + "!";
+}
+
+function profileData (animal) {
+	return 	'Species: ' + strCapitalizer(animal.name) + 
+			', Tagline: ' + strCapitalizer(animal.tagline) + 
+			', Noises: ' + arrValuePrinter(animal.noises);
+}
+
+//---------------- 1b ----------
+function relationshipLogger(animal) {
+	if (animal.relationships) {
+		return animal.relationships;
+	}return "You have no relationships :(";
+}
+
+//function that takes two parameters, the species name and an animal object. The function returns the relationship between the species and animal.
+function findRelationship(name, animal) {
+	var friends = animal.relationships.friends;
+	var matches = animal.relationships.matches;
+	
+	for (var i=0; i<friends.length; i++) {
+		if (name === friends[i]) {
+			return strCapitalizer(friends[i]) + " is a friend of " + strCapitalizer(animal.name);
+		}
+	}for (i=0; i<matches.length; i++) {
+		if (name === matches[i]) {
+			return strCapitalizer(matches[i]) + " is a match for " + strCapitalizer(animal.name);
+		} 
+	}return strCapitalizer(animal.name) + " and " + strCapitalizer(name) + " have no relationship yet.";	
+}
+
+function addFriend(friendName, animal) {
+	animal.relationships.friends.push(friendName);
+}
+
+function addMatch(matchName, animal) {
+	animal.relationships.matches.push(matchName);
+}
+
+// ---------------- Scenario 2: Browse Animals Page ----------------------
+function nonFriends(user, animals) {
+	var self = user.name;
+	var userFriends = user.relationships.friends;
+	var result = [];
+
+	for (var animalIndex=0; animalIndex<animals.length; animalIndex++) {
+		for (var i=0; i<userFriends.length; i++) {
+			if (animals[animalIndex].name !== self && userFriends[i] !== animals[animalIndex].name) {
+				result.push(animals[animalIndex].name);
+			}
+		}
+	}return unique(result);
+}
+
+// ---------------- Scenario 3: Search and Add Friend ----------------------
+// ---------------- Scenario 4: Edit Animal Profile Page -----------------
+// ---------------- Scenario 5: Edit Animal Collection Data----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
