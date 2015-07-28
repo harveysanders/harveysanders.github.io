@@ -35,9 +35,10 @@ for (i=0; i<animalFriends.length; i++) {
 }
 console.log("Animal Friends: " + animalFriendsNames.join(','));
 
-var deleteFriend = function(friend){
-	for(i=0; i<animalFriends; i++) {
-		animalFriends.pop(friend);
+var deleteFriend = function(friend, friends){
+	var index = friends.indexOf(friend);
+	if (index > -1) {
+		return friends.splice(index, 1)[0];
 	}
 };
 
@@ -51,6 +52,16 @@ function logAllAnimals() {
 
 // Extra Credit --2b ------------ filter out friends of signed-in (first) animal 
 //for each friend in user's friend list, check if animal name matches
+
+/*
+1. write a loop
+2. write an if statement
+	a. (myFriends = animals[0].friends)
+	b. who they are = animals[i].name
+	c. if animals[i].name !== animals[0].friends[i] 
+	console.log(animals[i].species);
+*/
+
 
 function nonFriends(user, animals) {
 	var self = user.name;
