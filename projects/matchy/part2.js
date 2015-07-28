@@ -70,7 +70,7 @@ function nonFriends(user, animals) {
 
 	for (var animalIndex=0; animalIndex<animals.length; animalIndex++) {
 		for (var i=0; i<userFriends.length; i++) {
-			if (animals[animalIndex].name !== self && userFriends[i] !== animals[animalIndex].name) {
+			if ((animals[animalIndex].name !== self) && (userFriends[i] !== animals[animalIndex].name)) {
 				result.push(animals[animalIndex].name);
 			}
 		}
