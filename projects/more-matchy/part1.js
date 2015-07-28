@@ -117,14 +117,17 @@ function arrValuePrinter(array) {
 // example output: "object"
 function dataTypeChecker (collection) {
 	//check for array FIRST because they also return true if tested as objects
-	if (Array.isArray(collection)) {  
-		return "array";
-	}
-	else if (typeof collection === 'object'){
-		return "object";
-	} else {
-		return 'input is neither object or array';
-	}
+	return Array.isArray(collection) ? "array" : typeof collection === 'object' ? 'object' : 'input is neither object or array';
+
+	// if (Array.isArray(collection)) {  
+	// 	return "array";
+	// }
+	// else if (typeof collection === 'object'){
+	// 	return "object";
+	// } else {
+	// 	return 'input is neither object or array';
+	// }
+
 }
 
 // capitalizeVals takes an object, capitalizes the first letter of each string value in the object, and returns the object. Ignore any non-string values like arrays, numbers or objects.
@@ -247,12 +250,13 @@ function search(query, collection) {
 // ---------------- Scenario 4: Edit Animal Profile Page -----------------
 function editAnimal(animal, key, newVal) {
 	for (var prop in animal) {
+		newVal = key === prop ? animal[prop] : animal[key];
+
 		// if (key === prop) {
 		// 	animal[prop] = newVal; 
 		// }else {
 		// 	animal[key] = newVal;
 		// }
-		newVal = key === prop ? animal[prop] : animal[key];
 	}
 
 }
@@ -289,7 +293,8 @@ function cleanseData(collection, keyNames) {
 		for (var idx=0; idx<collection.length; idx++) {
 			delete collection[idx][args[o]];
 		}
-	}console.log(collection);
+	}
+	console.log(collection); //crap. this is the opposite of what i want.
 
 }
 
