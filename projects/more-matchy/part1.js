@@ -231,10 +231,67 @@ function nonFriends(user, animals) {
 }
 
 // ---------------- Scenario 3: Search and Add Friend ----------------------
+function search(query, collection) {
+	var results = [];
+	for (var i=0; i<collection.length; i++) {
+		for (var item in collection[i]) {
+			if (query === item || query === collection[i][item]) {
+				results.push(collection[i]);
+			}
+		}
+	} return results;
+}
+
+//Extra credit: How can you make this work with any type of nested data structure? Assuming we might want to change the structure of our data in the future and won't want it to break our code.
+
 // ---------------- Scenario 4: Edit Animal Profile Page -----------------
+function editAnimal(animal, key, newVal) {
+	for (var prop in animal) {
+		// if (key === prop) {
+		// 	animal[prop] = newVal; 
+		// }else {
+		// 	animal[key] = newVal;
+		// }
+		newVal = key === prop ? animal[prop] : animal[key];
+	}
+
+}
+
 // ---------------- Scenario 5: Edit Animal Collection Data----------------
 
+function createAnimal(name, tagline, noises, friends, matches) {
+	var animal = {
+		name: name,
+		tagline: tagline || "",
+		noises: noises || [],
+		friends: friends || {},
+		matches: matches || {}
+	};
+	animals.push(animal);
+}
 
+function cleanseData(collection, keyNames) {
+	//You should not slice on arguments because it prevents optimizations in JavaScript engines (V8 for example). Instead, try constructing a new array by iterating through the arguments object.
+	var args = [];
+	
+	//make new array from arguments objects, leaving out first element. 
+	//The first argument is assumed to be the collection array. 
+	//'keyNames' is for user API purposes only.
+	for (var i=1; i<arguments.length; i++) {
+		args.push(arguments[i]);
+	}
+	/*
+	1. loop through args array
+	2. loop through animals array
+	3. delete keys
+	*/
+	for (var o=0; o<args.length; o++) {
+		for (var idx=0; idx<collection.length; idx++) {
+			delete collection[idx][args[o]];
+		}
+	}console.log(collection);
+
+}
 
 
 
