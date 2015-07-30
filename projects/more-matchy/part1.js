@@ -277,6 +277,7 @@ function createAnimal(name, tagline, noises, friends, matches) {
 function cleanseData(collection, keyNames) {
 	//You should not slice on arguments because it prevents optimizations in JavaScript engines (V8 for example). Instead, try constructing a new array by iterating through the arguments object.
 	var args = [];
+	var result = [];
 	
 	//make new array from arguments objects, leaving out first element. 
 	//The first argument is assumed to be the collection array. 
@@ -291,11 +292,12 @@ function cleanseData(collection, keyNames) {
 	*/
 	for (var o=0; o<args.length; o++) {
 		for (var idx=0; idx<collection.length; idx++) {
-			delete collection[idx][args[o]];
+			//delete collection[idx][args[o]];
+			result.push(collection[idx][args[o]]);
 		}
 	}
-	console.log(collection); //crap. this is the opposite of what i want.
-
+	console.log(result); //crap. this is the opposite of what i want.
+	return collection;
 }
 
 
