@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)http://learn.makersquare.com/courses/prework/2015-jquery-adding-removing-moving-elements.mdx -->
+<html class=" js no-touch svg inlinesvg svgclippaths no-ie8compat" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="copyright" content="">
+  <link type="text/plain" rel="author" href="http://learn.makersquare.com/humans.txt">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Adding, Removing, and Moving Elements</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <div id="class-notices"></div>
+    <nav class="top-bar"></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="s87Wi3eizNg" data-ext="mdx">
+          <h1>Adding, Removing, and Moving Elements with jQuery</h1>
+          <div class="step" data-number="0" data-human-number="1">
+            <div class="step-content" data-human-number="1">
+
+
+              <p>Once we've gotten elements selected with jQuery, we need to atually do something with them. jQuery offers a <a href="http://api.jquery.com/">full-fledged API</a> for manipulating the DOM with a number of different methods. We'll go over
+                a variety of different methods we can use to add, remove, and move elements.</p>
+
+              <p>Before we get started, let's set up a basic HTML page to manipulate:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>A heading!<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's some text!<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's a second set of text!<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h2>Creating and Adding Elements</h2>
+
+              <p>If you need to add an element to the DOM that doesn't exist, you can use <a href="http://api.jquery.com/append/">the append() method</a>. Append takes in an arbitrary string of HTML or a jQuery object and puts it inside of a selected element,
+                after all other child elements of that selected element.</p>
+
+              <p>If I wanted to create a <code>&lt;div&gt;</code> that says "hello" in it and append it to the <code>&lt;body&gt;</code> of my page after my <code>&lt;div id="everything"&gt;</code> element, I would write this JavaScript:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'body'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;div&gt;hello&lt;/div&gt;'</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>My DOM would then look like this:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>A heading!<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's some text!<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's a second set of text!<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>hello<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>If I wanted to then add another element to the container, I would write:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#container'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;div&gt;Another element&lt;/div&gt;'</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Our DOM now looks like:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>A heading!<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's some text!<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's a second set of text!<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;div&gt;</span>Another element<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>hello<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>There are a number of useful methods for adding to the DOM:</p>
+
+              <ul>
+                <li><a href="http://api.jquery.com/after/">.after()</a> - adds an element after the selected element</li>
+                <li><a href="http://api.jquery.com/before/">.before()</a> - adds an element before the selected element</li>
+                <li><a href="http://api.jquery.com/append/">.append()</a> - adds an element as the last child element on the selected element</li>
+                <li><a href="http://api.jquery.com/prepend/">.prepend()</a> - adds an element s the first child element on the selected element</li>
+                <li><a href="http://api.jquery.com/appendTo/">.appendTo()</a> - inserts the elements in the target element(s) as the first child</li>
+                <li><a href="">.prependTo()</a> - insert the element in the set of matched elements to the target element(s) as the last child</li>
+              </ul>
+
+              <h2>Creating Detached Elements with $()</h2>
+
+              <p>You'll notice that <code>.appendTo()</code> and <code>.prependTo()</code> are similar to <code>.append()</code> and <code>.prepend()</code>. However, they reverse the order in which you use them.</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'body'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;div&gt;hello&lt;/div&gt;'</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'&lt;div&gt;hello&lt;/div&gt;'</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">'body'</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Remembering what we learned about selecting elements, this might look a little strange. Doesn't <code>$()</code> select elements? Yes, but <b>it can also create elements</b>. If jQuery detects that the string you pass it is not a CSS selector
+                but actually HTML, jQuery will parse the HTML into actual DOM elements, the same way that <code>.append()</code> does when you pass it an HTML string. The DOM elements that jQuery creates have not been added to the document yet but <em>do</em>                exist in memory, meaning that they are invisible to the user but still able to be manipulated by JavaScript. Elements in this state are called <strong>detached</strong>.</p>
+
+              <p>You can run all jQuery methods (and regular JavaScript methods) against these detached objects:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">detachedDiv</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'&lt;div&gt;hello&lt;/div&gt;'</span><span class="p">);</span>
+<span class="nx">detachedDiv</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">'color'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">);</span>
+<span class="nx">detachedDiv</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">'body'</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Once appended to the document, our <code>detachedDiv</code> will appear in blue. Why would we want to work with a detached element first? We might want to construct a complex element, or attach event handlers to it, or prepare it and wait
+                to attach it to the DOM.</p>
+
+              <div class="toggled-content"><a class="toggle button secondary" data-toggle=".toggled-content::.content">Technical Details</a>
+                <div class="content">
+                  <p>A particular reason you might want to avoid attaching anything to the DOM for a while would be to avoid unnecessary <strong>paints</strong> or <strong>redraws</strong>. A paint or redraw is when the browser has to rerender content to
+                    the screen. If you append elements to the document one at a time, you will trigger multiple individual redraws because the browser has to render the new element layout all over again. However, if you do all of your DOM construction
+                    in a detached element and then append the element to the document, the browser only does <em>one</em> paint step which is much more efficient.</p>
+                </div>
+              </div>
+
+              <p>The key takeaways here are that you can use jQuery to construct <em>or</em> select elements on the fly.</p>
+
+              <h2>Removing and Detaching Elements</h2>
+
+              <p>We've already had some exposure to removing elements with <a href="http://api.jquery.com/remove/">.remove()</a>. To remove any element from the DOM and throw it away, select it with jQuery and call <code>.remove()</code>:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="c1">// Removes all &lt;div&gt; elements!</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'div'</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>You may not want to remove an element itself, though, and just its children. There's a jQuery method for that called <a href="http://api.jquery.com/empty/">.empty()</a>, which removes all children from an element.</p>
+
+              <p>Given this HTML:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>A heading!<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's some text!<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's a second set of text!<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>We run this JavaScript:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#container'</span><span class="p">).</span><span class="nx">empty</span><span class="p">();</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>And the result is:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>However, both <code>.remove()</code> and <code>.empty()</code> are destructive. Any events or jQuery data associated with the elements you remove are destroyed. If you want to hold on to that data, you would want to use <a href="http://api.jquery.com/detach/">.detach()</a>,
+                which takes an element and retains it in memory for use later:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">h1</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">).</span><span class="nx">detach</span><span class="p">();</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'body'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">h1</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Result:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's some text!<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's a second set of text!<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>A heading!<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h2>Moving Elements</h2>
+
+              <p>In addition of using <code>.detach()</code> to move elements around, there are some quicker ways to move elements directly if you just want them to move from one place to another:</p>
+
+              <ul>
+                <li><a href="http://api.jquery.com/appendTo/">.appendTo</a> - insert every element in the set of matched elements to the end of the target</li>
+                <li><a href="http://api.jquery.com/prependTo">.prependTo</a> - insert every element in the set of matched elements to the beginning of the target</li>
+                <li><a href="http://api.jquery.com/insertAfter/">.insertAfter</a> - insert every element in the set of matched elements after the target</li>
+                <li><a href="http://api.jquery.com/insertBefore/">.insertBefore</a> - insert every element in the set of matched elements before the target</li>
+              </ul>
+
+              <p>You'll notice that <code>.appendTo()</code> is here as well. In addition to putting generated elements in places, we can also use it to select elements on the document and move them to other spots in the document.</p>
+
+              <p>Given this code: </p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>A heading!<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's some text!<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's a second set of text!<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">'body'</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>We get this result:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's some text!<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's a second set of text!<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>A heading!<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>This is the exact same result as using <code>.detach()</code> in the previous example! We could also use this code to achieve an identical result:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">).</span><span class="nx">insertAfter</span><span class="p">(</span><span class="s1">'#container'</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>There's a lot of different ways to get what we want with jQuery.</p>
+
+            </div>
+          </div>
+        </div>
+</body>
+
+</html>

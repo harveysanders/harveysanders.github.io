@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)http://learn.makersquare.com/courses/prework/2015-jquery-selecting-elements.mdx -->
+<html class=" js no-touch svg inlinesvg svgclippaths no-ie8compat" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="copyright" content="">
+    <link type="text/plain" rel="author" href="http://learn.makersquare.com/humans.txt">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Selecting Elements</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    
+</head>
+  <body>
+    <div class="container">
+    <div id="class-notices"></div>
+    <nav class="top-bar"></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="Esx2U9Iwza4" data-ext="mdx"><h1>Selecting Elements with jQuery</h1>
+<div class="step" data-number="0" data-human-number="1">
+  <div class="step-content" data-human-number="1">
+    
+
+<p>Ordinarily, if we want to manipulate an element in the DOM, we have to use these three methods on the document in JavaScript:</p>
+
+<ol>
+<li><code>document.getElementById</code></li>
+<li><code>document.getElementsByClassname</code></li>
+<li><code>document.getElementsByTagName</code></li>
+<li><code>document.querySelector</code></li>
+<li><code>document.querySelectorAll</code></li>
+</ol>
+
+<p>However, these are verbose and pretty inflexible ways to access the DOM. With jQuery, we can use <code>$()</code> to pass in a CSS-style selector and grab an element. Let's modify the <code>&lt;body&gt;</code> of the HTML we made from <a href="http://learn.makersquare.com/courses/js_fundamentals/jquery-basics/getting-jquery.mdx">Getting jQuery</a> to have a variety of elements we can practice selecting:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"everything"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>A heading!<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's some text!<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Here's a second set of text!<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"holder"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;ul&gt;</span>
+                <span class="nt">&lt;li&gt;</span>List Item 1<span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li&gt;</span>List Item 2<span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li&gt;</span>List Item 3<span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"holder"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;ul&gt;</span>
+                <span class="nt">&lt;li&gt;</span>List Item 4<span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li&gt;</span>List Item 5<span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;li&gt;</span>List Item 6<span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+
+  </div>
+  <div class="progress-check">
+    <div class="off">
+      <i class="icon-signin"></i>
+      <span>Done?</span>
+    </div>
+    <div class="on">
+      <i class="icon-check"></i>
+      <span>Done!</span>
+    </div>
+  </div>
+</div>
+<h2>CSS Selection</h2>
+<div class="step" data-number="1" data-human-number="2">
+  <div class="step-content" data-human-number="2">
+    
+
+
+
+<p>With jQuery, we can select elements <b>the same way that we target elements with CSS selectors</b>. For instance, take a look at the following CSS:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">/* Targets all h1 elements and makes them blue */</span>
+<span class="nt">h1</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Targets the element with the id "everything" and turns the background red */</span>
+<span class="nf">#everything</span> <span class="p">{</span>
+    <span class="k">background-color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Targets all elements with the class "holder" and adds a black border */</span>
+<span class="nc">.holder</span> <span class="p">{</span>
+    <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="nb">black</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Targets all li elements within ul elements and bold them */</span>
+<span class="nt">ul</span> <span class="nt">li</span> <span class="p">{</span>
+    <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Targets p elements coming immediately after an h1 element and makes it green */</span>
+<span class="nt">h1</span> <span class="o">+</span> <span class="nt">p</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">green</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>We can use the exact same <strong>CSS selector syntax</strong> to select elements on the DOM with jQuery. Here's JavaScript code using jQuery's <code>css</code> method to do the same thing as the CSS above:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// Turn h1s blue</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">'color'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">);</span>
+<span class="c1">// Make the element with id "everything" have a red background</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#everything'</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">'background-color'</span><span class="p">,</span> <span class="s1">'red'</span><span class="p">);</span>
+<span class="c1">// Make all elements with class "holder" have a black border</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.holder'</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">'border'</span><span class="p">,</span> <span class="s1">'1px solid black'</span><span class="p">);</span>
+<span class="c1">// Make all li elements inside of ul elements have bold text</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'ul li'</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">'font-weight'</span><span class="p">,</span> <span class="s1">'bold'</span><span class="p">);</span>
+<span class="c1">// Makes all p elements immediately following an h1 green</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'h1 + p'</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">'color'</span><span class="p">,</span> <span class="s1">'green'</span><span class="p">);</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>This means that you can select elements with as complex CSS selectors as you want, and then manipulate them with jQuery. If you wanted to grab the first element inside of a div with the ID "rabbit" that immediately follows an h1 which is the second child of its container element which is the direct descendant of its container element, and turn it blue... you can do that:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;body&gt;</span>
+    <span class="c">&lt;!-- &lt;main&gt; is an HTML5 element similar to a div --&gt;</span>
+    <span class="nt">&lt;main&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;p&gt;&lt;/p&gt;</span>
+            <span class="nt">&lt;h1&gt;&lt;/h1&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"rabbit"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div&gt;</span>
+                    The target div!
+                <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;ul&gt;</span>
+                    <span class="nt">&lt;li&gt;</span>Not what I want to target<span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;/ul&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/main&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div><div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'main &gt; div h1:nth-child(2) + #rabbit div:first-child'</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">'color'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">)</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>This is an overly involved (and contrived) example, but it shows you the power of using CSS selectors versus using native JavaScript, which could look something like:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// Get the first &lt;main&gt; element. This technically isn't even correct--</span>
+<span class="c1">// we should be filtering against all main elements, according to our CSS selector</span>
+<span class="kd">var</span> <span class="nx">main</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">'main'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+<span class="c1">// Get all &lt;div&gt; elements and then filter for direct descendants</span>
+<span class="kd">var</span> <span class="nx">divs</span> <span class="o">=</span> <span class="nx">main</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">'div'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">directChildDiv</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">divs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// If this div is in childNodes, it's a direct child</span>
+    <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">,</span> <span class="nx">divs</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="c1">// If index == -1, it's not a direct child so cut it out</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">directChildDiv</span> <span class="o">=</span> <span class="nx">divs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">directChildDiv</span> <span class="o">=</span> <span class="nx">divs</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="c1">// Grab direct child h1s</span>
+<span class="kd">var</span> <span class="nx">h1s</span> <span class="o">=</span> <span class="nx">directChildDiv</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">'h1'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">secondChildH1</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+<span class="nx">h1s</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">h1s</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">h1s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">h1s</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">,</span> <span class="nx">h1s</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="c1">// You would think we would use index 1,</span>
+    <span class="c1">// but nope, we have to account for</span>
+    <span class="c1">// text nodes in the children</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">secondChildH1</span> <span class="o">=</span> <span class="nx">h1s</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Let's check if we actually matched anything here</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">secondChildH1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Get the node after this one. Remember we need</span>
+    <span class="c1">// to use + 2 to account for text nodes</span>
+    <span class="kd">var</span> <span class="nx">adjacentChild</span> <span class="o">=</span> <span class="nx">secondChildH1</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
+    <span class="c1">// Check if id is actually 'rabbit'</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">adjacentChild</span><span class="p">.</span><span class="nx">id</span> <span class="o">==</span> <span class="s1">'rabbit'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">almostThereDivs</span> <span class="o">=</span> <span class="nx">adjacentChild</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">'div'</span><span class="p">);</span>
+        <span class="nx">almostThereDivs</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">almostThereDivs</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">almostThereDivs</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">isFirstChild</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">almostThereDivs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">,</span> <span class="nx">almostThereDivs</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="c1">// Finally set the color!</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">isFirstChild</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">almostThereDivs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+                <span class="nx">x</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">'style'</span><span class="p">,</span> <span class="s1">'color: blue'</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>That's pretty awful. Granted, our query is very complex, but we need to repeatedly do things like convert HTMLCollections (types of objects that hold DOM elements, but don't act like regular arrays) into arrays, account for text nodes, and we're still not handling error cases very well or considering different browser implementations. In essence, jQuery makes life easier.</p>
+
+<p>However, this is only one part of jQuery. As a matter of fact, jQuery is utilizing another library, called <a href="http://sizzlejs.com/">Sizzle.js</a>, which is a library designed specifically to turn CSS selectors into complex native JavaScript to let you select DOM elements easily.</p>
+
+
+  </div>
+  <div class="progress-check">
+    <div class="off">
+      <i class="icon-signin"></i>
+      <span>Done?</span>
+    </div>
+    <div class="on">
+      <i class="icon-check"></i>
+      <span>Done!</span>
+    </div>
+  </div>
+</div>
+<h2>DOM Sets</h2>
+<div class="step" data-number="2" data-human-number="3">
+  <div class="step-content" data-human-number="3">
+    
+
+
+
+<p>Since we can use CSS selectors to select elements from the DOM, it follows that if we use the selector <code>div</code>, we are selecting <em>all</em> of the <code>&lt;div&gt;</code> elements on the DOM. You can see this to be the case by going to a webpage with jQuery on it and typing <code>$('div').length()</code> into the DevTools console. <code>length()</code> is a method that will show you the number of elements that you matched with your selector, also called the <strong>matched set</strong>. The return value of a jQuery selector is this matched set. For instance, if we run <code>$('div')</code> in our DevTools on a page with the HTML above in it, we'll see this array-like representation of DOM elements:</p>
+
+<p><img src="img/sjwWEOi.png" alt=""></p>
+
+<p>Once we have this matched set, we can add to, remove from, or filter it with a variety of functions.</p>
+
+<p><b><a href="http://api.jquery.com/add/">.add()</a></b> adds elements to a matched set by passing in a new selector or another matched set. For instance, we could add all the <code>&lt;ul&gt;</code> elements to our matched set of <code>&lt;divs&gt;</code> like so:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">matchedSet</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'div'</span><span class="p">);</span>
+<span class="c1">// .add() returns a new set without altering the old</span>
+<span class="c1">// set we called .add() from, so we need to reassign it</span>
+<span class="nx">matchedSet</span> <span class="o">=</span> <span class="nx">matchedSet</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'ul'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">matchedSet</span><span class="p">);</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>The end result looks like this in DevTools:</p>
+
+<p><img src="img/7M2mXBd.png" alt=""></p>
+
+<p>Alternatively, we could use <code>.add()</code> to put together multiple sets of elements, like so:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">matchedDivs</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'div'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">matchedUls</span>  <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'ul'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">matchedSet</span>  <span class="o">=</span> <span class="nx">matchedDivs</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">matchedUls</span><span class="p">);</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p><b><a href="http://api.jquery.com/not/">.not()</a></b> does the opposite of <code>.add()</code>. It will remove any element from the matched set that is matched by the selector you pass to it. For example, let's take the <code>matchedSet</code> jQuery object from the previous examples and exclude all of the elements with the class <code>holder</code> from it:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">resultingSet</span> <span class="o">=</span> <span class="nx">matchedSet</span><span class="p">.</span><span class="nx">not</span><span class="p">(</span><span class="s1">'.holder'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resultingSet</span><span class="p">);</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>The result looks like this:</p>
+
+<p><img src="img/rlUFonq.png" alt=""></p>
+
+<p>There are a number of other methods as well that you can use:</p>
+
+<ul>
+<li><a href="http://api.jquery.com/filter/">.filter()</a> - selects out of the matched set only the elements that match the selector passed to filter--this is the inverse behavior of <code>.not()</code></li>
+<li><a href="http://api.jquery.com/first/">.first()</a> - selects the first element out of a matched set</li>
+<li><a href="http://api.jquery.com/last/">.last()</a> - selects the last element out of a matched set</li>
+<li><a href="http://api.jquery.com/eq/">.eq()</a> - selects an element out of a matched set by index, mimicking the <code>[]</code> functionality of arrays</li>
+</ul>
+
+
+  </div>
+  <div class="progress-check">
+    <div class="off">
+      <i class="icon-signin"></i>
+      <span>Done?</span>
+    </div>
+    <div class="on">
+      <i class="icon-check"></i>
+      <span>Done!</span>
+    </div>
+  </div>
+</div>
+<h2>DOM Traversal Methods</h2>
+<div class="step" data-number="3" data-human-number="4">
+  <div class="step-content" data-human-number="4">
+    
+
+
+
+<p>Besides selecting elements directly and then filtering them, you can also find elements related to your selected elements with a number of DOM traversal methods. These methods will work on all of the elements in the matched set simultaneously.</p>
+
+<ul>
+<li><a href="http://api.jquery.com/find/">.find()</a> - get all the descendants of each element in the matched set, filtered by a selector, jQuery object, or element</li>
+<li><a href="http://api.jquery.com/parent/">.parent()</a> - get the parent of each element in the set of matched elements, optionally filtered by a selector</li>
+<li><a href="http://api.jquery.com/parents/">.parents()</a> - the same as <code>.parent()</code>, but searches through all parents/ancestors</li>
+<li><a href="http://api.jquery.com/children/">.children()</a> - get the children of each element in the set of matched elements, optionally filtered by a selector</li>
+<li><a href="http://api.jquery.com/siblings/">.siblings()</a> - get all siblings of each element in the set of matched elements, optionally filtered by a selector</li>
+<li><a href="http://api.jquery.com/prev/">.prev()</a> - get the preceding sibling of each element in the set of matched elements, optionally filtered by a selector</li>
+<li><a href="http://api.jquery.com/prevAll/">.prevAll()</a> - get all of the preceding siblings of each element in the set of matched elements, optionally filtered by a selector</li>
+<li><a href="http://api.jquery.com/next/">.next()</a> - get the following sibling of each element in the set of matched elements, optionally filtered by a selector</li>
+<li><a href="http://api.jquery.com/nextAll/">.nextAll()</a> - get all the following siblings of each element in the set of matched elements, optionally filtered by a selector</li>
+</ul>
+
+<p>You can see that jQuery allows you a lot of flexibility in getting towards the elements you want. jQuery also allows you to easily manipulate what you've selected, which we'll learn about next in <a href="jquery4.html">Adding, Removing, and Moving Elements</a>.</p>
+
+  </div>
+  
+</div>
+</div>
+</body></html>

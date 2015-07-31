@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>JQuery Concepts Overview</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+
+<body class="pages student theme-mks-blue" id="show">
+  <div class="container">
+    <div id="class-notices"></div>
+    <nav class="top-bar"></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="MqcDQLw1fA0" data-ext="mdx">
+          <h1>jQuery - A Conceptual Overview</h1>
+          <div class="step" data-number="0" data-human-number="1">
+            <div class="step-content" data-human-number="1">
+              <p><strong>jQuery</strong> is a JavaScript library designed to make it easier to manipulate a web page.</p>
+              <p>This includes:</p>
+              <ul>
+                <li>selecting elements</li>
+                <li>adding/removing classes and attributes from elements</li>
+                <li>hiding/showing/deleting/moving elements</li>
+                <li>adding events to elements</li>
+                <li>...and much, much, more</li>
+              </ul>
+              
+              <h2>How is jQuery Easier?</h2>
+
+              <p>Consider the following example JavaScript code that gets an element by its ID and then removes it from the DOM:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'element-id'</span><span class="p">);</span>
+<span class="nx">el</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Here's that same code written using jQuery:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#element-id'</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>jQuery also normalizes a lot of subtle differences in how older browsers implement a variety of JavaScript functionalities. This means that if you use jQuery, you can use the same methods to manipulate and access the DOM in almost all browsers.</p>
+
+              <p>In general, jQuery makes life a lot easier all around. This set of lessons will teach you all the fundamentals of how to get started using it.</p>
+
+              <h2>The $ Character</h2>
+
+              <p>In JavaScript, the <code>$</code> character is a completely valid character to use in variable names. jQuery uses the <code>$</code> character as a shorthand. You can use it interchangeably with <code>jQuery</code> as a way to reference
+                the jQuery library:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="c1">// Both functionally the same</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#element-id'</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+<span class="nx">jQuery</span><span class="p">(</span><span class="s1">'#element-id'</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>While we're on the topic, how do <code>jQuery()</code> and <code>$()</code> work? <code>$()</code> looks especially weird. What's happening here is that <code>$()</code> is a function call, meaning that <code>$</code> is a function. This
+                function is designed to take in a string (such as <code>$('#element-id')</code>), which will select an element. After this, we then call <code>remove</code> on that element. The <code>$</code> variable is the entry point into all jQuery-related
+                functionality.</p>
+
+              <h2>jQuery Objects vs DOM Elements</h2>
+
+              <p>You'll hear two terms thrown around a lot in this lesson--**DOM elements** and <strong>jQuery objects</strong>. This nomenclature can be a little confusing, but it's important to understand the distinction. DOM elements are the actual elements
+                that we ordinarily grab with native JavaScript and then manipulate using the browser's DOM API. They're the browser-world representation of the HTML that we put in. jQuery objects "wrap" DOM elements in new objects that define properties
+                and method names that are easier for people to use, like <code>append</code> and <code>remove</code>, instead of more verbose JavaScript operations like <code>element.innerHtml = element.innerHtml + '&lt;div&gt;my new dom stuff&lt;/div&gt;'</code>.
+                In addition, jQuery objects can wrap more than one element at a time, meaning that you can run many jQuery methods on multiple elements at the same time.</p>
+
+              <p>How do jQuery objects "wrap" DOM elements? This is just terminology that means that jQuery objects store references to the DOM elements they "wrap". When we call methods on jQuery objects, jQuery then goes and runs the native JavaScript
+                methods on the actual DOM elements that the jQuery object is wrapping. This abstraction gives us a lot of power and flexibility in our manipulation of the DOM.</p>
+
+              <p>Let's dig into how you actually get this neat jQuery thing in <a href="jquery2.html">Getting jQuery</a>.</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

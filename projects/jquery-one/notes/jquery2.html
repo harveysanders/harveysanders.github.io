@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)http://learn.makersquare.com/courses/prework/2015-jquery-getting-jquery.mdx -->
+<html class=" js no-touch svg inlinesvg svgclippaths no-ie8compat" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="copyright" content="">
+  <link type="text/plain" rel="author" href="http://learn.makersquare.com/humans.txt">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Getting JQuery</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div id="class-notices"></div>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="562frs9AChw" data-ext="mdx">
+          <h1>Getting jQuery</h1>
+          <div class="step" data-number="0" data-human-number="1">
+            <div class="step-content" data-human-number="1">
+
+
+              <p>There are two ways to get jQuery:</p>
+
+              <ol>
+                <li>Go to the jQuery site, download it, and put the relative link in your HTML</li>
+                <li>Put the absolute link to the asset on the jQuery site</li>
+              </ol>
+
+              <p>Let's first download jQuery and then talk about the two different methods. You'll need to set up an empty project folder for your HTML file and scripts.</p>
+
+
+            </div>
+            <div class="progress-check">
+              <div class="off">
+                <i class="icon-signin"></i>
+                <span>Done?</span>
+              </div>
+              <div class="on">
+                <i class="icon-check"></i>
+                <span>Done!</span>
+              </div>
+            </div>
+          </div>
+          <h2>Link it</h2>
+          <div class="step" data-number="1" data-human-number="2">
+            <div class="step-content" data-human-number="2">
+
+
+
+
+              <p>Normally you don't want to link to jQuery; it creates a dependency to a <strong>3rd party website</strong>, creating these <strong>downsides</strong>:</p>
+
+              <ul>
+                <li>You will need the internet just to test locally</li>
+                <li>The 3rd party website might go down, and thus break your app</li>
+              </ul>
+
+              <p>However, it's conveniently quick for getting small projects / exercises up and running. Here are the steps:</p>
+
+              <ol>
+                <li>Go to <a href="https://code.jquery.com/">https://code.jquery.com/</a></li>
+                <li>Find the "jQuery core 2.x" section</li>
+                <li>Right-click and copy the link (usually you will want the <strong>uncompressed</strong> version)</li>
+                <li>Paste the link into a script tag on your page.</li>
+              </ol>
+
+              <p>Your script tag will look something like the following:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://code.jquery.com/jquery-2.1.1.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <div class="progress-check">
+              <div class="off">
+                <i class="icon-signin"></i>
+                <span>Done?</span>
+              </div>
+              <div class="on">
+                <i class="icon-check"></i>
+                <span>Done!</span>
+              </div>
+            </div>
+          </div>
+          <h2>Download it</h2>
+          <div class="step" data-number="2" data-human-number="3">
+            <div class="step-content" data-human-number="3">
+
+
+
+
+              <p>To get around the downsides in the previous section, you can <strong>download</strong> jQuery so you rely only on your own server (or, during development, your own computer).</p>
+
+              <p>Here are the steps:</p>
+
+              <ol>
+                <li>Go to <a href="http://jquery.com/">http://jquery.com/</a></li>
+                <li>Navigate to the download page</li>
+                <li>Download the uncompressed, development version of jQuery 2.x</li>
+                <li>Put the file inside your project folder</li>
+              </ol>
+
+              <p>Next, let's create an <code>index.html</code> file, and set up a script tag inside of it referencing our new file (your version number may be different):</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="c">&lt;!-- index.html --&gt;</span>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>My jQuery Page<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery-2.1.1.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>You're done! If you refresh the page, go to your DevTools console and type "$", you should see an output similar to this:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="o">&gt;</span> <span class="nx">jQuery</span>
+<span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">t</span><span class="p">){</span><span class="k">return</span> <span class="k">new</span> <span class="nx">b</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">t</span><span class="p">,</span><span class="nx">r</span><span class="p">)}</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>If instead you something similar to what's below, then you haven't included jQuery correctly yet.</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="o">&gt;</span> <span class="n">jQuery</span>
+<span class="nl">ReferenceError:</span> <span class="n">jQuery</span> <span class="n">is</span> <span class="n">not</span> <span class="n">defined</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>If everything looks good, move on to learning how to <a href="jquery3.html">select elements</a>.</p>
+            </div>
+          </div>
+        </div>
+</body>
+
+</html>

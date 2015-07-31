@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div id="words">HI</div>
+  <div id="result"></div>
+   <input type="text" id="formInput">
+
+  <script type="text/javascript">
+    var wordsElement = document.querySelector('#words');
+    console.log(wordsElement);
+
+    var resultElement = document.querySelector('#result');
+    console.log(resultElement);
+
+    var wordsElementText = wordsElement.textContent;
+    console.log(wordsElementText);
+
+    var resultElementText = resultElement.textContent;
+    console.log(resultElementText);
+
+    document.querySelector('#result').textContent = "okay";
+
+    document.querySelector('#result').textContent = document.querySelector('#words').textContent;
+
+    var inputValue = document.querySelector('#formInput').value;
+    console.log(inputValue);
+    document.querySelector('#formInput').value = "bob";
+    inputValue.value = "bob";
+
+    document.querySelector('#result').textContent = document.querySelector('#formInput').value 
+  </script>
+</body>
+</html>
+
