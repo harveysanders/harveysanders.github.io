@@ -8,3 +8,11 @@ main {
 	text-align: center;
 
 }
+#top_login {
+	float: right;
+	width: 100px;
+	margin: 5px 5px 5px 10px;
+}
+#top_login input {
+	width: 100%;
+}
