@@ -5,13 +5,7 @@ var animal,
 	animalsFromJSON,
 	friends,
 	relationships,
-	matches,
-
-	quackers,
-	polloLoco,
-	winAmpMascot,
-	markTheShark,
-	tasmanianDevil
+	matches
 	;
 
 //test animal
@@ -27,60 +21,7 @@ function reqListener(e) {
 }
 
 
-animals = [];
-
-quackers = { 
-	name: 'duck', 
-	tagline: 'Afflack', 
-	noises: ['quack', 'honk', 'sneeze', 'growl'],
-	relationships: {
-		friends: [ 'duck', 'llama'],
-		matches: []
-	} 
-};
-animals.push(quackers);
-
-polloLoco = { 
-	name: 'chicken',
-	tagline: 'finger lickin\' good', 
-	noises: ['bok bok', 'cluck cluck', 'bwok bwok', 'smk smk'],
-	relationships: {
-		friends: ['Great White Shark'],
-		matches: ['llama', 'duck']
-	}  
-};
-animals.unshift(polloLoco);
-
-winAmpMascot = { 
-	name: 'llama', 
-	tagline: 'it really whips the llama\'s ass!', 
-	noises: ['spit!', 'hee haw', 'ahroooga', 'pfff'],
-	relationships: {
-		friends: [],
-		matches: []
-	}  
-};
-animals.push(winAmpMascot);
-
-markTheShark = {
-	name: "Great White Shark",
-	tagline: "Don't swim with the sharks!",
-	noises: ['dun-nuh, dun-nuh, dun-nuh', 'swiiiiish', 'chomp!!', 'gurggle..'],
-	relationships: {
-		friends: ['chicken', 'duck'],
-		matches: ['sarcophilus harrisii']
-	} 
-};
-animals.push(markTheShark);
-
-tasmanianDevil = {
-    name: 'sarcophilus harrisii',
-    tagline: 'bad a$$ ',
-    noises: ['', '', '', ''],
-	relationships: {
-		friends: [],
-		matches: []
-	}  };
+animals = animalsFromJSON;
 
 // --------------------------------------------------------
 

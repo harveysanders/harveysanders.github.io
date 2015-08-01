@@ -34,5 +34,9 @@
             "friends": ["dog", "rabbit"],
             "matches": ["bird", "horse"]
         }
-    }
+    },
+    {"name":"duck","tagline":"Afflack","noises":["quack","honk","sneeze","growl"],"relationships":{"friends":["duck","llama"],"matches":[]}},
+    {"name":"chicken","tagline":"finger lickin' good","noises":["bok bok","cluck cluck","bwok bwok","smk smk"],"relationships":{"friends":["Great White Shark"],"matches":["llama","duck"]}},
+    {"name":"llama","tagline":"it really whips the llama's ass!","noises":["spit!","hee haw","ahroooga","pfff"],"relationships":{"friends":[],"matches":[]}},
+    {"name":"Great White Shark","tagline":"Don't swim with the sharks!","noises":["dun-nuh, dun-nuh, dun-nuh","swiiiiish","chomp!!","gurggle.."],"relationships":{"friends":["chicken","duck"],"matches":["sarcophilus harrisii"]}}
 ]
