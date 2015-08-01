@@ -125,7 +125,7 @@ function extend (copyFrom, pasteTo) {
 //Addtional Helper Functions
 
 function getAnimalName(animal) {
-	return animal.name;
+	return animal.species;
 }
 
 // ---------------- Scenario 1: Animal Profile Page ----------------------
@@ -134,7 +134,7 @@ function welcomeMessage (animal) {
 }
 
 function profileData (animal) {
-	return 	'Species: ' + strCapitalizer(animal.name) + 
+	return 	'Species: ' + strCapitalizer(animal.species) + 
 			', Tagline: ' + strCapitalizer(animal.tagline) + 
 			', Noises: ' + arrValuePrinter(animal.noises);
 }
@@ -153,13 +153,13 @@ function findRelationship(name, animal) {
 	
 	for (var i=0; i<friends.length; i++) {
 		if (name === friends[i]) {
-			return strCapitalizer(friends[i]) + " is a friend of " + strCapitalizer(animal.name);
+			return strCapitalizer(friends[i]) + " is a friend of " + strCapitalizer(animal.species);
 		}
 	}for (i=0; i<matches.length; i++) {
 		if (name === matches[i]) {
-			return strCapitalizer(matches[i]) + " is a match for " + strCapitalizer(animal.name);
+			return strCapitalizer(matches[i]) + " is a match for " + strCapitalizer(animal.species);
 		} 
-	}return strCapitalizer(animal.name) + " and " + strCapitalizer(name) + " have no relationship yet.";	
+	}return strCapitalizer(animal.species) + " and " + strCapitalizer(name) + " have no relationship yet.";	
 }
 
 function addFriend(friendName, animal) {
@@ -172,14 +172,14 @@ function addMatch(matchName, animal) {
 
 // ---------------- Scenario 2: Browse Animals Page ----------------------
 function nonFriends(user, animals) {
-	var self = user.name;
+	var self = user.species;
 	var userFriends = user.relationships.friends;
 	var result = [];
 
 	for (var animalIndex=0; animalIndex<animals.length; animalIndex++) {
 		for (var i=0; i<userFriends.length; i++) {
-			if (animals[animalIndex].name !== self && userFriends[i] !== animals[animalIndex].name) {
-				result.push(animals[animalIndex].name);
+			if (animals[animalIndex].species !== self && userFriends[i] !== animals[animalIndex].species) {
+				result.push(animals[animalIndex].species);
 			}
 		}
 	}return unique(result);
@@ -215,9 +215,9 @@ function editAnimal(animal, key, newVal) {
 
 // ---------------- Scenario 5: Edit Animal Collection Data----------------
 
-function createAnimal(name, tagline, noises, friends, matches) {
+function createAnimal(species, tagline, noises, friends, matches) {
 	var animal = {
-		name: name,
+		species: species,
 		tagline: tagline || "",
 		noises: noises || [],
 		friends: friends || {},
