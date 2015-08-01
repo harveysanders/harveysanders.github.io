@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Background Randomizer Clone</title>
+	<style>
+		body{
+			background-color: #4444cc;		
+		}
+		#click_me {
+			margin: auto;
+			margin-top: 200px;
+			width:150px;
+			height: 100px;
+			background-color: #cc3333;
+			text-align: center;
+			font-family: monospace;
+			/*display: table-cell;*/
+			vertical-align: middle;
+			color: white;
+			box-shadow: 5px 5px 2px #aa8888;
+
+		}
+		#click_me p {
+			padding-top:25%;
+		}
+	</style>
+</head>
+<body>
+
+	<div id='click_me'><p>Click me!</p></div>
+	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
+	<script type="text/javascript">
+
+		$('#click_me').on('click', function(){
+			console.log('clicked!!!');
+			$('body').css('background-color', randomHexColor());
+		});
+
+		function randomHexColor() {
+		    function randomHexNum() {return (Math.floor(Math.random()*255) + 1).toString(16);};
+		    var result = '#' + randomHexNum() + randomHexNum() + randomHexNum();
+		    return result;
+		};
+	</script>
+</body>
+</html>
