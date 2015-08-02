@@ -5,7 +5,8 @@ var animal,
 	animalsFromJSON,
 	friends,
 	relationships,
-	matches
+	matches,
+	loggedInUser
 	;
 
 //test animal
@@ -18,11 +19,12 @@ oReq.send();
 
 function reqListener(e) {
 	animalsFromJSON = JSON.parse(this.responseText);
+	animals = animalsFromJSON;
 }
 
 
-animals = animalsFromJSON;
 
+console.log('assignment taking too long');
 // --------------------------------------------------------
 
 // ---------------- Scenario 0: General Helper Functions ------------------
@@ -251,6 +253,48 @@ function cleanseData(collection, keyNames) {
 	console.log(result); //crap. this is the opposite of what i want.
 	return collection;
 }
+
+//-----------------------------------------------
+function checkCreds(username, password, collection) {
+	var userIndex = null;
+	var correctPword = false;
+	for (var i=0; i<collection.length; i++){
+		if (username === collection[i].species) {
+			userIndex = i;
+		}
+	}if (password === "test") {
+		correctPword = true;
+	}if (userIndex !== null && correctPword === true) {
+		return userIndex;
+	}
+
+}
+
+
+//-----------------------------------------------
+
+loggedInUser = null;
+
+$('#loginButton').on('click', function(){
+	console.log($('#username').val());
+	console.log($('#password').val());
+	console.log('button clicked');
+
+	var username = $('#username').val();
+	var password = $('#password').val();
+	loggedInUser = animalsFromJSON[checkCreds(username, password, animalsFromJSON)];
+
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
