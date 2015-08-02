@@ -1,4 +1,5 @@
 .c9
 /lib
 .DS_Store
-
+/projects/more-matchy/bootstrap
+/projects/more-matchy/jquery
