@@ -24,6 +24,7 @@ oReq.send();
 
 function reqListener(e) {
 	animalsFromJSON = JSON.parse(this.responseText);
+	
 }
 
 

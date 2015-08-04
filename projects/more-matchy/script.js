@@ -24,7 +24,7 @@ function reqListener(e) {
 
 
 
-console.log('assignment taking too long');
+console.log('tessssttt!');
 // --------------------------------------------------------
 
 // ---------------- Scenario 0: General Helper Functions ------------------
@@ -232,22 +232,38 @@ function cleanseData(collection, keyNames) {
 	//You should not slice on arguments because it prevents optimizations in JavaScript engines (V8 for example). Instead, try constructing a new array by iterating through the arguments object.
 	var args = [];
 	var result = [];
+	var resultObj = {};
+
+
+
+
+
 	
 	//make new array from arguments objects, leaving out first element. 
 	//The first argument is assumed to be the collection array. 
 	//'keyNames' is for user API purposes only.
-	for (var i=1; i<arguments.length; i++) {
+	for (var i=1; i<arguments.length; i++) { //start at index 1 to skip first arg
 		args.push(arguments[i]);
 	}
 	/*
 	1. loop through args array
 	2. loop through animals array
-	3. delete keys
+	3. loop through each prop in object and put in new object if matches arg
 	*/
+
 	for (var o=0; o<args.length; o++) {
 		for (var idx=0; idx<collection.length; idx++) {
+			var currObj = collection[idx];
+			for (var prop in currObj) {
+				if (args[o] === prop) {
+					resultObj[prop] = currObj[prop];
+					console.log(prop + " " + currObj[prop]);
+					console.log('resultObj ' + resultObj);
+				}
+			}
+
 			//delete collection[idx][args[o]];
-			result.push(collection[idx][args[o]]);
+			//result.push(collection[idx][args[o]]);
 		}
 	}
 	console.log(result); //crap. this is the opposite of what i want.
