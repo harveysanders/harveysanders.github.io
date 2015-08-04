@@ -22,9 +22,6 @@ function reqListener(e) {
 	animals = animalsFromJSON;
 }
 
-
-
-console.log('tessssttt!');
 // --------------------------------------------------------
 
 // ---------------- Scenario 0: General Helper Functions ------------------
@@ -232,13 +229,7 @@ function cleanseData(collection, keyNames) {
 	//You should not slice on arguments because it prevents optimizations in JavaScript engines (V8 for example). Instead, try constructing a new array by iterating through the arguments object.
 	var args = [];
 	var result = [];
-	var resultObj = {};
 
-
-
-
-
-	
 	//make new array from arguments objects, leaving out first element. 
 	//The first argument is assumed to be the collection array. 
 	//'keyNames' is for user API purposes only.
@@ -251,23 +242,25 @@ function cleanseData(collection, keyNames) {
 	3. loop through each prop in object and put in new object if matches arg
 	*/
 
-	for (var o=0; o<args.length; o++) {
-		for (var idx=0; idx<collection.length; idx++) {
-			var currObj = collection[idx];
-			for (var prop in currObj) {
-				if (args[o] === prop) {
-					resultObj[prop] = currObj[prop];
-					console.log(prop + " " + currObj[prop]);
-					console.log('resultObj ' + resultObj);
-				}
-			}
+	//works!! but fugly..
+	// for (var o=0; o<args.length; o++) {
+	// 	for (var idx=0; idx<collection.length; idx++) {
+	// 		var currObj = collection[idx];
+	// 		for (var prop in currObj) {
+	// 			if (args[o] === prop) {
+	// 				var resultObj ={};
+	// 				resultObj[prop] = currObj[prop];
+	// 				result.push(resultObj);
+	// 			}
+	// 		}
+	// 	}
+	// }
 
-			//delete collection[idx][args[o]];
-			//result.push(collection[idx][args[o]]);
-		}
-	}
-	console.log(result); //crap. this is the opposite of what i want.
-	return collection;
+	result = collection.map(function(obj){
+		return {keyNames:obj[keyNames]};
+		});
+
+	return result;
 }
 
 //-----------------------------------------------
@@ -292,10 +285,6 @@ function checkCreds(username, password, collection) {
 loggedInUser = null;
 
 $('#loginButton').on('click', function(){
-	console.log($('#username').val());
-	console.log($('#password').val());
-	console.log('button clicked');
-
 	var username = $('#username').val();
 	var password = $('#password').val();
 	loggedInUser = animalsFromJSON[checkCreds(username, password, animalsFromJSON)];
