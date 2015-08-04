@@ -251,30 +251,23 @@ function cleanseData(collection, keyNames) {
 	3. loop through each prop in object and put in new object if matches arg
 	*/
 
-	// for (var o=0; o<args.length; o++) {
-	// 	for (var idx=0; idx<collection.length; idx++) {
-	// 		var currObj = collection[idx];
-	// 		for (var prop in currObj) {
-	// 			if (args[o] === prop) {
-	// 				resultObj[prop] = currObj[prop];
-	// 				console.log(prop + " " + currObj[prop]);
-	// 				console.log('resultObj ' + resultObj);
-	// 			}
-	// 		}
+	for (var o=0; o<args.length; o++) {
+		for (var idx=0; idx<collection.length; idx++) {
+			var currObj = collection[idx];
+			for (var prop in currObj) {
+				if (args[o] === prop) {
+					resultObj[prop] = currObj[prop];
+					console.log(prop + " " + currObj[prop]);
+					console.log('resultObj ' + resultObj);
+				}
+			}
 
-	// 		//delete collection[idx][args[o]];
-	// 		//result.push(collection[idx][args[o]]);
-	// 	}
-	// }
-	
-	//console.log(result); //crap. this is the opposite of what i want.
-	//return collection;
-
-	collection.map(function(obj){
-
-		return {keyNames:obj[keyNames]};
-	});
-
+			//delete collection[idx][args[o]];
+			//result.push(collection[idx][args[o]]);
+		}
+	}
+	console.log(result); //crap. this is the opposite of what i want.
+	return collection;
 }
 
 //-----------------------------------------------
