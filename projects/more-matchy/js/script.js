@@ -84,22 +84,35 @@ function dataTypeChecker (collection) {
 // capitalizeVals takes an object, capitalizes the first letter of each string value in the object, and returns the object. Ignore any non-string values like arrays, numbers or objects.
 // example input: { species: 'duck', tagline: 'Afflac', noises: ['quack', 'honk', 'sneeze', 'growl'] }
 // example output: { species: 'Duck', tagline: 'Afflac', noises: ['quack', 'honk', 'sneeze', 'growl'] }
+//-------------fix this!!! -----------------
 function capitalizeVals (object) {
-	var result = "";
+	var result = {};
 	for (var key in object) {
 		if (typeof object[key] === 'string') {
 			//var val = object[key];
 			//cappedStr = val.charAt(0).toUpperCase() + val.substring(1);
-			result += strCapitalizer(object[key]) + " ";
+			result[key] = firstLetterCapper(object[key]);
+		} else {
+			result[key] = object[key];
 		}
-	} return result;
+
+	}return result;
 }
 
 // strCapitalizer takes a string, capitalizes the first letter of each word, and returns the string.
 // example input: "my name is bristol"
 // example output: "My Name Is Bristol"
-function strCapitalizer(string){
+function firstLetterCapper(string) {
 	return string.charAt(0).toUpperCase() + string.substring(1);
+}
+
+function strCapitalizer(string){
+	var result = [];
+	var words = string.split(" ");
+	words.forEach(function(val) {
+		 result.push(firstLetterCapper(val));
+	});
+	return result.join(" ");
 }
 
 // unique takes an array, removes any duplicate values and returns the array.
@@ -112,6 +125,13 @@ function unique(array) {
 			result.push(array[i]);
 		}
 	}return result;
+}
+
+function unique2(array) {
+	var result = [];
+	return array.filter(function(val) {
+		return result.indexOf(val) === -1;
+	});
 }
 
 // extend takes two objects and copies the properties of the first object on to the second. It does not return anything.
@@ -290,41 +310,5 @@ $('#loginButton').on('click', function(){
 	loggedInUser = animalsFromJSON[checkCreds(username, password, animalsFromJSON)];
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
