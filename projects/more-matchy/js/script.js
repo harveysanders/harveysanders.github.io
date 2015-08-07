@@ -183,10 +183,12 @@ function findRelationship(name, animal) {
 
 function addFriend(friendName, animal) {
 	animal.relationships.friends.push(friendName);
+	return animal;
 }
 
 function addMatch(matchName, animal) {
 	animal.relationships.matches.push(matchName);
+	return animal;
 }
 
 // ---------------- Scenario 2: Browse Animals Page ----------------------
@@ -195,15 +197,18 @@ function nonFriends(user, animals) {
 	var userFriends = user.relationships.friends;
 	var result = [];
 
-	for (var animalIndex=0; animalIndex<animals.length; animalIndex++) {
-		for (var i=0; i<userFriends.length; i++) {
-			if (animals[animalIndex].species !== self && userFriends[i] !== animals[animalIndex].species) {
-				result.push(animals[animalIndex].species);
-			}
-		}
-	}return unique(result);
-}
+	// for (var animalIndex=0; animalIndex<animals.length; animalIndex++) {
+	// 	for (var i=0; i<userFriends.length; i++) {
+	// 		if (animals[animalIndex].species !== self && userFriends[i] !== animals[animalIndex].species) {
+	// 			result.push(animals[animalIndex].species);
+	// 		}
+	// 	}
+	// }return unique(result);
 
+	return animals.filter(function(user) {
+		return user.relationships.friends.indexOf(self) === -1;
+	});
+}
 // ---------------- Scenario 3: Search and Add Friend ----------------------
 function search(query, collection) {
 	var results = [];
@@ -239,8 +244,10 @@ function createAnimal(species, tagline, noises, friends, matches) {
 		species: species,
 		tagline: tagline || "",
 		noises: noises || [],
-		friends: friends || {},
-		matches: matches || {}
+		relationships: {
+			friends: friends || [],
+			matches: matches || []
+		}	
 	};
 	animals.push(animal);
 }
@@ -262,7 +269,7 @@ function cleanseData(collection, keyNames) {
 	3. loop through each prop in object and put in new object if matches arg
 	*/
 
-	//works!! but fugly..
+	// works!! but fugly..
 	// for (var o=0; o<args.length; o++) {
 	// 	for (var idx=0; idx<collection.length; idx++) {
 	// 		var currObj = collection[idx];
@@ -273,7 +280,7 @@ function cleanseData(collection, keyNames) {
 	// 				result.push(resultObj);
 	// 			}
 	// 		}
-	// 	}
+	// 	}	
 	// }
 
 	result = collection.map(function(obj){
@@ -310,5 +317,25 @@ $('#loginButton').on('click', function(){
 	loggedInUser = animalsFromJSON[checkCreds(username, password, animalsFromJSON)];
 
 });
+
+
+var test = {
+	species: "dog",
+	tagline: "Doggie style is my thang",
+	noises: ["woof", "bark", "whine", "growl"], 
+	relationships: {
+		friends: ["horse", "cat"],
+		matches: ["bird", "rabbit"]
+	}
+};
+
+var a = "firstString";
+a += "string";
+
+a = a + "string";
+
+
+
+
 
 
