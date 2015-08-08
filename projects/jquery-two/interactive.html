@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>5/9/15 Challenges!</title>
+  <style type="text/css">
+    /* Your CSS goes here! */
+    #topHeader{
+      color:lightblue;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="topHeader">Ready to get interactive?</h1>
+  <p class="subInfo">
+  <input id="customInput" type="text"></input>
+  <button id="changeTextBtn">Change the header!</button>
+  <!-- Your HTML code goes here! -->
+
+  <script>
+    //Your JavaScript code goes here!
+    document.querySelector("#changeTextBtn").addEventListener('click', function(){
+      alert("You've clicked a button!");
+    });
+  </script>
+
+<!---
+
+BEGIN prompts.
+
+  Today we will be reviewing how JavaScript can work with HTML!
+
+  PLEASE: Grab one of the staff if you're having any trouble! This is not a test!
+  
+  NOTE: There's a starter template for you at the top of this file for you to code in!
+
+  Friendly Reminders:
+  - There is some already written JavaScript and HTML code that you will be modifying. It would be best to have both this text editor open as well as your browser where you can open this file and observe your changes. Once you open this file in your browser make sure you also open the console (Command + Option + j).
+
+  Please follow these instructions carefully and write your code below.
+
+    ==== SECTION 1: HTML & JavaScript ====
+    
+      1) Create a `div` element with an `id` attribute of 'logMe'.
+      2) Define a variable `logMyElement`. Run document.querySelector on 'logMe' and assign the return value to the variable `logMyElement`. (HINT: Be sure to have this JavaScript code inside of your page's <script> tag!)
+      3) Log the variable `logMyElement` to the console. Observe the console and think about how querySelector works.
+      4) Create a `div` element with an `id` attribute of 'myAwesomeDiv'.
+      5) Define a function named `updateAwesomeDiv` that will update the textContent of 'myAwesomeDiv' when called.
+      6) Call this function observe the newly updated content!
+      7) Modify the already existing `addEventListener` function to change the `topHeader` div to have the content of the `customInput` input.
+      8) Observe the capabilities you might have when it comes to dynamically modfying elements on a page.
+      9) EXTRA CREDIT: Create a text input and a button that appends a new list item for each button click. Imagine it to be a one-person chatroom. Try figuring out how to clear the input field on each submission.
+      10) EXTRA EXTRA CREDIT: Create button to clear the list elements. Imagine it to be a 'Clear History' feature.
+      11) FINISHED EARLY?: Read about more ways to mofify the DOM using JavaScript: http://youmightnotneedjquery.com/#elements
+
+    ==== SECTION 2: Get your wheels spinning ====
+
+      1) Who invented JavaScript? When was it invented and standardized? (HINT: Google!)
+      
+      3) What is the use of assigning an element an `id` attribute as opposed to a class?
+      
+      
+IMPORTANT: Once you're finished, please submit this file to your instructor.
+
+WARNING: DO NOT send it to the whole class.
+
+END of prompts.
+-->
+
+
+</body>
+</html>

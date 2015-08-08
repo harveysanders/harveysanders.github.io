@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Simple Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <nav></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div>
+          <h1>Simple Project</h1>
+          <section>
+            <h2>Setup</h2>
+            <ol>
+              <li>
+                <input type="checkbox">In your website workspace, go to the jquery-two project directory, and find and open the simple-project.html file - for this simple project, we'll code in the simple-project.html file.</li>
+              <li>
+                <input type="checkbox"><a href="../simple-project.html" target="_blank">Open the simple-project.html file in your browser by clicking here...</a></li>
+              <li>Follow the instructions below, code, save, refresh the simple-project.html. Rinse, repeat...</li>
+            </ol>
+            <hr>
+          </section>
+          <section>
+            <h2>Review: Creating Elements with jQuery</h2>
+            <div class="step" data-number="1" data-human-number="2">
+              <div class="step-content" data-human-number="2">
+                <p>It is best practice in jQuery to create an element (an HTML node) before adding the element to the DOM so that the element can be manipulated without having to redraw and repaint the DOM.</p>
+
+                <p>This is accomplished by calling jQuery and passing in a string of the tag you would like to create as the argument. For example:</p>
+                <div class="block-code">
+                  <table class="highlighttable">
+                    <tbody>
+                      <tr>
+                        <td class="linenos">
+                          <div class="linenodiv"><pre>1</pre></div>
+                        </td>
+                        <td class="code">
+                          <div class="highlight"><pre><span class="nx">$myDiv</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">"&lt;div/&gt;"</span> <span class="p">);</span>
+</pre></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>This will create <code>&lt;div&gt;&lt;/div&gt;</code> without inserting it into the DOM. Until we add the element to the DOM, it exists only as a JavaScript object.</p>
+                <p><strong>Note: prepending the name of a variable with $ is a stylistic choice that helps with quickly distinguishing variables that point to jQuery elements</strong></p>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2>Exercise 1</h2>
+            <ol>
+              <li>
+                <input type="checkbox">Find the script tag at the bottom of the body of your simple-project.html page, your code will go in here.</li>
+              <li>
+                <input type="checkbox">Use jQuery to create elements <code>p</code>, <code>span</code>, and <code>div</code>, then log them to the console so you can inspect them.</li>
+              <li><a href="https://developer.chrome.com/devtools/docs/videos" target="_blank">Click here for a refresher on using the JavaScript console in the browser.</a></li>
+            </ol>
+            <hr>
+          </section>
+          <section>
+            <h2>Review: Modifying Elements with jQuery</h2>
+            <div class="step" data-number="2" data-human-number="3">
+              <div class="step-content" data-human-number="3">
+                <p>We create elements before adding them to the DOM so that we can manipulate them without causing the DOM to paint, draw, etc(all the things that you see happening when something in the DOM changes).</p>
+
+                <p>For example, we might want to add a class to an element or insert content before we add it to the DOM:</p>
+                <div class="block-code">
+                  <table class="highlighttable">
+                    <tbody>
+                      <tr>
+                        <td class="linenos">
+                          <div class="linenodiv"><pre>1
+2</pre></div>
+                        </td>
+                        <td class="code">
+                          <div class="highlight"><pre><span class="nx">$myDiv</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span> <span class="s2">"myClass"</span> <span class="p">);</span>
+<span class="nx">$myDiv</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span> <span class="s2">"Wooooooo!"</span> <span class="p">);</span>
+</pre></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+          </section>
+          </div>
+          </div>
+          <section>
+            <h2>Exercise 2</h2>
+
+            <ol>
+              <li>
+                <input type="checkbox">Use jQuery to modify the contents of your element using <code>.html()</code> and log it to the console again.</li>
+            </ol>
+            <p>For more ideas on how to modify elements, here's some links to help you look through the documentation for a few of jQuery's methods:</p>
+
+            <ul>
+              <li><a href="http://api.jquery.com/html/"><code>.html()</code></a></li>
+              <li><a href="http://api.jquery.com/text/"><code>.text()</code></a></li>
+              <li><a href="http://api.jquery.com/attr/"><code>.attr()</code></a></li>
+              <li><a href="http://api.jquery.com/addclass/"><code>.addClass()</code></a></li>
+              <li><a href="http://api.jquery.com/removeclass/"><code>.removeClass()</code></a></li>
+              <li><a href="http://api.jquery.com/css/"><code>.css()</code></a></li>
+            </ul>
+            <h4>Extension</h4>
+            <p>Describe the difference between <code>.html()</code> and <code>.text()</code>.</p>
+            <hr>
+          </section>
+
+          <section>
+            <h2>Review: Adding it to the DOM</h2>
+            <div class="step" data-number="3" data-human-number="4">
+              <div class="step-content" data-human-number="4">
+
+                <p>jQuery has several methods for adding elements to the DOM.</p>
+
+                <p><a href="http://api.jquery.com/html/"><code>.html()</code></a> overwrites the contents of the element it is called on, so <code>$( "body" ).html( $myDiv );</code> will empty <code>body</code> and replace its contents with your element.</p>
+
+                <p><a href="http://api.jquery.com/append/"><code>.append()</code></a> will add your element after all of the other nodes in the element it is called on. <code>$( "body" ).append( $myDiv );</code> will add your element after all of the elements
+                  and text nodes currently in <code>body</code>.</p>
+
+                <p><a href="http://api.jquery.com/appendto/"><code>.appendTo()</code></a> is similar to <code>.append()</code>, but it is called on the element you want to append and the element you want to append it to is passed as the argument: <code>$myDiv.appendTo( "body" );</code></p>
+
+                <p><a href="http://api.jquery.com/after/"><code>.after()</code></a> finds an element in the DOM and adds the element passed to it after that element. Given <code>$("header").after(&lt;footer&gt;);</code> results in <code>&lt;header&gt;&lt;/header&gt;&lt;footer&gt;&lt;/footer&gt;</code>.</p>
+
+                <p>Other DOM manipulation methods in jQuery include <a href="http://api.jquery.com/prepend/"><code>.prepend()</code></a>, <a href="http://api.jquery.com/prependto/"><code>.prependTo()</code></a>, and <a href="http://api.jquery.com/before/"><code>.before()</code></a>.</p>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2>Exercise 3</h2>
+            <ol>
+              <li>
+                <input type="checkbox">Add an element to the DOM. Put an element inside that element. Put another element inside that element. Keep going, using all of the methods above, until you feel like a wizard.</li>
+            </ol>
+            <hr>
+          </section>
+          <section>
+            <h2>Review: Removing elements from the DOM</h2>
+            <div class="step" data-number="4" data-human-number="5">
+              <div class="step-content" data-human-number="5">
+                <p><a href="http://api.jquery.com/remove/"><code>.remove()</code></a> removes the element it is called on from the DOM.</p>
+
+                <p><code>$( "body" ).remove();</code> will remove <code>body</code> from the DOM entirely.</p>
+
+                <p>If you've assigned an element to a variable, like we've done with <code>$myDiv</code>, you can call <code>.remove()</code> on that variable like <code>$myDiv.remove()</code> because jQuery is still aware of that element.</p>
+              </div>
+            </div>
+            <section>
+              <h2>Exercise 4</h2>
+              <ol>
+                <li>
+                  <input type="checkbox">Open a website, your choice, and use the DevTools to locate one element with an ID and one element with a class. Use <code>.remove()</code> to remove those elements from the DOM.</li>
+              </ol>
+              <hr>
+            </section>
+            <h2>All Done Here!</h2>
+            <p>Great, close this page and go back the the <strong>jQuery Two : Directions</strong> page and move onto <strong>Exercise 2!</strong></p>
+            <hr>
+        </div>
+</body>
+
+</html>
