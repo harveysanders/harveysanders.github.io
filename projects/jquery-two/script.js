@@ -1,43 +1,51 @@
 $(function(){
-	var avengers = ['Iron Man', 'Thor', 'Hulk', 'Ant Man', 'Wasp'];
+	var avengers, 
+		avengersLIs
+		;
 
+	avengers = ['Iron Man', 'Thor', 'Hulk', 'Ant Man', 'Wasp'];
+	
 	//Code goes here!
-	function addList(array){
-		
-		var elements = [];
-		$('body').append('<ul id="avengers"/>');
-		
-		elements = array.map(function(item){
+
+	function buildHtmlListItems(array){
+		var result = [];
+		result = array.map(function(item){
 			var id = item.toLowerCase().replace(" ", "-");
 			return '<li id="' + id + '">' + item + '</li>';
 		});
-		
-		// for (var i=0; i<elements.length; i++) {
-		// 	$('#avengers').append(elements[i]);
-		// }
+		return result;
+	}
+
+	function appendListItems(array, target) {
+		for (var i=0; i<array.length; i++) {
+			$(target).append(array[i]);
+		}
+	}
 	
+	function appendListWithTimeout(array, target, millisecs){
 		var i = 0;
 		function appendWithTimer(){
 			setTimeout(function() {
-				$('#avengers').append(elements[i]);
+				$(target).append(array[i]);
 				i++;
-				if (i<elements.length) {
+				if (i<array.length) {
 					appendWithTimer();
 				}
-			},1000);
+			},millisecs);
 		}
 		appendWithTimer();
-
 	}
 
 	(function(){
 		avengers.splice(3,2,'Captain America');
 	}());
 
+	avengersLIs = buildHtmlListItems(avengers);
 	avengers.sort();
-	addList(avengers);
+	appendListWithTimeout(avengersLIs, '#avengers', 500);
 
 	$('body').append('<div id="container"/>');
+	$('#container').append('<ul id="avengers"/>');
 	$('#container').append('<button id="move_button">Move to Bottom</button>');
 	$('#container').append('<button id="sort_button">Sort List</button>');
 
@@ -49,12 +57,8 @@ $(function(){
 
 	$('#sort_button').on('click', function(){
 		$('#avengers li').remove();
-		elements.sort();
-		for (var i=0; i<elements.length; i++) {
-			$('#avengers').append(elements[i]);
-		}
-	
-
+		avengersLIs.sort();
+		appendListItems(avengersLIs, '#avengers');
 	});
 
 });
