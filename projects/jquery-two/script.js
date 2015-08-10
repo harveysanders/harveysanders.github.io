@@ -40,14 +40,46 @@ $(function(){
 		avengers.splice(3,2,'Captain America');
 	}());
 
-	avengersLIs = buildHtmlListItems(avengers);
-	avengers.sort();
-	appendListWithTimeout(avengersLIs, '#avengers', 500);
+	//centering function
+	jQuery.fn.center = function () {
+	    this.css("position","absolute");
+	    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
+	                                                $(window).scrollTop()) + "px");
+	    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
+	                                                $(window).scrollLeft()) + "px");
+	    return this;
+	}
 
-	$('body').append('<div id="container"/>');
+
+	$('body').css({
+		'color' : 'rgb(175,175,175',
+		'font-family' : '"Bangers", cursive;',
+		'background-color' : 'rgb(0,0,0)'
+	});
+	$('.container').remove();
+
+	$('body').append('<main/>');
+	$('body').prepend('<header/>');
+	$('main').append('<div id="container"/>');
 	$('#container').append('<ul id="avengers"/>');
 	$('#container').append('<button id="move_button">Move to Bottom</button>');
 	$('#container').append('<button id="sort_button">Sort List</button>');
+	
+	//Exercise 3 setup 
+	$('main').css('width', '60%');
+	$('#container').center();
+	$('header').append('<img id="logo" src="img/avengers_logo.png">');
+	$('#logo').css({
+		'display' : 'block',
+		'margin' : '0 auto',
+		'width' :'250px'
+	});
+	$('#avengers').css({
+		'font-family' : '"Oswald", sans-serif',
+		'list-style-type' : 'none',
+		'font-size' : '20px',
+		'text-align' : 'center' 
+	});
 
 	$('#move_button').on('click', function(){
 		var $item = $('#avengers li').first();
@@ -60,5 +92,9 @@ $(function(){
 		avengersLIs.sort();
 		appendListItems(avengersLIs, '#avengers');
 	});
+
+	avengersLIs = buildHtmlListItems(avengers);
+	avengers.sort();
+	appendListWithTimeout(avengersLIs, '#avengers', 500);
 
 });
