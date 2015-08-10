@@ -40,16 +40,9 @@ $(function(){
 		avengers.splice(3,2,'Captain America');
 	}());
 
-	//centering function
-	// jQuery.fn.center = function () {
-	//     this.css("position","absolute");
-	//     this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
-	//                                                 $(window).scrollTop()) + "px");
-	//     this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
-	//                                                 $(window).scrollLeft()) + "px");
-	//     return this;
-	// };
-
+	function addHulk(time) {
+		$('#hulk').fadeIn(time);
+	}
 
 	$('body').css({
 		'color' : 'rgb(175,175,175',
@@ -60,39 +53,68 @@ $(function(){
 
 	$('body').append('<middle/>'); // renamed from <main/> because to get around default bootstrap settings
 	$('body').prepend('<header/>');
+	//$('header').append('<img id="logo" src="img/avengers_logo.png">');
 	$('middle').append('<div id="container"/>');
-	$('#container').append('<ul id="avengers"/>');
-	$('#container').append('<div id="buttons">');
+	$('#container').addClass('container-fluid');
+	$('#container').prepend('<div class="row"/>');
+	$('.row').append('<div id="iron_man"/>');
+	$('.row').append('<div id="capt_america"/>');
+	$('.row').append('<div id="character_list"/>');
+	$('.row').append('<div id="hulk"/>');
+	$('.row').append('<div id="thor"/>');
+	$('#character_list').append('<img id="logo" src="img/avengers_logo.png">');
+	$('#character_list').append('<ul id="avengers"/>');
+	$('#character_list').append('<div id="buttons">');
 	$('#buttons').append('<button id="move_button">Move to Bottom</button>');
 	$('#buttons').append('<button id="sort_button">Sort List</button>');
+	$('#iron_man').append('<img src ="img/iron_man.png">');
+	$('#capt_america').append('<img src ="img/capt_america.png">');
+	$('#thor').append('<img src ="img/thor.png">');
+	$('#hulk').append('<img src ="img/hulk.png">');
+	$('#hulk').hide();
+
 	
+	//Bootstrap Classes
+	$('.row').addClass('text-bottom');
+	$('#iron_man').addClass('col-xs-2 pull-down');
+	$('#capt_america').addClass('col-xs-2 pull-down');
+	$('#character_list').addClass('col-xs-4 text-center');
+	$('#hulk').addClass('col-xs-2 text-right');
+	$('#thor').addClass('col-xs-2 pull-down');
+	$('#buttons').addClass('btn-group');
+	$('button').addClass('btn-sm');
+
+	//align characters to bottom
 
 	//Exercise 3 setup 
-	$('middle').css('max-width', '600px');
-	$('#container').css({
-		//'min-height' : '150px'
+	$('.pull-down').css('margin-top', '100px');
+	$('#iron_man').hide().fadeIn(2000, addHulk(2000));
+	
+	$('#thor').css({
+		'z-index' : '-10'
 	});
-	$('button').css({
-		'border-radius' : '5px',
-		'display' : 'block',
-		'margin' : '10px',
-		'color' : 'rgb(30,30,30)',
-		'font-family' : '"Bangers", cursive;'
+
+	$('.btn-group').css({
+		'font-family' : '"Oswald"',
+		'color' : 'rgb(30,30,30)'
 	});
-	//$('#container').center();
-	$('header').append('<img id="logo" src="img/avengers_logo.png">');
-	$('#logo').css({
-		'display' : 'block',
-		'margin' : '0 auto',
-		'width' :'250px'
+
+	$("#character_list img").css({
+		'margin-top' : '30px',
+		'width':'250px'
 	});
+
 	$('#avengers').css({
 		'font-family' : '"Bangers", sans-serif',
 		'list-style-type' : 'none',
 		'font-size' : '30px',
-		'text-align' : 'center',
+		'padding' : '0px',
+		'margin' : '50px 0px 50px 0px',
 		'min-height' : '170px' 
 	});
+
+
+	$('#iron_man').fadeIn();
 
 	$('#move_button').on('click', function(){
 		var $item = $('#avengers li').first();
