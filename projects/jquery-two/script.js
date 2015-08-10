@@ -41,33 +41,45 @@ $(function(){
 	}());
 
 	//centering function
-	jQuery.fn.center = function () {
-	    this.css("position","absolute");
-	    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
-	                                                $(window).scrollTop()) + "px");
-	    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
-	                                                $(window).scrollLeft()) + "px");
-	    return this;
-	}
+	// jQuery.fn.center = function () {
+	//     this.css("position","absolute");
+	//     this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
+	//                                                 $(window).scrollTop()) + "px");
+	//     this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
+	//                                                 $(window).scrollLeft()) + "px");
+	//     return this;
+	// };
 
 
 	$('body').css({
 		'color' : 'rgb(175,175,175',
-		'font-family' : '"Bangers", cursive;',
+		'font-family' : '"Oswald", sans-serif;',
 		'background-color' : 'rgb(0,0,0)'
 	});
 	$('.container').remove();
 
-	$('body').append('<main/>');
+	$('body').append('<middle/>'); // renamed from <main/> because to get around default bootstrap settings
 	$('body').prepend('<header/>');
-	$('main').append('<div id="container"/>');
+	$('middle').append('<div id="container"/>');
 	$('#container').append('<ul id="avengers"/>');
-	$('#container').append('<button id="move_button">Move to Bottom</button>');
-	$('#container').append('<button id="sort_button">Sort List</button>');
+	$('#container').append('<div id="buttons">');
+	$('#buttons').append('<button id="move_button">Move to Bottom</button>');
+	$('#buttons').append('<button id="sort_button">Sort List</button>');
 	
+
 	//Exercise 3 setup 
-	$('main').css('width', '60%');
-	$('#container').center();
+	$('middle').css('max-width', '600px');
+	$('#container').css({
+		//'min-height' : '150px'
+	});
+	$('button').css({
+		'border-radius' : '5px',
+		'display' : 'block',
+		'margin' : '10px',
+		'color' : 'rgb(30,30,30)',
+		'font-family' : '"Bangers", cursive;'
+	});
+	//$('#container').center();
 	$('header').append('<img id="logo" src="img/avengers_logo.png">');
 	$('#logo').css({
 		'display' : 'block',
@@ -75,10 +87,11 @@ $(function(){
 		'width' :'250px'
 	});
 	$('#avengers').css({
-		'font-family' : '"Oswald", sans-serif',
+		'font-family' : '"Bangers", sans-serif',
 		'list-style-type' : 'none',
-		'font-size' : '20px',
-		'text-align' : 'center' 
+		'font-size' : '30px',
+		'text-align' : 'center',
+		'min-height' : '170px' 
 	});
 
 	$('#move_button').on('click', function(){
