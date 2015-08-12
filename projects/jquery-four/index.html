@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>jQuery Four</title>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="bower_components/notes/notes.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <script src="//connect.soundcloud.com/sdk-2.0.0.js"></script>
+</head>
+
+<body>
+  <div class="container" id="container">
+    <nav>
+      <header>My Services</header>
+      <ul>
+        <li><a href="#" id="aPosts">Posts</a></li>
+        <li><a href="#" id="aSoundCloud">Sound Cloud</a></li>
+        <li><a href="#" id="aSearchWikipedia">Search Wikipedia</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <div id="soundcloud-player"></div>
+      <div id="soundcloud-track-details"></div>
+      <div id="searchResults"></div>
+      <div id="posts"></div>
+    </main>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      // see: http://api.jquery.com/one/
+
+      // TODO 1 : Assign a one-time event handler to the click event of aPosts //
+
+
+      // TODO 3 : Assign a one-time event handler to the click event of aSearchWikipedia //
+
+
+      // TODO 5 : Assign a one-time event handler to the click event of #aSoundCloud //
+
+
+      /*
+       * Below are several functions that initialize datasets to be consumed 
+       * and utilized by your webpage. We'll link our nav entries to trigger 
+       * the initialization of these services.
+       * 
+       * Once we handle the nav click events, we'll complete each initialize 
+       * method to make the data more presentable.
+       */
+      function initializePosts() {
+        $.getJSON('data/posts.json', function (data) {
+
+          // TODO 2 : Currently, this code only loads ONE post, let's load all of them and style them in their own divs //
+          $('#posts').html(data[0].body);
+        });
+      }
+
+      function initializeWikipediaSearch() {
+        // http://json-jsonp-tutorial.craic.com/index.html //
+        $("head").append($("<script>").attr("src", "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + encodeURI("North Bay, Ontario") + "&format=json&callback=onSearchResult"));
+      }
+
+      function initializeSoundCloud() {
+        SC.initialize({
+          client_id: "d29ad0142b2cd0a47ad2e561334c8e0f"
+        })
+        SC.get('/tracks', {
+          q: 'bob marley'
+        }, function (tracks) {
+          SC.oEmbed(tracks[0].uri, {
+            auto_play: true
+          }, document.getElementById('soundcloud-player'))
+        });
+
+        SC.get('/tracks', {
+          q: 'bob marley'
+        }, function (tracks) {
+          tracks.forEach(function (track) {
+            // TODO 6 : Pretty up the display of the soundcloud track details  //
+            $('#soundcloud-track-details').append($('<div>').text(track.title));
+          });
+        });
+      }
+    });
+
+    // JSONP //
+    function onSearchResult() {
+      arguments[0].forEach(function (arg) {
+
+        // TODO 4 : Pretty up the search results //
+        $('#searchResults').append($('<div>').text(arg));
+      });
+    }
+  </script>
+  <script>
+    $(function () {
+      window.opspark.notes.show();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<html>
+
+<head></head>
+
+<body>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script>
+    $.get('data/customers.json', function(data){
+      console.log(data);
+      //page is an array of <ul> objects
+      var page = $.map(data, function(person){
+        var ul = $('<ul>');
+        for (var key in person) {
+
+          if (Array.isArray(person[key])) {
+            var li = $('<li>').text(key + ": " + person[key]);
+            ul.append(li);
+          }
+        }
+        return ul;
+      });
+       $('body').append(page);
+    });
+     
+  
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery Four</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font: 500 14px/21px 'Helvetica Neue', Helvetica, Arials;
+        }
+        
+        section {
+            margin-top: 20px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../bower_components/notes/notes.css" type="text/css" />
+</head>
+
+<body>
+    <div class="container" id="container">
+        <section>
+            <h1>jQuery Four : Directions</h1>
+            <p>This is a little ditty on debugging and on consuming data services to be rendered to the user.  In the first exercise, you must debug the script to get it to work, then pretty up the display.  In the second, we're consuming some data loaded from various services, which you must also pretty up.</p>
+        </section>
+        <hr>
+        <section>
+            <h2>Exercise 1 : Debug Some!</h2>
+
+            <h3>Setup:</h3>
+            <ul>
+                <li>
+                    <input type="checkbox" />In your website's workspace, in the jquery-four project, open up the customers.html page - there's some problems in <code>&lt;script&gt;</code> tag of this page, and we want you to debug them.</li>
+                <li>
+                    <input type="checkbox" /><a href="../customers.html" target="_blank">Click here to open the customers.html page in your browser...</a>
+                </li>
+                <li>
+                    <input type="checkbox" />Once it's open in your browser, open of the console to debug the page.
+                </li>
+        </section>
+        <section>
+            <h3>Debug the customer.html File:</h3>
+            <ul>
+                <li>
+                    <input type="checkbox"/>Debug the problems in the <code>&lt;script&gt;</code> tag of the customers.html page. Once corrected, the user should be shown a list of customers!</li>
+                <li>
+                    <input type="checkbox"/>Presently, the script adds the property names (keys) and values only if the property happens to be an Array. Let's pull out the customer's name and some other interesting info and add it to each <code>&lt;ul&gt;</code> being created per customer. (HINT: use the debug tools to inspect the customer object).  Don't do this inside the for-in loop.
+                <li>
+                    <input type="checkbox"/>Bonus: Using your knowledge of jQuery and CSS, pretty up the customer list.</li>
+            </ul>
+            <hr>
+        </section>
+         <section>
+            <h2>Exercise 2 : Consuming Data Services</h2>
+            <p>Loading data for consumption is a typical pattern in software applications. Often, the user makes a request to a service, either to a web server exposing a REST API that returns data, or we may load local JSON for various reasons. Making use of jQuery, we can display the results of these requests in a dynamic manner.</p>
+
+            <h3>Setup:</h3>
+            <ul>
+                <li>
+                    <input type="checkbox" />In your website's workspace, in the jquery-four project, open up the index.html page - we'll code in the <code>&lt;script&gt;</code> tag of this page.</li>
+                <li>
+                    <input type="checkbox" />You may already have the index.html page open in your browser, but if not, <a href="../index.html" target="_blank">click here to open the index.html page in your browser...</a>
+                </li>
+            </ul> 
+            <h3>Consume and Present Data:</h3>
+            <ul>
+                <li>
+                    <input type="checkbox" />Follow the numbered TODO's (TODO 1, TODO 2, etc...) within the <code>&lt;script&gt;</code> tag.  For each service we invoke on a click-event, there's an associated initialize function - within these initialize functions, you can pretty-up the data returned from the service to make it more presentable.
+                </li>
+            </ul>
+            <hr>
+            <h3>All Done!</h3>
+            <p>You prettied-up your data with some CSS? Ok, nice, you're all done with jQuery Four!  You can close this page.</p>
+            <hr>
+        </section>
+</body>
+
+</html>
