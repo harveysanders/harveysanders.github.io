@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <style type="text/css">
+    input[type=checkbox] {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="class-notices"></div>
+    <nav></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="0aqAKgjtb3c" data-ext="lmd">
+          <h1>Functional Methods of jQuery</h1>
+          <p>Let's learn about some built-in jQuery methods to support functional programming. You can open up the console of your web browser (Chrome) and code the examples right in the console's REPL!</p>
+          <hr>
+          <h2>Merge</h2>
+          <div class="step" data-number="1" data-human-number="2">
+            <div class="step-content" data-human-number="2">
+
+              <p>jQuery's <a href="http://api.jquery.com/jQuery.merge/"><code>$.merge()</code></a> method allows you to merge arrays by combining the second array into the first one.</p>
+
+              <p>When given two array literals, <code>$.merge()</code> returns the combined array:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">myArray</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span> <span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myArray</span><span class="p">);</span>
+<span class="c1">// [0,1,2,3,4,5]</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>If you pass a variable as the first argument, <code>$.merge()</code> returns the combined array and assigns it to the variable:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">myArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">];</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span> <span class="nx">myArray</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span> <span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">myArray</span> <span class="p">);</span>
+<span class="c1">// [0,1,2,3,4,5]</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p><code>$.merge()</code> can also be used on arrays of DOM nodes:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">elementsToRemove</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s1">'hr'</span> <span class="p">);</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span> <span class="nx">elementsToRemove</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span> <span class="s1">'br'</span> <span class="p">)</span> <span class="p">);</span>
+<span class="nx">elementsToRemove</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="c1">// Removes all &lt;hr&gt; and &lt;br&gt; elements</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h3>Exercise 1</h3>
+              <ol>
+                <li>
+                  <input type="checkbox">Given the following three arrays, use <code>$.merge();</code> to combine them into a new array, <code>d</code> <strong>in one line</strong>.</li>
+              </ol>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+    <span class="nx">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">];</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <hr>
+          </div>
+          <h2>Map</h2>
+          <div class="step" data-number="2" data-human-number="3">
+            <div class="step-content" data-human-number="3">
+
+              <p><a href="http://api.jquery.com/jQuery.map/"><code>$.map()</code></a> translates the items in an array or object into a new array. Transforming every element in the array via a callback.</p>
+
+              <p><code>$.map()</code> expects an array or object as the first argument and a callback as the second argument.</p>
+
+              <h3>Arrays</h3>
+
+              <p>When an array is passed to <code>$.map()</code>, the callback is provided with two arguments: the item and the index of the item. Run this code in the console to see how it works:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">myArray</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"10"</span><span class="p">,</span> <span class="s2">"20"</span><span class="p">,</span> <span class="s2">"30"</span><span class="p">];</span>
+<span class="nx">myArray</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span> <span class="nx">myArray</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">index</span> <span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">"item:"</span><span class="p">,</span> <span class="nx">item</span> <span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">"index:"</span><span class="p">,</span> <span class="nx">index</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">myArray</span> <span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h3>Objects</h3>
+
+              <p>When an object is passed to <code>$.map()</code>, the callback is provided with two arguments: the value and the key. Run this code in the console to see how it works:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span><span class="p">};</span>
+<span class="nx">myArray</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span> <span class="nx">myObject</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">key</span> <span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">"value:"</span><span class="p">,</span> <span class="nx">value</span> <span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">"key:"</span><span class="p">,</span> <span class="nx">key</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">myArray</span> <span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Note that though we pass an object to <code>$.map()</code>, the end result is an array.</p>
+
+              <h3>Exercise 2</h3>
+
+              <ol>
+                <li>
+                  <input type="checkbox">Use <code>$.map()</code> to modify the provided array so that it only contains even values.</li>
+              </ol>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">9001</span><span class="p">];</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <hr>
+            </div>
+
+            <h2>Filter</h2>
+            <div class="step" data-number="3" data-human-number="4">
+              <div class="step-content" data-human-number="4">
+
+                <p>The <a href="http://api.jquery.com/filter/"><code>.filter()</code></a> method is a better option when evaluating which items should remain in an array:</p>
+                <div class="block-code">
+                  <table class="highlighttable">
+                    <tbody>
+                      <tr>
+                        <td class="linenos">
+                          <div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div>
+                        </td>
+                        <td class="code">
+                          <div class="highlight"><pre><span class="nx">myArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
+<span class="nx">myArray</span> <span class="o">=</span> <span class="nx">myArray</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">value</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">value</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">})</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myArray</span><span class="p">);</span>
+</pre></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>If the return statement inside the callback returns false, the value will not be returned.</p>
+
+                <h3>Exercise 3</h3>
+
+                <ol>
+                  <li>
+                    <input type="checkbox">Use <code>.filter()</code> to remove strings with a length other than 2 from the array.</li>
+                </ol>
+                <div class="block-code">
+                  <table class="highlighttable">
+                    <tbody>
+                      <tr>
+                        <td class="linenos">
+                          <div class="linenodiv"><pre>1</pre></div>
+                        </td>
+                        <td class="code">
+                          <div class="highlight"><pre><span class="nx">greetings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"hey"</span><span class="p">,</span> <span class="s2">"hi"</span><span class="p">,</span> <span class="s2">"hello"</span><span class="p">,</span> <span class="s2">"yo"</span><span class="p">];</span>
+</pre></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <hr>
+              <h2>All Done!</h2>
+              <p>Awesome, we're all done here, you can close this page, return to the jQuery Three : Directions page, and move on to Exercise 2!</p>
+              <hr>
+            </div>
+
+          </div>
+</body>
+
+</html>
