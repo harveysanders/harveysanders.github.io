@@ -10,8 +10,7 @@ $(function(){
 	function buildHtmlListItems(array){
 		var result = [];
 		result = array.map(function(item){
-			var id = item.toLowerCase().replace(" ", "-");
-			return '<li id="' + id + '">' + item + '</li>';
+			return ($('<li>' + item + '</li>').attr('class', item.toLowerCase().replace(' ', '-')));
 		});
 		return result;
 	}
@@ -51,12 +50,14 @@ $(function(){
 	});
 	$('.container').remove();
 
-	$('body').append('<middle/>'); // renamed from <main/> because to get around default bootstrap settings
+	$('body').prepend('<middle/>'); // renamed from <main/> because to get around default bootstrap settings
 	$('body').prepend('<header/>');
 	//$('header').append('<img id="logo" src="img/avengers_logo.png">');
 	$('middle').append('<div id="container"/>');
 	$('#container').addClass('container-fluid');
-	$('#container').prepend('<div class="row"/>');
+	$('#container').prepend($('<div/>').attr('class', 'row')); 
+	//same as ^^^ $('#container').prepend('<div class="row"/>'); 
+	
 	$('.row').append('<div id="iron_man"/>');
 	$('.row').append('<div id="capt_america"/>');
 	$('.row').append('<div id="character_list"/>');
@@ -73,13 +74,16 @@ $(function(){
 	$('#hulk').append('<img src ="img/hulk.png">');
 	$('#hulk').hide();
 
+	//example
+	//$("<ul>").append($('<li>').attr('class','iron_man'));
+
 	
 	//Bootstrap Classes
 	$('.row').addClass('text-bottom');
 	$('#iron_man').addClass('col-xs-2 pull-down');
 	$('#capt_america').addClass('col-xs-2 pull-down');
 	$('#character_list').addClass('col-xs-4 text-center');
-	$('#hulk').addClass('col-xs-2 text-right');
+	$('#hulk').addClass('col-xs-2 text-left');
 	$('#thor').addClass('col-xs-2 pull-down');
 	$('#buttons').addClass('btn-group');
 	$('button').addClass('btn-sm');
