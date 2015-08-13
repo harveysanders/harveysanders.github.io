@@ -39,13 +39,20 @@
       // see: http://api.jquery.com/one/
 
       // TODO 1 : Assign a one-time event handler to the click event of aPosts //
-
+      $('#aPosts').one('click', function(){
+        console.log('post!');
+        initializePosts();
+      });
 
       // TODO 3 : Assign a one-time event handler to the click event of aSearchWikipedia //
-
+      $('#aSearchWikipedia').one('click', function(){
+        initializeWikipediaSearch();
+      });
 
       // TODO 5 : Assign a one-time event handler to the click event of #aSoundCloud //
-
+      $('#aSoundCloud').one('click', function(){
+        initializeSoundCloud();
+      })
 
       /*
        * Below are several functions that initialize datasets to be consumed 
@@ -59,7 +66,16 @@
         $.getJSON('data/posts.json', function (data) {
 
           // TODO 2 : Currently, this code only loads ONE post, let's load all of them and style them in their own divs //
-          $('#posts').html(data[0].body);
+          
+          var $posts = $.map(data, function(post) {
+            return $('<div>').css({
+              'margin' : '15px',
+              'font-family' : 'monospace',
+            }).append(post.body);
+          });
+          console.log($posts);
+          $('#posts').html($posts);
+          
         });
       }
 
@@ -93,11 +109,15 @@
 
     // JSONP //
     function onSearchResult() {
-      arguments[0].forEach(function (arg) {
-
-        // TODO 4 : Pretty up the search results //
-        $('#searchResults').append($('<div>').text(arg));
-      });
+      
+      var $header = $('<h1>').text(arguments[0][0]);
+      var $subhead = $('<h6>').text(arguments[0][1]);
+      var $desc = $('<p>').text(arguments[0][2]);
+      var $link = $('<a>').attr('href', arguments[0][3]).text(arguments[0][3]);
+      var $article = $('<div>').append($header, $subhead, $desc, $link).css({
+        'margin': '10px 10px 10px 30px'
+        });
+      $('#searchResults').append($article);
     }
   </script>
   <script>

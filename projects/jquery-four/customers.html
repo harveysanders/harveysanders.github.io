@@ -11,8 +11,8 @@
       //page is an array of <ul> objects
       var page = $.map(data, function(person){
         var ul = $('<ul>');
+        ul.append($('<li>').text('name: ' + person.name));
         for (var key in person) {
-
           if (Array.isArray(person[key])) {
             var li = $('<li>').text(key + ": " + person[key]);
             ul.append(li);

@@ -73,6 +73,7 @@ $(function () {
   });
 
   var createTable = function(array, target) {
+
     var createRow = function(hero) {
       var $row = $('<tr>');
       var $name = $('<td>').text(hero.name);
@@ -81,12 +82,27 @@ $(function () {
       return $row;
     };
     var $table = $('<table>').css({
-      'margin' : '20px'
+      'margin' : '20px',
+      
     });
+    var $header = $('<thead>').append([
+      $('<th>').text("Name"),
+      $('<th>').text("Notes")
+      ]);
     var $rows = array.map(createRow);
 
+    $table.append($header);
     $table.append($rows);
     $table.appendTo(target);
+
+    $table.find('tr td').css({
+      'border' : '1px solid #ccc',
+      'padding' : '0.5rem',
+      'text-align' : 'left',
+      'font-family' : 'monospace',
+      'color' : 'rgb(20,20,100)',
+      'background-color' : 'rgb(220,230,250)',
+    });
   };
 
   createTable(allGuardians, $('body'));
