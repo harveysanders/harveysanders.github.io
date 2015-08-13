@@ -89,15 +89,15 @@
           client_id: "d29ad0142b2cd0a47ad2e561334c8e0f"
         })
         SC.get('/tracks', {
-          q: 'bob marley'
+          q: 'mulatu astatke'
         }, function (tracks) {
-          SC.oEmbed(tracks[0].uri, {
+          SC.oEmbed(tracks[8].uri, {
             auto_play: true
           }, document.getElementById('soundcloud-player'))
         });
 
         SC.get('/tracks', {
-          q: 'bob marley'
+          q: 'mulatu astatke'
         }, function (tracks) {
           tracks.forEach(function (track) {
             // TODO 6 : Pretty up the display of the soundcloud track details  //
