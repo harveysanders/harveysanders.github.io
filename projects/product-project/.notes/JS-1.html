@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="copyright" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JavaScript Fundamentals</title>
+  <link href="css/custom.css" media="all" rel="stylesheet">
+
+  <meta class="foundation-mq-small">
+  <meta class="foundation-mq-medium">
+  <meta class="foundation-mq-large">
+  <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main" src="./JavaScript-Fundamentals-1_files/main.js"></script>
+  <style id="__web-inspector-hide-shortcut-style__" type="text/css">
+    html /deep/ .__web-inspector-hide-shortcut__,
+    html /deep/ .__web-inspector-hide-shortcut__ /deep/ *,
+    html /deep/ .__web-inspector-hidebefore-shortcut__::before,
+    html /deep/ .__web-inspector-hideafter-shortcut__::after {
+      visibility: hidden !important;
+    }
+  </style>
+</head>
+
+<body class="pages student theme-mks-blue" id="show">
+
+  <nav class="top-bar"></nav>
+
+
+  <div class="row">
+    <div class="large-12 small-12">
+      <div class="curriculum" data-doc-id="8O59BUDLfuU" data-ext="mdx">
+        <h1>JavaScript Fundamentals</h1>
+        <div class="step" data-number="0" data-human-number="1">
+          <div class="step-content" data-human-number="1">
+
+
+            <p>This lesson will review the basics of JavaScript, including:</p>
+
+            <ul>
+              <li>JS Syntax</li>
+              <li>Variables</li>
+              <li>Literals</li>
+              <li>Conditionals</li>
+              <li>Truthy and Falsey Values</li>
+              <li>Loops</li>
+              <li>Functions - arguments, parameters, explicit returns</li>
+              <li>Arrays</li>
+              <li>Objects</li>
+            </ul>
+
+
+          </div>
+
+        </div>
+        <h2>JavaScript Variables</h2>
+        <div class="step" data-number="1" data-human-number="2">
+          <div class="step-content" data-human-number="2">
+
+
+
+
+            <p>In JavaScript you need to precede a new variable with <code>var</code>:</p>
+            <div class="block-code">
+              <table class="highlighttable">
+                <tbody>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv"><pre>1
+2</pre></div>
+                    </td>
+                    <td class="code">
+                      <div class="highlight"><pre><span class="c1">// JavaScript</span>
+<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Bob'</span><span class="p">;</span>
+</pre></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Notice how you need a semicolon at the end. This means "end of statement."</p>
+
+            <p>The <code>var</code> keyword is used for declaring a <strong>new</strong> variable. If you want to <strong>update an existing variable</strong>, leave it out:</p>
+            <div class="block-code">
+              <table class="highlighttable">
+                <tbody>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv"><pre>1
+2
+3
+4</pre></div>
+                    </td>
+                    <td class="code">
+                      <div class="highlight"><pre><span class="c1">// JavaScript</span>
+<span class="kd">var</span> <span class="nx">score</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="nx">score</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nx">score</span> <span class="o">=</span> <span class="nx">score</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+        <h2>Variables, Strings, Data, and Code</h2>
+        <div class="step" data-number="2" data-human-number="3">
+          <div class="step-content" data-human-number="3">
+
+
+
+
+            <p>What's the difference between a variable and a string? Well, as you know, aesthetically strings have quotes while variables do not:</p>
+            <div class="block-code">
+              <table class="highlighttable">
+                <tbody>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv"><pre>1
+2</pre></div>
+                    </td>
+                    <td class="code">
+                      <div class="highlight"><pre><span class="s1">'person'</span> <span class="c1">// STRING</span>
+<span class="nx">person</span> <span class="c1">// VARIABLE</span>
+</pre></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Semantically, you could say <strong>a string is data</strong>, while <strong>a variable is code</strong>.</p>
+
+            <p>What does that mean? Let's take it by example. Consider the following real-world things:</p>
+
+            <ul>
+              <li>A single playing card</li>
+              <li>The current price on gas</li>
+              <li>An english-spanish flashcard</li>
+              <li>The current time</li>
+            </ul>
+
+            <p>What do all these have in common? It's simple: they are contain <strong>information</strong>. Data is just another word for information. <strong>By itself, data doesn't do anything.</strong> Data is simply information that you can use in your
+              code.</p>
+
+            <p>On the flip side, <strong>code is commands we give to the computer</strong>. For example, take the following code:</p>
+            <div class="block-code">
+              <table class="highlighttable">
+                <tbody>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv"><pre>1</pre></div>
+                    </td>
+                    <td class="code">
+                      <div class="highlight"><pre><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Bob'</span><span class="p">;</span>
+</pre></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>This like we are telling the computer to create a signpost that points to the string <code>'Bob'</code>:</p>
+
+            <p><img src="./JavaScript-Fundamentals-1_files/EuyoOP7.png" alt="JSDN: A variable."></p>
+
+
+          </div>
+
+        </div>
+        <h2>If Statements &amp;&amp; Conditionals</h2>
+        <div class="step" data-number="3" data-human-number="4">
+          <div class="step-content" data-human-number="4">
+
+
+
+
+            <p>In JavaScript you need a lot of fluff to get if/else statements to work.</p>
+            <div class="block-code">
+              <table class="highlighttable">
+                <tbody>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div>
+                    </td>
+                    <td class="code">
+                      <div class="highlight"><pre><span class="c1">// JavaScript</span>
+<span class="kd">var</span> <span class="nx">pass</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">"What is the password?"</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">pass</span> <span class="o">===</span> <span class="s1">'abc'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">"Welcome!"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">pass</span> <span class="o">===</span> <span class="s1">'123'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">"Nice try, noob!"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">"Sorry, I can't let you in."</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Notice how you need parentheses <code>()</code> around the conditionals, and brackets <code>{}</code> for each block of code afterwards.</p>
+
+
+          </div>
+
+        </div>
+        <h2>AND and OR</h2>
+        <div class="step" data-number="4" data-human-number="5">
+          <div class="step-content" data-human-number="5">
+
+
+
+
+            <p>You can evaluate multiple conditions at once using the AND and OR operators. AND is written as <code>&amp;&amp;</code>. OR is written as <code>||</code>:</p>
+            <div class="block-code">
+              <table class="highlighttable">
+                <tbody>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div>
+                    </td>
+                    <td class="code">
+                      <div class="highlight"><pre><span class="c1">// JavaScript</span>
+<span class="kd">var</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">number</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">number</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s1">'The number is within 1 and 100'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">number</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="nx">number</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s1">'The number is NOT 1-100!'</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>When using <code>&amp;&amp;</code>, both conditions must be met, while only one must be met when using <code>||</code>.</p>
+
+
+          </div>
+
+        </div>
+        <h2>Sameness in JavaScript</h2>
+        <div class="step" data-number="5" data-human-number="6">
+          <div class="step-content" data-human-number="6">
+
+
+
+
+            <p>In JavaScript, there is a difference between <code>==</code> and <code>===</code>. </p>
+
+            <p><code>'17' == 17</code>, but <code>'17' !== 17</code>.</p>
+
+            <p>Double equals will compare strings and integers, triple equals will recognize that these are not the same. For practical purposes, you should generally use triple equals, as its effects will be more predictable.</p>
+
+            <p>In your JS console, test each of the following and make sure you understand the results.</p>
+            <div class="block-code">
+              <table class="highlighttable">
+                <tbody>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div>
+                    </td>
+                    <td class="code">
+                      <div class="highlight"><pre><span class="mi">4</span> <span class="o">==</span> <span class="mi">4</span>
+<span class="mi">4</span> <span class="o">===</span> <span class="mi">4</span>
+<span class="mi">0</span> <span class="o">==</span> <span class="s1">''</span>
+<span class="mi">0</span> <span class="o">===</span> <span class="s1">''</span>
+<span class="s1">'5'</span> <span class="o">==</span> <span class="mi">5</span>
+<span class="s1">'5'</span> <span class="o">===</span> <span class="mi">5</span>
+<span class="kc">null</span> <span class="o">==</span> <span class="kc">undefined</span>
+<span class="kc">null</span> <span class="o">===</span> <span class="kc">undefined</span>
+<span class="mi">7</span> <span class="o">!=</span> <span class="mi">7</span>
+<span class="mi">7</span> <span class="o">!==</span> <span class="mi">7</span>
+<span class="mi">0</span> <span class="o">!=</span> <span class="kc">false</span>
+<span class="mi">0</span> <span class="o">!==</span> <span class="kc">false</span>
+</pre></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h2>Truthy &amp;&amp; Falsey Values</h2>
+
+            <p>JavaScript has what is called "truthy" and "falsey" values. Some values evaluate to 'true', such as <code>2 === 2</code>. and some values evaluate to false, such as <code>2 === 3</code>.</p>
+
+            <p>JavaScript also has what is called truthy &amp;&amp; falsey values. These are values that aren't strictly speaking 'true' or 'false', but instead evaluate to true or false in certain situations. <code>1</code> isn't true in and of itself,
+              but it is 'truthy', that is to say, it evaluates to true in certain situations. </p>
+
+            <p>Put the following in your console:</p>
+            <div class="block-code">
+              <table class="highlighttable">
+                <tbody>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div>
+                    </td>
+                    <td class="code">
+                      <div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Truthy"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Falsey"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The code prints out "truthy" because <code>1</code> is a "truthy" value. If you tried the same thing with <code>0</code>, it would print out 'falsey', because <code>0</code> is a falsey value.</p>
+
+            <p>Type the following lines into the console below - one at a time - and understand the results.</p>
+            <div class="block-code">
+              <table class="highlighttable">
+                <tbody>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div>
+                    </td>
+                    <td class="code">
+                      <div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span>   <span class="p">{</span> <span class="s1">'Truthy!'</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="s1">'falsey.'</span> <span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="s1">'hi'</span><span class="p">)</span>   <span class="p">{</span> <span class="s1">'Truthy!'</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="s1">'falsey.'</span> <span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="kc">false</span><span class="p">)</span>     <span class="p">{</span> <span class="s1">'Truthy!'</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="s1">'falsey.'</span> <span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="kc">null</span><span class="p">)</span>      <span class="p">{</span> <span class="s1">'Truthy!'</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="s1">'falsey.'</span> <span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span> <span class="s1">'Truthy!'</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="s1">'falsey.'</span> <span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>         <span class="p">{</span> <span class="s1">'Truthy!'</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="s1">'falsey.'</span> <span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="s1">''</span><span class="p">)</span>        <span class="p">{</span> <span class="s1">'Truthy!'</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="s1">'falsey.'</span> <span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="kc">NaN</span><span class="p">)</span>       <span class="p">{</span> <span class="s1">'Truthy!'</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="s1">'falsey.'</span> <span class="p">}</span>
+</pre></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The six 'falsey' values in JavaScript are, <code>false</code>, <code>0</code>, <code>""</code>, <code>undefined</code>, <code>null</code> and <code>NaN</code>.</p>
+
+            <p>Here's an additional resource on truthy and falsey values: <a href="http://designpepper.com/blog/drips/truthy-and-falsy-values-in-javascript.html">Truthy and Falsy Values in JavaScript</a></p>
+
+          </div>
+
+        </div>
+      </div>
+
+</body>
+
+</html>

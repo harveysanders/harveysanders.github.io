@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+  <body>
+    <div class="container">
+
+    <nav></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="fOWibylF1NI" data-ext="mdx"><h1>Intro to HTML</h1>
+<div class="step" data-number="0" data-human-number="1">
+  <div class="step-content" data-human-number="1">
+    
+
+<h2>What is HTML</h2>
+
+<p>HyperText Markup Language is a language used to structure and give meaning to content by wrapping said content in elements that describe the content's function and purpose.</p>
+
+<p>HTML is interpreted by web browsers that then dictate how different pieces of content should appear and react to user interaction in the DOM.</p>
+
+
+  </div>
+  
+</div>
+<h2>Elements</h2>
+<div class="step" data-number="1" data-human-number="2">
+  <div class="step-content" data-human-number="2">
+    
+
+
+
+<p>HTML elements encapsulate and define content. There are various types of HTML elements with many distinct purposes, but they, for the most part, use a very similar structure.</p>
+
+<h3>Tags</h3>
+
+<p>HTML tags denote the beginning(and of often, at the end) of elements. Tags consist of opening and closing angle brackets around the name of the element type:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;img&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>Opening tags can also contain attributes that describe the contents of the tag, but when an element requires a closing tag, the closing tag is always a pair of angle brackets containing the tag name preceded by a forward slash:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;header&gt;&lt;/header&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<h3>Attributes</h3>
+
+<p>While tags give structure to HTML documents, attributes are used to provide additional information about elements. Attributes begin with the attribute name, often followed by an equals sign and a value in double quotes:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"cats.gif"</span><span class="nt">&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>Some attributes, such as <code>disabled</code>, do not require a value:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;button</span> <span class="na">disabled</span><span class="nt">&gt;&lt;/button&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<h3>Putting it all together</h3>
+
+<p><img src="./HTML-1_files/Screen_Shot_2014-09-08_at_9_57_04_AM.png" width="90%" alt=""></p>
+
+
+  </div>
+  
+</div>
+<h2>Types of Elements</h2>
+<div class="step" data-number="2" data-human-number="3">
+  <div class="step-content" data-human-number="3">
+    
+
+
+
+<h3>Headings</h3>
+
+<p>Heading elements are available in six intensities:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Level 1<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;h2&gt;</span>Level 2<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;h3&gt;</span>Level 3<span class="nt">&lt;/h3&gt;</span>
+<span class="nt">&lt;h4&gt;</span>Level 4<span class="nt">&lt;/h4&gt;</span>
+<span class="nt">&lt;h5&gt;</span>Level 5<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;h6&gt;</span>Level 6<span class="nt">&lt;/h6&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>The lower the number of the heading element, the more important it is. For example, if you have a blog post on your blog with a title and multiple subsections, you might use an <code>&lt;h1&gt;</code> as your website's title, an <code>&lt;h2&gt;</code> as your blog post's title, and then <code>&lt;h3&gt;</code>s as the titles of the subsections:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>My Blog<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;h2&gt;</span>My Blog Post<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;h3&gt;</span>Part of my blog post<span class="nt">&lt;/h3&gt;</span>
+<span class="nt">&lt;h3&gt;</span>Another part of my blog post<span class="nt">&lt;/h3&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<h3>Paragraphs</h3>
+
+<p>Paragraph elements are used to encapsulate paragraphs of text! If you were to add some filler text to this blog layout, it would look like:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>My Blog<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;h2&gt;</span>My Blog Post<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;h3&gt;</span>Part of my blog post<span class="nt">&lt;/h3&gt;</span>
+<span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod, ligula ut maximus rhoncus, elit ipsum aliquam magna, pulvinar convallis massa enim sed lorem. Morbi sit amet augue quis risus iaculis mattis ac dapibus ligula. Suspendisse facilisis lectus vitae lectus accumsan, eu aliquet magna vestibulum. Aenean ligula leo, sollicitudin ac bibendum ut, eleifend id urna. Donec orci justo, imperdiet eu condimentum eu, laoreet ut orci. Vivamus finibus finibus sem a facilisis. Nulla eu nulla vitae urna ultricies sodales et ut tortor. Etiam sed lectus ornare, ornare lacus et, dapibus diam. Duis porttitor auctor velit, non faucibus orci pulvinar id. Nam rutrum est quis ex fermentum ullamcorper.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;h3&gt;</span>Another part of my blog post<span class="nt">&lt;/h3&gt;</span>
+<span class="nt">&lt;p&gt;</span>Pellentesque posuere magna augue, vel suscipit augue ultricies nec. Etiam volutpat porta sollicitudin. Praesent vel volutpat nunc. Fusce sed feugiat magna. Suspendisse at condimentum urna. Suspendisse sagittis odio ante, in efficitur dolor mollis id. Nunc lobortis sodales tincidunt.<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<h3>Anchors</h3>
+
+<p>Anchor elements, colloquially known as "links", are used to navigate between pages. These elements require a <code>href</code> attribute to be valid HTML:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://http://www.w3.org/People/Berners-Lee/"</span><span class="nt">&gt;</span>Tim<span class="nt">&lt;/a&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<h3>Images</h3>
+
+<p>Image elements place images into the DOM. Similar to the anchor element, images require a <code>src</code> attribute to be valid. Also, these elements are self-closing as their content is dictated by the <code>src</code> attribute:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"http://www.fillmurray.com/600/600"</span><span class="nt">&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<h3>Lists</h3>
+
+<p>There are two types of lists in HTML: ordered(<code>&lt;ol&gt;</code>) and unordered(<code>&lt;ul&gt;</code>). An ordered list is used when the items in the list require the order they are written in to be preserved, otherwise an unordered list is used.</p>
+
+<p>Both types of list contain list items: <code>&lt;li&gt;</code>.</p>
+
+<h3>Sections</h3>
+
+<p>There are several distinct elements used to break up content into sections in HTML documents. Some of the most common elements used for this purpose include <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, and <code>&lt;nav&gt;</code>.</p>
+
+
+  </div>
+  
+</div>
+<h2>Documents</h2>
+<div class="step" data-number="3" data-human-number="4">
+  <div class="step-content" data-human-number="4">
+    
+
+
+
+<h3>Filetypes</h3>
+
+<p>HTML documents begin with a filetype declaration. There used to be several types of HTML files, but in modern web development, <code>html</code> is the only HTML doctype used.</p>
+
+<h3>The HTML Element</h3>
+
+<p>Filetype declarations are followed by an HTML element that contains the rest of the elements in the HTML file:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<h3>The Head</h3>
+
+<p>The head element contains meta data related to the webpage such as the title to be displayed in the browser window header, the character set used, information about the author, and files that relate to the webpage:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>My First Webpage<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<h3>The Body</h3>
+
+<p>The body element contains all of the HTML content that is visible within the DOM:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>My First Webpage<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;header&gt;</span>
+      <span class="nt">&lt;h1&gt;</span>My First Webpage<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/header&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>An HTML file with a file type declaration, HTML element, head, and body, is a complete and valid HTML file.</p>
+
+
+  </div>
+  
+</div>
+
+
+<h2>Resources</h2>
+<div class="step" data-number="5" data-human-number="6">
+  <div class="step-content" data-human-number="6">
+    
+
+
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">Mozilla Developer Network</a></li>
+<li><a href="http://validator.w3.org/">W3C HTML Validator</a></li>
+</ul>
+
+  </div>
+  
+</div>
+</div>
+
+
+</body></html>
