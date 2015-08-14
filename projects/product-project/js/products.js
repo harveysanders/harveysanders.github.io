@@ -37,8 +37,21 @@ $(function(){
 	}
 
 	function searchHandler(query, products){
+		var query = query.toLowerCase();
 		var results = products.filter(function(product){
-			return query.toLowerCase() === product.type.toLowerCase();
+			var productKeywords = _.words(product.desc.toLowerCase());
+			
+			// returns true if a word in desc begins with the query
+			var booleanVals = [];
+			_.forEach(productKeywords, function(word){
+				booleanVals.push(_.startsWith(word, query));
+			});
+			return (_.some(booleanVals));
+			
+
+			//returns true if query complete matches a word in the product desc
+			//OR if search input is empty
+			// return _.indexOf(productKeywords, query) !== -1 || !query;  
 		});
 		return results;
 	}
