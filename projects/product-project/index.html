@@ -4,7 +4,7 @@
         <script src="bower_components/lodash/lodash.min.js"></script>
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+        <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"> -->
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="bower_components/notes/notes.js"></script>
         <script type="text/javascript" src="js/lib/spin.min.js"></script>
@@ -13,18 +13,25 @@
         <title>Product Project</title>
     </head>
     <body>
-        <div id="container" class="container">
+
+        <div id="container" class="container-fluid">
             <nav>
                 <h1>Product Project</h1>
+                <div class="form-inline">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="searchInput" placeholder="search">
+                  </div>
+                  <button id="searchButton" class="btn btn-default">Go!</button>
+                </div>
             </nav>
             <main>
-                
+                <div class="products"></div>
             </main>
             
         </div>
         <script>
             $(function () {
-                window.opspark.notes.show();
+                //window.opspark.notes.show();
             });
         </script>
     </body>
