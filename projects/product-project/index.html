@@ -1,38 +1,76 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="bower_components/lodash/lodash.min.js"></script>
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"> -->
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="bower_components/notes/notes.js"></script>
-        <script type="text/javascript" src="js/lib/spin.min.js"></script>
-        <script type="text/javascript" src="js/view/pacifier.js"></script>
-        <script type="text/javascript" src="js/products.js"></script>
-        <title>Product Project</title>
-    </head>
-    <body>
+<head>
+	<script src="bower_components/lodash/lodash.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"> -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/notes/notes.js"></script>
+    <script type="text/javascript" src="js/lib/spin.min.js"></script>
+    <script type="text/javascript" src="js/view/pacifier.js"></script>
+    <script type="text/javascript" src="js/products.js"></script>
 
-        <div id="container" class="container-fluid">
-            <nav>
-                <h1>Product Project</h1>
-                <div class="form-inline">
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="searchInput" placeholder="search">
-                  </div>
-                  <!-- <button id="searchButton" class="btn btn-default">Go!</button> -->
-                </div>
-            </nav>
-            <main>
-                <div class="products"></div>
-            </main>
-            
+	<title>Amazone!!</title>
+
+
+</head>
+<body>
+	<div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Amazone
+                    </a>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="searchInput" placeholder="search">
+                    </div>
+                </li>
+                <li>Featured Brands
+                    <div class="checkbox">
+                        <label><input id="apple-check" type="checkbox" value="">Apple</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input id="sam-check" type="checkbox" value="">Samsung</label>
+                    </div>
+                </li>
+                <!-- <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li> -->
+            </ul>
         </div>
-        <script>
-            $(function () {
-                //window.opspark.notes.show();
-            });
-        </script>
-    </body>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+               <main>
+                    <h2 class='text-center'>Amazone!</h2>
+                    <div class="products"></div>
+               </main>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+</body>
 </html>

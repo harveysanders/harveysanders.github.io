@@ -9,6 +9,11 @@ $(function(){
 	function printProducts(products){
 		var productsToShow = [];
 
+		function stockWarning(stock) {
+			var qty = parseInt(stock);
+			return qty < 5 ? 'Only ' + stock + ' left in stock - buy now!' : 'In stock';
+		}
+
 		$.map(products, function(product, index) {
 			var $productDiv = $('<div>').attr({
 				'class' : 'phone text-left row',
@@ -24,13 +29,14 @@ $(function(){
 			var $productInfo = $('<div>').attr({
 				'class' : 'col-sm-10',
 			});
-			var $desc = $('<h4>').text(product.desc);
+			var $desc = $('<h5>').text(product.desc);
 			var $price = $('<h6>').text('$' + product.price).css({
 				'color' : 'rgb(33,33,200)',
 			});
-			var $qty = $('<h6>').text('Qty in stock: ' + product.stock);
+			var $qty = $('<h6>').text(stockWarning(product.stock));
+			$productInfo.append($desc, $price, $qty);
 
-			productsToShow.push($productDiv.append($productImgDiv, $desc, $price, $qty));
+			productsToShow.push($productDiv.append($productImgDiv, $productInfo));
 			
 		});
 		$('.products').html(productsToShow);
@@ -48,7 +54,6 @@ $(function(){
 			});
 			return (_.some(booleanVals));
 			
-
 			//returns true if query complete matches a word in the product desc
 			//OR if search input is empty
 			// return _.indexOf(productKeywords, query) !== -1 || !query;  
@@ -64,8 +69,12 @@ $(function(){
 			printProducts(searchHandler(query, products));
 		});
 
-	});
+		$('#apple-check').on('click', function(){
+			$('#apple-check').is(':checked') ? printProducts(searchHandler('apple', products)) :
+			printProducts(searchHandler(query, products));
+		});
 
+	});
 	
-	
+
 });
