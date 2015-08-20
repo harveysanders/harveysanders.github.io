@@ -185,10 +185,7 @@
     // TIP: Many iteration problems can be most easily expressed in
     // terms of reduce(). Here's a freebie to demonstrate!
     return _.reduce(collection, function(wasFound, item) {
-      if (wasFound) {
-        return true;
-      }
-      return item === target;
+      return wasFound? true : item === target;
     }, false);
   };
 
@@ -196,12 +193,17 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-    console.log('collection: ' + collection);
-    console.log('is Array? ' + collection.isArray);
-    _.reduce(collection, function(allTrue, isTrue){
-      return iterator(allTrue) && iterator(isTrue);
+    //return false if anything is false
+    _.reduce(collection, function(anyFalse, item) {
+      return !(iterator(item)) || !anyFalse ? false : true;
     });
 
+
+    // return collection.length === 0 || collection === {} ? true :
+    // _.reduce(collection, function(anyFalse, item) {
+    //   console.log('anyFalse: ' + anyFalse + 'callback result: ' + iterator(item) ? true : false);
+    //   return !(Boolean(anyFalse)) || !((iterator(item)) ? true : false);
+    // },true);
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
