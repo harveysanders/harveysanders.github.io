@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <title>HTML Forms &amp; Inputs</title>
+
+</head>
+
+<body>
+  <div class="container">
+    <h1>Interactive Web Pages Using Forms</h1>
+
+    <h2>Input</h2>
+
+    <p>One of the most versatile elements in HTML, the <code>&lt;input /&gt;</code> element, allows us to specify different kinds of input the user can submit to the application. The attribute that specifies the <em>type</em> of input is <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#Attributes">type</a>      <code>&lt;input type="text" /&gt;</code>.</p>
+
+    <p>The <code>type</code> attribute tells the input element the type interaction it will provide. You can give the users the ability to enter free form text, a password, email or even pick out of a list of choices.</p>
+
+    <h3>Text Fields</h3>
+
+    <p>Helps us enter arbitrary text like names, last names, id's and even phone numbers.</p>
+
+    <p></p>
+    <aside>
+      <br>
+      <input type="text">
+      <br>
+    </aside>
+
+    <div class="block-code">
+      <table class="highlighttable">
+        <tbody>
+          <tr>
+            <td class="linenos">
+              <div class="linenodiv"><pre>1</pre></div>
+            </td>
+            <td class="code">
+              <div class="highlight"><pre><span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s">"text"</span> <span class="o">/&gt;</span>
+</pre></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Usage</h4>
+
+    <aside>
+      <br>
+      <label for="name" style="display:inline">Name:</label>
+      <br>
+      <input type="text" id="name">
+      <br>
+      <label for="lastname" style="display:inline">Last Name:</label>
+      <br>
+      <input type="text" id="lastname">
+      <br>
+    </aside>
+
+    <h3>Radio buttons</h3>
+
+    <p>Pick one out of a group of options.
+      <br>
+    </p>
+    <aside>
+      <br>
+      <input type="radio" name="" <br="">
+    </aside>
+    <p></p>
+    <div class="block-code">
+      <table class="highlighttable">
+        <tbody>
+          <tr>
+            <td class="linenos">
+              <div class="linenodiv"><pre>1</pre></div>
+            </td>
+            <td class="code">
+              <div class="highlight"><pre><span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s">"radio"</span> <span class="o">/&gt;</span>
+</pre></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Usage</h4>
+
+    <p></p>
+    <aside>
+      <br>
+      <label style="display:inline" for="r_male">Female</label>
+      <br>
+      <input type="radio" id="r_male" name="sex">
+      <br>
+      <label style="display:inline" for="r_female">Male</label>
+      <br>
+      <input type="radio" id="lastname" name="sex">
+      <br>
+    </aside>
+    <p></p>
+
+    <h3>Check Boxes</h3>
+
+    <p>Pick any number between a number of options.
+      <br>
+    </p>
+    <aside>
+      <br>
+      <input type="checkbox" id="chk">
+      <br>
+    </aside>
+    <p></p>
+    <div class="block-code">
+      <table class="highlighttable">
+        <tbody>
+          <tr>
+            <td class="linenos">
+              <div class="linenodiv"><pre>1</pre></div>
+            </td>
+            <td class="code">
+              <div class="highlight"><pre><span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s">"checkbox"</span> <span class="o">/&gt;</span>
+</pre></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Usage</h4>
+
+    <p></p>
+    <aside>
+      <br>
+      <p>Likes:</p>
+      <br>
+      <label style="display:inline" for="chocolate">Chocolate</label>
+      <br>
+      <input type="checkbox" id="chocolate" name="chocolate">
+      <br>
+      <br>
+      <br>
+      <label style="display:inline" for="movies">Movies</label>
+      <br>
+      <input type="checkbox" id="movies" name="movies">
+      <br>
+      <br>
+      <br>
+      <label style="display:inline" for="cycling">Cycling</label>
+      <br>
+      <input type="checkbox" id="cycling" name="cycling">
+      <br>
+    </aside>
+    <p></p>
+
+    <h3>Other types</h3>
+
+    <ul>
+      <li>file</li>
+      <li>color</li>
+      <li>email</li>
+      <li>date</li>
+      <li>range</li>
+    </ul>
+
+    <p>Some of these different types behave very differently, not to mention the wide variety of configuration attributes you can use to customize each one.</p>
+
+    <p>Further reading: (<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input">MDN documentation</a>)</p>
+
+
+    <h2>Select</h2>
+
+    <p>Lets users select only one option out of a list of many options.</p>
+
+    <p></p>
+    <aside>
+      <br>
+      <label style="display:inline">Options</label>
+      <br>
+      <select>
+        <option>option 1</option>
+        <option>option 2</option>
+        <option>option 3</option>
+        <option>option 4</option>
+      </select>
+      <br>
+    </aside>
+    <p></p>
+    <div class="block-code">
+      <table class="highlighttable">
+        <tbody>
+          <tr>
+            <td class="linenos">
+              <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div>
+            </td>
+            <td class="code">
+              <div class="highlight"><pre>  <span class="nt">&lt;select&gt;</span>
+    <span class="nt">&lt;option&gt;</span>option 1<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option&gt;</span>option 2<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option&gt;</span>option 3<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option&gt;</span>option 4<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;/select&gt;</span>
+</pre></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Labels</h2>
+    <p>Input elements are usually accompanied by another element called <code>&lt;label&gt;</code>, the <code>&lt;label&gt;</code>'s function is to provide a visual aid on what information the input element is submitting, for instance:</p>
+
+    <p></p>
+    <aside>
+      <br>
+      <h4>Example</h4>
+      <br>
+      <input id="" type="text">
+      <br>
+      <label for="password" style="display:inline">Password:</label>
+      <br>
+      <input id="password" type="password">
+      <br>
+    </aside>
+    <p></p>
+
+    <blockquote>
+      <p>In the above example, we can't tell what the element on the left is for.</p>
+    </blockquote>
+    <div class="block-code">
+      <table class="highlighttable">
+        <tbody>
+          <tr>
+            <td class="linenos">
+              <div class="linenodiv"><pre>1
+2
+3</pre></div>
+            </td>
+            <td class="code">
+              <div class="highlight"><pre>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"pwd"</span><span class="nt">&gt;</span>Password:<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">id=</span><span class="s">"pwd"</span><span class="nt">/&gt;</span>
+</pre></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <title>Changing Element Attributes</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <nav></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="6pU27uipDpE" data-ext="mdx">
+          <h1>Changing Elements with jQuery</h1>
+          <div class="step" data-number="0" data-human-number="1">
+            <div class="step-content" data-human-number="1">
+
+
+              <p>In addition to manipulating the position or existence of elements, jQuery allows us to easily manipulate the attributes and contents of elements. By doing this we can hide, show, add or remove classes, assign arbitrary data, change the styling
+                of these elements, and more.</p>
+
+              <h2>.attr() and attributes</h2>
+
+              <p>The core way to modify all elements' attributes is with <a href="http://api.jquery.com/attr/">.attr()</a>, which takes a key and a value as arguments and then updates the element with that attribute.</p>
+
+              <p>Let's try it:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"my-div"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">myDiv</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.my-div'</span><span class="p">);</span>
+<span class="nx">myDiv</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'style'</span><span class="p">,</span> <span class="s1">'background-color: red;'</span><span class="p">);</span>
+<span class="nx">myDiv</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-whatever'</span><span class="p">,</span> <span class="s1">'arbitrary data'</span><span class="p">);</span>
+<span class="nx">myDiv</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'my-id'</span><span class="p">);</span>
+<span class="nx">myDiv</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'class'</span><span class="p">,</span> <span class="s1">'my-new-class'</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>The result looks like this:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"my-new-class"</span> <span class="na">id=</span><span class="s">"my-id"</span> <span class="na">style=</span><span class="s">"background-color:red;"</span> <span class="na">data-whatever=</span><span class="s">"arbitrary-data"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>As you can see, we can update any attribute on elements that we like. We can also get attributes by not specifying a second argument:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myDiv</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'style'</span><span class="p">));</span> <span class="c1">// background-color: red;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myDiv</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-whatever'</span><span class="p">));</span> <span class="c1">// arbitrar data</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myDiv</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'id'</span><span class="p">));</span> <span class="c1">// my-id</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myDiv</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'class'</span><span class="p">));</span> <span class="c1">// my-new-class</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>You can also remove attributes entirely with <a href="http://api.jquery.com/removeAttr/">.removeAttr()</a>.</p>
+
+              <h3>Data Attributes</h3>
+
+              <p>You'll see attributes that look like <code>data-some-name="some-value"</code>, like this:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">data-id=</span><span class="s">"5"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>These are called <strong>data attributes</strong> and are used to store arbitrary pieces of data in the DOM through the attributes of elements. You could just as easily use <code>.attr()</code> to define an arbitrary attribute to store your
+                data, but using the <code>data-*</code> format will allow you to indicate to yourself and other developers that the attribute is specifically meant to be data. Often times, you'll use data attributes to indicate what element belongs to
+                what conceptually-bound piece of data, such as if you had a set of list items that all correspond to records in a database.</p>
+
+              <p>jQuery provides a <a href="http://api.jquery.com/data/">.data()</a> method that can set arbitrary data on the jQuery objects that wrap specific elements. This is a somewhat complex functionality that won't be covered here. However, if you
+                set a <code>data-attribute</code> on an element manually either in HTML or with <code>.attr()</code>, then you can grab the value of that attribute by using <code>.data()</code> while omitting the <code>data-*</code> prefix:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"my-div"</span> <span class="na">data-blah=</span><span class="s">"my-blah"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.my-div'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">div</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">'blah'</span><span class="p">));</span> <span class="c1">// logs "my-blah"</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Or:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"my-div"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.my-div'</span><span class="p">);</span>
+<span class="nx">div</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'data-blah'</span><span class="p">,</span> <span class="s1">'my-blah'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">div</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">'blah'</span><span class="p">));</span> <span class="c1">// logs "my-blah"</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h3>.attr() vs .prop() (and .val())</h3>
+
+              <p>There is another jQuery method called <a href="http://api.jquery.com/prop/">.prop()</a> which is very similar to <code>.attr()</code>. <code>.prop()</code> will access the <strong>value of properties on the underlying DOM elements</strong>.
+                <code>.attr()</code> will access the <strong>value of the attributes set in HTML at the time the page was loaded</strong>. For instance, take a look at the following example:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"my-radio"</span><span class="nt">&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="c1">// Check for the "checked" attribute on the input</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'input'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'checked'</span><span class="p">);</span> <span class="c1">// undefined</span>
+<span class="c1">// Check for the "checked" property on the input, which all DOM elements</span>
+<span class="c1">// of type radio or checkbox have</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'input'</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'checked'</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="c1">// Sets the internal "checked" property of the DOM element to true</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'input'</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'checked'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">// check the radio - we could also click on it</span>
+<span class="c1">// This returns "checked" because the DOM sets the attribute as checked="checked".</span>
+<span class="c1">// It's unreliable!</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'input'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'checked'</span><span class="p">);</span> <span class="c1">// "checked"</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Here we can see that <code>.attr()</code> refers to whatever attributes were set on pageload. However, when we interact with an element, its attributes are modified after the fact, and in counterintuitive ways. The real value we want to
+                get is the value of the property of that element.</p>
+
+              <p>As a general rule, you should use <code>.attr()</code> when referring to attributes you've already set in HTML and <code>.prop()</code> for accessing the actual properties on DOM elements (like <code>innerHTML</code>, <code>parentChild</code>,
+                etc.). Most frequently you will need to use <code>.prop()</code> for <code>checked</code>, <code>value</code>, <code>defaultChecked</code>, and <code>defaultValue</code>. There is a syntactic sugar method called <a href="http://api.jquery.com/value/">.value()</a>                which access the <code>value</code> property of elements. You should always use this when trying to get the value from input fields.</p>
+
+              <h2>Showing, Hiding, and Changing Classes on Elements</h2>
+
+              <p>Often times you'll need to hide or display certain elements, especially on dynamic, single page applications. You might want to apply certain classes to certain elements as well. There are a couple easy-to-use jQuery methods that help you
+                do that.</p>
+
+              <p><a href="http://api.jquery.com/show/">.show()</a> and <a href="http://api.jquery.com/hide/">.hide()</a> show and hide elements by updating their inline styles to show and hide the elements targeted by these methods. When elements are hidden,
+                they have <code>display: none;</code> set on their <code>style</code> attribute. When elements are shown, they have <code>display</code> set to whatever the value of <code>display</code> was before the elements were hidden. There's also
+                a useful method called <a href="http://api.jquery.com/toggle/">.toggle()</a> which will alternate between showing and hiding your element depending on whether or not it's already hidden or showing!</p>
+
+              <p>A lot of the time, we also want to change the class on an element in order to change its appearance. We can use <code>.attr()</code> to change classes, but it changes classes absolutely. If you use <code>.attr('class', 'new-class')</code>,
+                all the old classes will be removed in place of <code>new-class</code>. However, what if you want to add or remove only a specific class? We have <a href="http://api.jquery.com/addClass/">.addClass()</a> and <a href="http://api.jquery.com/removeClass/">.removeClass()</a>                for that, which will add singular classes or remove them from the element's list of classes. We can also check for the existence of a class using <a href="http://api.jquery.com/hasClass/">.hasClass()</a>, which takes a class to check for
+                and returns true if the element has that class, and false if it does not.</p>
+
+              <h2>Showing and Hiding the Fancy Way</h2>
+
+              <p>jQuery will allow you to animate the CSS of elements with the <a href="http://api.jquery.com/animate/">.animate()</a> method, which will change the value of a given CSS property over a specified time. For example, if you wanted to change
+                the width of an element to 200px over 2 seconds, you would use the following code:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'div'</span><span class="p">).</span><span class="nx">animate</span><span class="p">({</span>
+    <span class="s1">'width'</span><span class="o">:</span> <span class="s1">'200px'</span>
+<span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>You can even open up your DevTools and try it on this page! You'll see everything get all messed up and will have to refresh.</p>
+
+              <p><code>.animate()</code> is fun, but there are a lot of convenience methods for common animations:</p>
+
+              <ul>
+                <li><a href="http://api.jquery.com/fadeIn/">.fadeIn()</a> - fade in a set of matched elements over time</li>
+                <li><a href="http://api.jquery.com/fadeOut/">.fadeOut()</a> - fade out as set of matched elements over time</li>
+                <li><a href="http://api.jquery.com/fadeTo/">.fadeTo()</a> - fade a set of matched elements to a specific opacity over time</li>
+                <li><a href="http://api.jquery.com/slideDown/">.slideDown()</a> - animate an element sliding down over time</li>
+                <li><a href="http://api.jquery.com/slideDown/">.slideUp()</a> - animate an element sliding up over time</li>
+                <li><a href="http://api.jquery.com/slideToggle/">.slideToggle()</a> - toggle between an element sliding up or down over time depending on whether it's visible or not</li>
+              </ul>
+
+              <p>These will let you accomplish simple fading and sliding animations, which are some of the most common animations you see on the web. If you need a more complex animation, you can use <code>.animate()</code>.</p>
+
+
+
+            </div>
+          </div>
+        </div>
+</body>
+
+</html>

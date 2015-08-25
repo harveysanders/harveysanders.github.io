@@ -1,0 +1,21 @@
+{
+  "name": "jquery-four",
+  "version": "0.0.0",
+  "homepage": "https://github.com/OperationSpark/jquery-four",
+  "authors": [
+    "John Fraboni <john@operationspark.org>"
+  ],
+  "description": "Consuming services and prepping data for the view.",
+  "main": "index.html",
+  "license": "Copywrite Operation Spark",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "notes": "~0.0.3"
+  }
+}

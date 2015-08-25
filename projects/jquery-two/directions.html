@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <title>jQuery Two</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <section>
+            <h1>JQuery Two : Directions</h1>
+            <p>In this set of projects and lessons, we're gonna review some of the pratical uses of jQuery, and begin to play with some of the jQuery convenience methods, like animations and event handlers.</p>
+            <hr>
+        </section>
+        <section>
+            <h2>Exercise 1:</h2>
+            <ol>
+                <li>
+                    <input type="checkbox">Simple Project: Start with <a href="notes/jquery-project.html" target="_blank">this simple project</a> to review creating and moving DOM elements w/ jQuery.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Exercise 2:</h2>
+            <ol>
+                <li>
+                    <input type="checkbox"><a href="notes/jquery-project-1.html" target="_blank">Click here to setup the index.html page with some markup for us to use in our exercises: Here's some collections for us to use to practice iteration again...</a></li>
+            </ol>
+            <hr>
+        </section>
+        <section>
+            <h2>Exercise 3:</h2>
+            
+            <p>After completing <strong>Exercise 2</strong>, you should have a list of Avengers!  But feel free to create some more HTML elements using jQuery in the <code>script.js</code> file - you can use them in the next set of tasks!</p>
+            
+            <p><strong>Notes & Reference Material:</strong> <a href="notes/jquery-5.html">DOM Manipulation</a> and <a href="notes/jquery-6.html">method chaining</a></p>
+            <p><strong>Inspiration:</strong> <a href="http://jenniferdewalt.com/" target="_blank">180 Websites in 180 Days...</a></p>
+            <p>In the script.js file that is linked to the index.html page, target some DOM elements and apply some of these jQuery convenience methods to animate your elements: (hint: <a href="http://api.jquery.com" target="_blank">jQuery API</a>)</p>
+            <p>
+                <ol>
+                    <li>
+                        <input type="checkbox">.fadeIn() - fade in a set of matched elements over time</li>
+                    <li>
+                        <input type="checkbox">.fadeOut() - fade out as set of matched elements over time</li>
+                    <li>
+                        <input type="checkbox">.fadeTo() - fade a set of matched elements to a specific opacity over time</li>
+                    <li>
+                        <input type="checkbox">.slideDown() - animate an element sliding down over time</li>
+                    <li>
+                        <input type="checkbox">.slideUp() - animate an element sliding up over time</li>
+                    <li>
+                        <input type="checkbox">.slideToggle() - toggle between an element sliding up or down over time depending on whether it's visible or not</li>
+                </ol>
+                <b>Examples</b>
+                <ul>
+                    <li>
+                        <input type="checkbox">fadeout, fadein: <a href="http://jenniferdewalt.com/magic_8.html" target="_blank">http://jenniferdewalt.com/magic_8.html</a></li>
+                </ul>
+            </p>
+            <hr>
+        </section>
+        <section>
+            <h2>Exercise 4:</h2>
+            <p>In the script.js file that is linked to the index.html page, target some DOM elements to listen for and respond to some events:</p>
+            <p><strong>Reference:</strong> <a href="notes/jquery-7.html">Event handling</a>
+                <ol>
+                    <li>
+                        <input type="checkbox">'blur' - this event is emitted when an element loses focus, which happens when the user has focus on an element and Tabs to another element or clicks elsewhere</li>
+                    <li>
+                        <input type="checkbox">'change' - this event is emitted when the value of an input field is changed, such as a text area, text input field, radio button, etc.</li>
+                    <li>
+                        <input type="checkbox">'click' - this event is emitted when an element is clicked on</li>
+                    <li>
+                        <input type="checkbox">'dblclick' - this event is emitted when an element is double-clicked on</li>
+                    <li>
+                        <input type="checkbox">'error' - this event is emitted when an element is not loaded correctly, such as <img> elements</li>
+                    <li>
+                        <input type="checkbox">'focus' - this event is emitted when an element gains focus, meaning that the user has reached the element via the Tab key or has clicked on it</li>
+                    <li>
+                        <input type="checkbox">'hover' - this event is emitted when the mouse pointer enters or leaves the element</li>
+                    <li>
+                        <input type="checkbox">'keydown' - this event is emitted when the user first presses any key down</li>
+                    <li>
+                        <input type="checkbox">'keyup' - this event is emitted when the user releases a key</li>
+                    <li>
+                        <input type="checkbox">'mousedown' - this event is emitted when the user presses a mouse button over the targeted element</li>
+                    <li>
+                        <input type="checkbox">'mouseup' - this event is emitted when the user releases a mouse button over the target element</li>
+                    <li>
+                        <input type="checkbox">'mouseenter' - this event is emitted when the user moves the mouse pointer into the targeted element</li>
+                    <li>
+                        <input type="checkbox">'mouseleave' - this event is emitted when the user moves the mouse pointer out of the targeted element</li>
+                    <li>
+                        <input type="checkbox">'mousemove' - this event is emitted when the user moves the mouse around within the targeted element</li>
+                    <li>
+                        <input type="checkbox">'resize' - this event is emitted when the targeted element is resized</li>
+                    <li>
+                        <input type="checkbox">'scroll' - this event is emitted when the target element is scrolled</li>
+                    <li>
+                        <input type="checkbox">'select' - this event is emitted when the target element is selected, usually only used for various types of inputs</li>
+                    <li>
+                        <input type="checkbox">'submit' - this event is emitted when the target element is submitted, and can only be attached to form inputs</li>
+                </ol>
+                <b>Examples</b>
+
+                <ul>
+                    <li>click: http://jenniferdewalt.com/random_background.html, http://jenniferdewalt.com/mondrian.html</li>
+                    <li>hover: http://jenniferdewalt.com/technicolor_boxes.html</li>
+                    <li>mousemove: http://jenniferdewalt.com/caterpillar.html</li>
+                    <li>mouseenter, mouseleave: http://jenniferdewalt.com/js/keep_it_straight.js</li>
+                    <li>keypress: http://jenniferdewalt.com/type_attack.html</li>
+                </ul>
+            </p>
+            <hr>
+        </section>
+    </div>
+</body>
+
+</html>

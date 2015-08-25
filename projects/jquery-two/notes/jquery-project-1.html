@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <title>Creating Elements Project</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <nav class="top-bar"></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="mwymaXGP2c8" data-ext="lmd">
+          <h1>Creating Elements Project</h1>
+
+          <h2><a href="#setup">Setup</a></h2>
+          <div class="step" data-number="1" data-human-number="2">
+            <div class="step-content" data-human-number="2">
+              <p>In the jquery-two project directory, open the <code>index.html</code> file, and RIGHT ABOVE the closing-body-tag, add a script tag with a src of "script.js", like this:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre>
+    <span class="nt">&lt;!-- OTHER MARKUP --&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>In the same directory, create a <code>script.js</code> file with the following contents:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">avengers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Iron Man"</span><span class="p">,</span> <span class="s2">"Thor"</span><span class="p">,</span> <span class="s2">"Hulk"</span><span class="p">,</span> <span class="s2">"Ant Man"</span><span class="p">,</span> <span class="s2">"Wasp"</span><span class="p">];</span>
+
+  <span class="c1">// Code goes here!</span>
+
+<span class="p">});</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>All the exercise code moving forward will go in this <code>script.js</code> file.</p>
+            </div>
+            <hr>
+          </div>
+          <h2>Exercise 1 : Avengers Assemble!</h2>
+          <div class="step" data-number="2" data-human-number="3">
+            <div class="step-content" data-human-number="3">
+              <ol>
+                <li>
+                  <input type="checkbox">Write and call a function that expects an array as an argument. Within this function, append a <code>&lt;ul&gt;</code> to the DOM with the ID <code>avengers</code>.</li>
+                <li>
+                  <input type="checkbox">Next, still within this function, write a loop that creates an <code>&lt;li&gt;</code> and appends it to the ul for each item in the array. For each item, add a class corresponding to the item's content. For example, the first item in
+                  the array should have an element that looks like <code>&lt;li class="iron-man"&gt;Iron Man&lt;/li&gt;</code>.</li>
+              </ol>
+              <div class="toggled-content"><a class="toggle button secondary" data-toggle=".toggled-content::.content">Hint</a>
+                <div class="content">
+                  <p><code>.split()</code>, <code>.join()</code>, <code>.toLowerCase()</code> and <code>.replace()</code> are some useful functions you might investigate.</p>
+                </div>
+              </div>
+
+            </div>
+            <hr>
+          </div>
+          <h2>Exercise 2: Avengers Reassemble!</h2>
+          <div class="step" data-number="3" data-human-number="4">
+            <div class="step-content" data-human-number="4">
+              <ol>
+                <li>
+                  <input type="checkbox">Write and call a new function that removes the <code>&lt;li&gt;</code>s for Ant Man and Wasp, and adds an <code>&lt;li&gt;</code> for Captain America.</li>
+            </div>
+            <hr>
+          </div>
+          <h2>Extensions!</h2>
+          <div class="step" data-number="4" data-human-number="5">
+            <div class="step-content" data-human-number="5">
+
+              <ol>
+                <li><input type="checkbox">Sort the array alphabetically before adding the elements to the DOM</li>
+                <li><input type="checkbox">Sort the elements alphabetically after they're in the DOM</li>
+                <li><input type="checkbox">Create a button that moves the first element to the bottom of the list when clicked</li>
+                <li><input type="checkbox">Add Set Timeout so that items appear on the page one at a time.</li>
+              </ol>
+
+            </div>
+          <hr>
+          </div>
+          <h2>All Done Here!</h2>
+          <p>Great, close this page and go back the the <strong>jQuery Two : Directions</strong> page and move onto <strong>Exercise 3!</strong></p>
+          <hr>
+        </div>
+</body>
+
+</html>

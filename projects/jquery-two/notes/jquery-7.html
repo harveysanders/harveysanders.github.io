@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <title>Basic Events</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <nav></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="8UO3z7z0S9Q" data-ext="mdx">
+          <h1>Basic Events with jQuery</h1>
+          <div class="step" data-number="0" data-human-number="1">
+            <div class="step-content" data-human-number="1">
+
+
+              <p>Events are messages that occur when you interact with elements on the DOM. For instance, any element you click on with your mouse will send (or <strong>emit</strong>) a <strong>click event</strong>. Ordinarily, clicking on most elements
+                has no effect, but you can assign an effect using jQuery's <a href="http://api.jquery.com/on/">.on()</a> method. The first argument passed to it should be the string 'click', and the second one should be a callback function. It looks like
+                this:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"clickable"</span><span class="nt">&gt;</span>Click me to see a console.log()<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="c1">// "e" here is the object representing the event</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#clickable'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hello!'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>If you then click on that <code>&lt;div&gt;</code> with the <code>id="clickable"</code>, even though it is not a button, it will log a message. What we've done here is added a function that waits for an event to happen before executing,
+                called an <strong>event listener</strong>. You can assign multiple event handlers to the same element:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"clickable"</span><span class="nt">&gt;</span>Click me to see a lot of console.log()<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="c1">// This will log "Hello!" 5 times</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#clickable'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hello!'</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#clickable'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hello!'</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#clickable'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hello!'</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#clickable'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hi!'</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#clickable'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Bye!'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Now if you were to click on the element, you would see "Hello!" three times, "Hi!" once, and "Bye!" once in your console.</p>
+
+              <p>Since we can pass a string to <code>.on()</code>, this seems to suggest that there are other types of events too. There are! There are a whole bunch, as a matter of fact:</p>
+
+              <ul>
+                <li><code>'blur'</code> - this event is emitted when an element loses focus, which happens when the user has focus on an element and Tabs to another element or clicks elsewhere</li>
+                <li><code>'change'</code> - this event is emitted when the value of an input field is changed, such as a text area, text input field, radio button, etc.</li>
+                <li><code>'click'</code> - this event is emitted when an element is clicked on</li>
+                <li><code>'dblclick'</code> - this event is emitted when an element is double-clicked on</li>
+                <li><code>'error'</code> - this event is emitted when an element is not loaded correctly, such as <code>&lt;img&gt;</code> elements</li>
+                <li><code>'focus'</code> - this event is emitted when an element gains focus, meaning that the user has reached the element via the Tab key or has clicked on it</li>
+                <li><code>'hover'</code> - this event is emitted when the mouse pointer enters or leaves the element</li>
+                <li><code>'keydown'</code> - this event is emitted when the user first presses any key down</li>
+                <li><code>'keyup'</code> - this event is emitted when the user releases a key</li>
+                <li><code>'mousedown'</code> - this event is emitted when the user presses a mouse button over the targeted element</li>
+                <li><code>'mouseup'</code> - this event is emitted when the user releases a mouse button over the target element</li>
+                <li><code>'mouseenter'</code> - this event is emitted when the user moves the mouse pointer into the targeted element</li>
+                <li><code>'mouseleave'</code> - this event is emitted when the user moves the mouse pointer out of the targeted element</li>
+                <li><code>'mousemove'</code> - this event is emitted when the user moves the mouse around within the targeted element</li>
+                <li><code>'ready'</code> - this event is emitted when the DOM is fully loaded; generally only use with the <code>document</code> element</li>
+                <li><code>'resize'</code> - this event is emitted when the targeted element is resized</li>
+                <li><code>'scroll'</code> - this event is emitted when the target element is scrolled</li>
+                <li><code>'select'</code> - this event is emitted when the target element is selected, usually only used for various types of inputs</li>
+                <li><code>'submit'</code> - this event is emitted when the target element is submitted, and can only be attached to form inputs</li>
+              </ul>
+
+              <p>As you can see, you can attach an event listener to practically every user interaction possible besides thought (for now). There are even a whole slew of touch-related events for mobile devices and tablets which are outside the scope of
+                this lesson. You're encouraged to toy around with all of the different events and see what's possible!</p>
+
+              <h2>Getting the Targeted Element</h2>
+
+              <p>Let's say that we want to be able to click on an element and get arbitrary data from it in the form of a <strong>data attribute</strong> (discussed in <a href="jquery-5.html">Changing Element Attributes</a>).
+                However, how do we get the actual element that was clicked on? We do this using the <strong>this</strong> keyword.</p>
+
+              <p>In jQuery, whenever you use <code>.on()</code>, the value of <code>this</code> in your event listener function will refer to the element being targeted by that event listener. For example:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"clickable"</span> <span class="na">data-id=</span><span class="s">"5"</span><span class="nt">&gt;</span>A clickable div<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#clickable'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">jQueryElement</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">jQueryElement</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span> <span class="c1">// logs 5</span>
+<span class="p">});</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>You'll notice that we had to wrap <code>this</code> in the jQuery function <code>$()</code>. The reason for this is that jQuery sets <code>this</code> to point to the actual DOM element we triggered the event handler on, <em>not</em> a jQuery
+                object wrapping that DOM element. Therefore, if we want to use jQuery methods on <code>this</code>, we need to first wrap it in a jQuery object.</p>
+
+              <p>Once we've done this, we can access the elements with the expressive power of jQuery.</p>
+
+            </div>
+
+          </div>
+        </div>
+</body>
+
+</html>

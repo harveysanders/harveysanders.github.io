@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SoundCloud Test Page</title>
+	<script type="text/javascript" src="//connect.soundcloud.com/sdk-2.0.0.js"></script>
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		$(function(){
+			SC.initialize({
+				client_id: 'd29ad0142b2cd0a47ad2e561334c8e0f',
+			});
+			SC.get("/groups/55517/tracks", {limit: 1}, function(tracks){
+				alert('Latest track: ' + tracks[0].title);
+			})
+		});
+	</script>
+</body>
+</html>

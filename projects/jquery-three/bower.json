@@ -1,0 +1,21 @@
+{
+  "name": "jquery-three",
+  "version": "0.0.1",
+  "homepage": "https://github.com/OperationSpark/jquery-three",
+  "authors": [
+    "John Fraboni <john@operationspark.org>"
+  ],
+  "description": "jquery-three",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "notes": "~0.0.3"
+  }
+}

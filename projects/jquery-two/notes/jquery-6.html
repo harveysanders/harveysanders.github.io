@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <title>Chaining Methods</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <nav></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="iv9q6AYImHk" data-ext="mdx">
+          <h1>Chaining Methods with jQuery</h1>
+          <div class="step" data-number="0" data-human-number="1">
+            <div class="step-content" data-human-number="1">
+
+
+              <p>Part of jQuery's powerful, expressive functionality is the ability to <strong>chain methods</strong>. This means you can repeatedly call methods one after another, referring to the same jQuery object, like this:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'.my-div'</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'a-class'</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s1">'arbitrary'</span><span class="p">,</span> <span class="s1">'arbitrary-value'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">'color'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">).</span><span class="nx">fadeTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>This will select an element with the class <code>my-div</code>, add the class <code>a-class</code> to it, set a data attribute <code>data-arbitrary</code> to <code>arbitrary-value</code>, change the CSS property on that element <code>color</code>                to have the value <code>blue</code>, and finally fade out the element's opacity to half over half a second.</p>
+
+              <p>The reason this works is because when you call most methods on matched jQuery objects, <strong>they return the same jQuery object the method was called on</strong>. That means that you can now call another method on the return value of the
+                jQuery object, which is the same one we called before! Functionally, it's similar to doing this:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.my-div'</span><span class="p">);</span>
+<span class="nx">div</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'a-class'</span><span class="p">);</span>
+<span class="nx">div</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">'arbitrary'</span><span class="p">,</span> <span class="s1">'arbitrary-value'</span><span class="p">);</span>
+<span class="nx">div</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">'color'</span><span class="p">,</span> <span class="s1">'blue'</span><span class="p">);</span>
+<span class="nx">div</span><span class="p">.</span><span class="nx">fadeTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>You could also try seeing if this is actually true by running this code:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.my-div'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">returnValue</span> <span class="o">=</span> <span class="nx">div</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'a-class'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">div</span> <span class="o">===</span> <span class="nx">returnValue</span><span class="p">);</span> <span class="c1">// logs "true"</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>This allows us to chain a series of methods very quickly and efficiently. One potential point of confusion is when altering the DOM. You might think that using <code>.append()</code> and <code>.appendTo()</code> might return the value of
+                the jQuery object within their parameters, jQuery will <strong>always</strong> return the object that chaining methods were first called on. Let's check this by using the <a href="http://api.jquery.com/is/">.is()</a> method, which returns
+                whether or not one jQuery object wraps the same set of elements as another:</p>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.my-div'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">returnValue</span> <span class="o">=</span> <span class="nx">div</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;div class="new-div"&gt;&lt;/div&gt;'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">div</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="nx">returnDiv</span><span class="p">));</span> <span class="c1">// still logs "true"</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="block-code">
+                <table class="highlighttable">
+                  <tbody>
+                    <tr>
+                      <td class="linenos">
+                        <div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div>
+                      </td>
+                      <td class="code">
+                        <div class="highlight"><pre><span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.my-div'</span><span class="p">);</span>
+<span class="c1">// appendingTo exists in a detached state</span>
+<span class="kd">var</span> <span class="nx">appendingTo</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'&lt;div class="appending-to"&gt;&lt;/div&gt;'</span><span class="p">);</span>
+<span class="c1">// </span>
+<span class="kd">var</span> <span class="nx">returnValue</span> <span class="o">=</span> <span class="nx">appendingTo</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">returnValue</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="nx">div</span><span class="p">));</span>         <span class="c1">// logs "false"</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">returnValue</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="nx">appendingTo</span><span class="p">));</span> <span class="c1">// logs "true"</span>
+</pre></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+</body>
+
+</html>
