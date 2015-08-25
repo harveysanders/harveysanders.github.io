@@ -1,0 +1,22 @@
+body {
+	font-family: monospace;
+	background-color: #aa3333;
+}
+header {
+	margin: 5px;
+	border-bottom: 1px solid #661010;
+}
+main {
+	margin:0 auto;
+	width: 400px;
+	text-align: center;
+
+}
+#top_login {
+	float: right;
+	width: 100px;
+	margin: 5px 5px 0px 10px;
+}
+#top_login input {
+	width: 100%;
+}
