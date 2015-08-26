@@ -184,9 +184,20 @@
   _.contains = function(collection, target) {
     // TIP: Many iteration problems can be most easily expressed in
     // terms of reduce(). Here's a freebie to demonstrate!
-    return _.reduce(collection, function(wasFound, item) {
-      return wasFound? true : item === target;
-    }, false);
+    if (Array.isArray(collection)) {
+      return _.reduce(collection, function(wasFound, item) {
+        return (wasFound) ? true : item === target;
+      }, false);  
+    } else {
+      for (var key in collection) {
+        if (target in collection){
+          return true;
+        } 
+        if (target === collection[key]) {
+          return true;
+        }
+      }
+    }
   };
 
 
@@ -194,23 +205,24 @@
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
     //return false if anything is false
-    _.reduce(collection, function(anyFalse, item) {
-      return !(iterator(item)) || !anyFalse ? false : true;
-    });
+    iterator = iterator || _.identity;
+    // same as ^^ if (iterator === undefind){iterator = _.identity};
 
-
-    // return collection.length === 0 || collection === {} ? true :
-    // _.reduce(collection, function(anyFalse, item) {
-    //   console.log('anyFalse: ' + anyFalse + 'callback result: ' + iterator(item) ? true : false);
-    //   return !(Boolean(anyFalse)) || !((iterator(item)) ? true : false);
-    // },true);
+    return _.reduce(collection, function(isWhat, item) {
+      return (isWhat && iterator(item)) ? true : false;
+    }, true);
+  
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
-    // TIP: There's a very clever way to re-use every() here.
-
+    // TIP: There's a very clever way to re-use every() here. <--!!!!!
+    
+    iterator = iterator || _.identity;
+    return _.reduce(collection, function(isTrue, item){
+      return (isTrue || iterator(item)) ? true: false;
+    },false);
   };
 
 
@@ -233,7 +245,14 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-
-  };
+      var args = Array.prototype.slice.call(arguments,1); //Get arguments after obj passed in
+  
+      _.map(args, function(newObj){ //args.map() does not work for some reason
+        for (var key in newObj) {
+          obj[key] = newObj[key];
+        }
+      });
+      return obj;
+    };
 
 }());
