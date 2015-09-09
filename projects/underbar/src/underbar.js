@@ -255,4 +255,30 @@
       return obj;
     };
 
+    _.search = function(collection, query) {
+      var matches = [];
+      _.each(collection, function(value){
+        if (isComplex(value)) {
+          if (_.search(value, query).length) {
+            matches.push(value);
+          }
+        } else {
+          if (typeof value === 'string' && typeof query === 'string') {
+            if (value.toLowercase().indexOf(query.toLowercase()) > -1) {
+              matches.push(value);
+            }
+          } else {
+            if(value === query) {
+              matches.push(value);
+            }
+          }
+        }
+      });
+      return matches;
+    };
+
+    function isComplex(value){
+      return (value !== null && value instanceof Date === false && (Array.isArray() === true || typeof value === 'object')) ? true : false;
+    }
+
 }());
