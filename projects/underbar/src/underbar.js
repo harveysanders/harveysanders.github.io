@@ -264,7 +264,7 @@
           }
         } else {
           if (typeof value === 'string' && typeof query === 'string') {
-            if (value.toLowercase().indexOf(query.toLowercase()) > -1) {
+            if (value.toLowerCase().indexOf(query.toLowerCase()) > -1) {
               matches.push(value);
             }
           } else {
