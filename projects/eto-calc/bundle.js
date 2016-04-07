@@ -19736,6 +19736,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _FileUIContainer = __webpack_require__(269);
+
+	var _FileUIContainer2 = _interopRequireDefault(_FileUIContainer);
+
 	var _UploadFileForm = __webpack_require__(160);
 
 	var _UploadFileForm2 = _interopRequireDefault(_UploadFileForm);
@@ -19762,6 +19766,7 @@
 
 	/*
 	TODO: add calculation button or checkbox to show all unfiltered data
+	TODO: export data to csv or excel
 	*/
 
 	var AppContainer = function (_React$Component) {
@@ -19777,6 +19782,7 @@
 				fileLoaded: false
 			};
 			_this.handleCSVInput = _this.handleCSVInput.bind(_this);
+			_this.handleExportClick = _this.handleExportClick.bind(_this);
 			return _this;
 		}
 
@@ -19799,6 +19805,11 @@
 				});
 			}
 		}, {
+			key: 'handleExportClick',
+			value: function handleExportClick(e) {
+				console.log('export file');
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -19815,7 +19826,10 @@
 								null,
 								'Work & Learn Attendence Processor'
 							),
-							_react2.default.createElement(_UploadFileForm2.default, { handleFile: this.handleCSVInput })
+							_react2.default.createElement(_FileUIContainer2.default, {
+								fileLoaded: this.state.fileLoaded,
+								handleCSVInput: this.handleCSVInput,
+								handleExportClick: this.handleExportClick })
 						)
 					),
 					_react2.default.createElement(
@@ -19857,6 +19871,7 @@
 
 	var UploadFileForm = function UploadFileForm(_ref) {
 		var handleFile = _ref.handleFile;
+		var helpText = _ref.helpText;
 		return _react2.default.createElement(
 			'form',
 			{ role: 'form' },
@@ -19878,7 +19893,7 @@
 				_react2.default.createElement(
 					'p',
 					{ className: 'help-block' },
-					'ex: RadGridExport.csv'
+					helpText
 				)
 			)
 		);
@@ -19914,6 +19929,10 @@
 
 	var _ResultsTableRow2 = _interopRequireDefault(_ResultsTableRow);
 
+	var _CollapsibleRow = __webpack_require__(270);
+
+	var _CollapsibleRow2 = _interopRequireDefault(_CollapsibleRow);
+
 	var _ResultsTableHeader = __webpack_require__(164);
 
 	var _ResultsTableHeader2 = _interopRequireDefault(_ResultsTableHeader);
@@ -19933,6 +19952,7 @@
 	// import ShowAllDataCheckbox from '..components/ShowAllDataCheckbox'
 
 	//TODO: figure out how to get headers to stay in order
+	//TODO: ability to click on participants and get all entries
 
 	var ResultsContainer = function (_React$Component) {
 		_inherits(ResultsContainer, _React$Component);
@@ -19945,10 +19965,12 @@
 			_this.state = {
 				sortBy: 'participantName',
 				reverseSort: false,
-				showAllData: false
+				showAllData: false,
+				filterText: ''
 			};
 			_this.handleHeaderClick = _this.handleHeaderClick.bind(_this);
 			_this.handleShowAllClick = _this.handleShowAllClick.bind(_this);
+			_this.handleSearchInput = _this.handleSearchInput.bind(_this);
 			return _this;
 		}
 
@@ -19971,16 +19993,29 @@
 				this.setState({ showAllData: !this.state.showAllData });
 			}
 		}, {
+			key: 'handleSearchInput',
+			value: function handleSearchInput(e) {
+				this.setState({
+					filterText: e.target.value
+				});
+			}
+		}, {
 			key: 'render',
 			value: function render() {
+				var _this2 = this;
+
 				var dateRange = _calc2.default.getDateRange(this.props.results);
-				var participants = _underscore2.default.sortBy(_calc2.default.getStipends(this.props.results), this.state.sortBy).map(function (participant, i) {
+				var participants = _underscore2.default.sortBy(_calc2.default.getStipendsWithDetails(this.props.results).filter(function (participant) {
+					return participant.participantName.toLowerCase().indexOf(_this2.state.filterText.toLowerCase()) !== -1;
+				}), this.state.sortBy).map(function (participant, i) {
 					return _react2.default.createElement(_ResultsTableRow2.default, {
 						name: participant.participantName,
 						totalCredits: participant.totalCredits,
 						cohort: participant.cohort,
-						key: i,
-						index: i
+						key: participant.subjectID,
+						index: i,
+						id: participant.subjectID,
+						attendanceEntries: participant.entries
 					});
 				});
 
@@ -20006,6 +20041,20 @@
 					_react2.default.createElement(
 						'div',
 						{ className: 'col-md-10' },
+						_react2.default.createElement(
+							'form',
+							{ role: 'form', className: 'form-inline' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'form-group' },
+								_react2.default.createElement('input', {
+									type: 'text',
+									className: 'form-control',
+									id: 'searchInput',
+									placeholder: 'Search Participants',
+									onChange: this.handleSearchInput })
+							)
+						),
 						_react2.default.createElement(
 							'table',
 							{ className: 'table table-hover table-condensed table-striped' },
@@ -20052,7 +20101,7 @@
 							_react2.default.createElement(
 								'tbody',
 								null,
-								participants
+								participants.length === 0 ? 'No results found.' : participants
 							)
 						)
 					)
@@ -21656,6 +21705,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _MoreDetailsModalContainer = __webpack_require__(272);
+
+	var _MoreDetailsModalContainer2 = _interopRequireDefault(_MoreDetailsModalContainer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ResultsTableRow = function ResultsTableRow(_ref) {
@@ -21663,9 +21716,15 @@
 		var cohort = _ref.cohort;
 		var totalCredits = _ref.totalCredits;
 		var index = _ref.index;
+		var id = _ref.id;
+		var handleNameClick = _ref.handleNameClick;
+		var attendanceEntries = _ref.attendanceEntries;
 		return _react2.default.createElement(
 			'tr',
-			null,
+			{
+				'data-toggle': 'modal',
+				'data-target': id
+			},
 			_react2.default.createElement(
 				'td',
 				null,
@@ -21674,7 +21733,16 @@
 			_react2.default.createElement(
 				'td',
 				null,
-				name
+				_react2.default.createElement(
+					'a',
+					{ href: '#',
+						onClick: function onClick(e) {
+							e.stopPropagation();
+							$('#' + id).modal('show');
+						}
+					},
+					name
+				)
 			),
 			_react2.default.createElement(
 				'td',
@@ -21684,7 +21752,8 @@
 			_react2.default.createElement(
 				'td',
 				null,
-				totalCredits
+				totalCredits,
+				_react2.default.createElement(_MoreDetailsModalContainer2.default, { targetID: id, attendanceEntries: attendanceEntries })
 			)
 		);
 	};
@@ -22892,41 +22961,19 @@
 
 	var calc = {};
 
-	function getNames(attendence) {
-	  var names = [];
+	function getParticipants(attendence) {
+	  var participants = [];
 	  attendence.forEach(function (entry) {
-	    if (_underscore2.default.pluck(names, 'participantName').indexOf(entry.subjectName) === -1 && entry.subjectName) {
-	      names.push({
+	    if (_underscore2.default.pluck(participants, 'participantName').indexOf(entry.subjectName) === -1 && entry.subjectName) {
+	      participants.push({
 	        participantName: entry.subjectName,
-	        cohort: entry.wLComponent
+	        cohort: entry.wLComponent,
+	        subjectID: entry.subjectID
 	      });
 	    };
 	  });
-	  return names;
+	  return participants;
 	}
-
-	calc.getStipends = function (attendence) {
-	  var names = getNames(attendence);
-
-	  var totals = names.map(function (name) {
-	    //for each participant
-	    return attendence.filter(function (entry) {
-	      //grab only entries for current participant
-	      return name.participantName === entry.subjectName;
-	    }).map(function (entry) {
-	      //get totalCredits for each entry and round to nearest 0.5
-	      return _utils2.default.roundDownToHalf(Number(entry.totalDailyCredits));
-	    }).reduce(function (sum, credits) {
-	      //sum all of total daily credits
-	      return sum + credits;
-	    }, 0);
-	  });
-
-	  var results = _underscore2.default.zip(names, totals).map(function (el) {
-	    return Object.assign(el[0], { totalCredits: el[1] });
-	  });
-	  return results;
-	};
 
 	calc.getDateRange = function (attendence) {
 	  var dates = attendence.map(function (entry) {
@@ -22943,6 +22990,28 @@
 	      return latest.isAfter(date) ? latest : date;
 	    }).format('dddd, MM/DD/YYYY') : null
 	  };
+	};
+
+	calc.getStipendsWithDetails = function (attendence) {
+	  var participants = getParticipants(attendence);
+
+	  return participants.map(function (participant) {
+	    //for each participant
+	    var participantEntries = attendence.filter(function (entry) {
+	      //grab only entries for current participant
+	      return participant.participantName === entry.subjectName;
+	    });
+
+	    var totalCredits = participantEntries.map(function (entry) {
+	      //get totalCredits for each entry and round to nearest 0.5
+	      return _utils2.default.roundDownToHalf(Number(entry.totalDailyCredits));
+	    }).reduce(function (sum, credits) {
+	      //sum all of total daily credits
+	      return sum + credits;
+	    }, 0);
+
+	    return Object.assign(participant, { entries: participantEntries }, { totalCredits: totalCredits });
+	  });
 	};
 
 	exports.default = calc;
@@ -32777,6 +32846,280 @@
 	};
 
 	exports.default = NoFileWarning;
+
+/***/ },
+/* 269 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _UploadFileForm = __webpack_require__(160);
+
+	var _UploadFileForm2 = _interopRequireDefault(_UploadFileForm);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var FileUIContainer = function (_React$Component) {
+		_inherits(FileUIContainer, _React$Component);
+
+		function FileUIContainer(props) {
+			_classCallCheck(this, FileUIContainer);
+
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FileUIContainer).call(this, props));
+
+			_this.state = {};
+			return _this;
+		}
+
+		_createClass(FileUIContainer, [{
+			key: 'render',
+			value: function render() {
+				return this.props.fileLoaded ? _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(_UploadFileForm2.default, {
+						handleFile: this.props.handleCSVInput,
+						helpText: '' })
+				) : _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(_UploadFileForm2.default, {
+						handleFile: this.props.handleCSVInput,
+						helpText: 'ex: RadGridExport.csv' })
+				);
+			}
+		}]);
+
+		return FileUIContainer;
+	}(_react2.default.Component);
+
+	exports.default = FileUIContainer;
+
+/***/ },
+/* 270 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CollapsibleRow = function CollapsibleRow(_ref) {
+		var id = _ref.id;
+		return _react2.default.createElement(
+			"tr",
+			null,
+			_react2.default.createElement(
+				"td",
+				{ colSpan: "6", className: "hiddenRow" },
+				_react2.default.createElement(
+					"div",
+					{ className: "accordian-body collapse", id: id },
+					"Demo"
+				)
+			)
+		);
+	};
+
+	exports.default = CollapsibleRow;
+
+/***/ },
+/* 271 */,
+/* 272 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _moment = __webpack_require__(168);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var MoreDetailsModalContainer = function (_React$Component) {
+		_inherits(MoreDetailsModalContainer, _React$Component);
+
+		function MoreDetailsModalContainer(props) {
+			_classCallCheck(this, MoreDetailsModalContainer);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(MoreDetailsModalContainer).call(this, props));
+		}
+
+		_createClass(MoreDetailsModalContainer, [{
+			key: 'render',
+			value: function render() {
+				var entries = this.props.attendanceEntries.map(function (entry, i) {
+					return _react2.default.createElement(
+						'tr',
+						{ key: i },
+						_react2.default.createElement(
+							'td',
+							null,
+							(0, _moment2.default)(entry.responseDate, "M/D/YYYY").format('dddd, MM/DD/YY')
+						),
+						_react2.default.createElement(
+							'td',
+							null,
+							entry.classHours
+						),
+						_react2.default.createElement(
+							'td',
+							null,
+							entry.extraHours
+						),
+						_react2.default.createElement(
+							'td',
+							null,
+							entry.extraCredit
+						),
+						_react2.default.createElement(
+							'td',
+							null,
+							entry.totalDailyTime
+						),
+						_react2.default.createElement(
+							'td',
+							null,
+							entry.totalDailyCredits
+						)
+					);
+				});
+				return _react2.default.createElement(
+					'div',
+					{ className: 'modal fade', id: this.props.targetID, tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'myModalLabel' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'modal-dialog', role: 'document' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'modal-content' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'modal-header' },
+								_react2.default.createElement(
+									'button',
+									{ type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' },
+									_react2.default.createElement(
+										'span',
+										{ 'aria-hidden': 'true' },
+										'×'
+									)
+								),
+								_react2.default.createElement(
+									'h4',
+									{ className: 'modal-title', id: 'myModalLabel' },
+									this.props.attendanceEntries[0].subjectName
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'modal-body' },
+								_react2.default.createElement(
+									'table',
+									{ className: 'table table-hover table-condensed table-striped' },
+									_react2.default.createElement(
+										'thead',
+										null,
+										_react2.default.createElement(
+											'tr',
+											null,
+											_react2.default.createElement(
+												'th',
+												null,
+												'Date'
+											),
+											_react2.default.createElement(
+												'th',
+												null,
+												'Class Hours'
+											),
+											_react2.default.createElement(
+												'th',
+												null,
+												'Extra Hours'
+											),
+											_react2.default.createElement(
+												'th',
+												null,
+												'Extra Credit'
+											),
+											_react2.default.createElement(
+												'th',
+												null,
+												'Total Hours'
+											),
+											_react2.default.createElement(
+												'th',
+												null,
+												'Total Credit'
+											)
+										)
+									),
+									_react2.default.createElement(
+										'tbody',
+										null,
+										entries
+									)
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'modal-footer' },
+								_react2.default.createElement(
+									'button',
+									{ type: 'button', className: 'btn btn-default', 'data-dismiss': 'modal' },
+									'Close'
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+
+		return MoreDetailsModalContainer;
+	}(_react2.default.Component);
+
+	exports.default = MoreDetailsModalContainer;
 
 /***/ }
 /******/ ]);
