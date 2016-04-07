@@ -32962,6 +32962,10 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
+	var _utils = __webpack_require__(166);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33060,7 +33064,7 @@
 						_react2.default.createElement(
 							'td',
 							null,
-							entry.totalDailyCredits
+							_utils2.default.roundDownToHalf(Number(entry.totalDailyCredits))
 						)
 					);
 				});
