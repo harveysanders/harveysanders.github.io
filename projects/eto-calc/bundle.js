@@ -19878,11 +19878,6 @@
 			_react2.default.createElement(
 				'div',
 				{ className: 'form-group' },
-				_react2.default.createElement(
-					'label',
-					{ htmlFor: 'csv-input' },
-					'Upload ETO attendance file:'
-				),
 				_react2.default.createElement('input', {
 					type: 'file',
 					id: 'csv-input',
@@ -32835,13 +32830,13 @@
 				{ className: "sr-only" },
 				"Error:"
 			),
-			"Please load a .csv ",
+			"Please choose a .csv ",
 			_react2.default.createElement(
 				"a",
 				{ href: "https://secure.etosoftware.com/", className: "alert-link" },
 				"ETO"
 			),
-			" report."
+			" report to process."
 		);
 	};
 
