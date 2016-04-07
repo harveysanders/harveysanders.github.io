@@ -32980,9 +32980,37 @@
 		}
 
 		_createClass(MoreDetailsModalContainer, [{
+			key: 'getAttendanceLabels',
+			value: function getAttendanceLabels(entry) {
+				var attendanceLabel = { type: '', text: '' };
+				switch (entry) {
+					case 'On Time - Present':
+						attendanceLabel = { type: 'success', text: 'On Time' };
+						break;
+					case 'Late but Present':
+						attendanceLabel = { type: 'warning', text: 'Late' };
+						break;
+					case 'Absent':
+						attendanceLabel = { type: 'danger', text: 'Absent' };
+						break;
+					default:
+						attendanceLabel = { type: 'default', text: 'N/A' };
+				}return attendanceLabel;
+			}
+		}, {
+			key: 'fillBlanksWithZero',
+			value: function fillBlanksWithZero(str) {
+				return (/^[A-Za-z0-9]/.test(str) ? str : '0'
+				);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
+				var _this2 = this;
+
 				var entries = this.props.attendanceEntries.map(function (entry, i) {
+					var classAttLabel = _this2.getAttendanceLabels(entry.classAttendance);
+					var extraHoursAttLabel = _this2.getAttendanceLabels(entry.extraHoursAttendance);
 					return _react2.default.createElement(
 						'tr',
 						{ key: i },
@@ -32994,17 +33022,35 @@
 						_react2.default.createElement(
 							'td',
 							null,
-							entry.classHours
+							_react2.default.createElement(
+								'span',
+								{ className: "label label-" + classAttLabel.type },
+								classAttLabel.text
+							)
 						),
 						_react2.default.createElement(
 							'td',
 							null,
-							entry.extraHours
+							_this2.fillBlanksWithZero(entry.classHours)
 						),
 						_react2.default.createElement(
 							'td',
 							null,
-							entry.extraCredit
+							_react2.default.createElement(
+								'span',
+								{ className: "label label-" + extraHoursAttLabel.type },
+								extraHoursAttLabel.text
+							)
+						),
+						_react2.default.createElement(
+							'td',
+							null,
+							_this2.fillBlanksWithZero(entry.extraHours)
+						),
+						_react2.default.createElement(
+							'td',
+							null,
+							_this2.fillBlanksWithZero(entry.extraCredit)
 						),
 						_react2.default.createElement(
 							'td',
@@ -33065,7 +33111,17 @@
 											_react2.default.createElement(
 												'th',
 												null,
+												'Class Attendance'
+											),
+											_react2.default.createElement(
+												'th',
+												null,
 												'Class Hours'
+											),
+											_react2.default.createElement(
+												'th',
+												null,
+												'Extra Hours Attendance'
 											),
 											_react2.default.createElement(
 												'th',
