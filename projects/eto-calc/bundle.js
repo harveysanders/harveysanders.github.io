@@ -19824,7 +19824,7 @@
 							_react2.default.createElement(
 								'h3',
 								null,
-								'Work & Learn Attendence Processor'
+								'Work & Learn Attendance Processor'
 							),
 							_react2.default.createElement(_FileUIContainer2.default, {
 								fileLoaded: this.state.fileLoaded,
@@ -19923,10 +19923,6 @@
 	var _ResultsTableRow = __webpack_require__(163);
 
 	var _ResultsTableRow2 = _interopRequireDefault(_ResultsTableRow);
-
-	var _CollapsibleRow = __webpack_require__(270);
-
-	var _CollapsibleRow2 = _interopRequireDefault(_CollapsibleRow);
 
 	var _ResultsTableHeader = __webpack_require__(164);
 
@@ -32907,41 +32903,7 @@
 	exports.default = FileUIContainer;
 
 /***/ },
-/* 270 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CollapsibleRow = function CollapsibleRow(_ref) {
-		var id = _ref.id;
-		return _react2.default.createElement(
-			"tr",
-			null,
-			_react2.default.createElement(
-				"td",
-				{ colSpan: "6", className: "hiddenRow" },
-				_react2.default.createElement(
-					"div",
-					{ className: "accordian-body collapse", id: id },
-					"Demo"
-				)
-			)
-		);
-	};
-
-	exports.default = CollapsibleRow;
-
-/***/ },
+/* 270 */,
 /* 271 */,
 /* 272 */
 /***/ function(module, exports, __webpack_require__) {
