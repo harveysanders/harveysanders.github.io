@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)http://s.codepen.io/elyseholladay/fullembedgrid/LpgHc?type=embed&animations=run -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="google" value="notranslate">
+
+
+    <title>CodePen - Specificity Test</title>
+    
+    
+    
+    
+        <style>
+      /* #wrap p { background: purple; } */ /* specificity: 100 (id) + 1 (selector) = 101, but it takes precedence over the others because #wrap is the parent */
+
+/* #test { background: red; } */ /* specificity : 100 (for an ID) */  
+ 
+p { background: orange; padding: 10px; font-size: 25px; } /* specificity : 1 (for a selector)  */  
+
+/* #id p { background: yellow; } */ /* specificity : 100 (id) + 1 (selector) = 101. this now overrides #wrap p, because it's later and has equal specificity */  
+  
+/* .item p { background: green; } */ /* specificity : 10 (class) + 1 (selector) = 11 */
+  
+  
+
+    </style>
+
+    <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+</script>
+
+    
+    
+  <style type="text/css"></style></head>
+
+  <body>
+
+    <div id="wrap">
+  
+  <p id="test">p#test</p>
+  
+  <div class="item">
+    <p>.item p</p>
+  </div>
+  
+  <p>p</p>
+
+  <div id="id">
+    <p>#id p</p>
+  </div>
+
+</div>
+    
+    
+    
+    <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+    
+  
+
+ 
+</body></html>

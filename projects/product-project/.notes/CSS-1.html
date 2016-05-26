@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <title>CSS Classes &amp; IDs</title>
+    
+    </head>
+  <body>
+    <div class="container">
+    <nav></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="Kwo82lPpI7E" data-ext="mdx"><h1>CSS Classes &amp; IDs</h1>
+<div class="step" data-number="0" data-human-number="1">
+  <div class="step-content" data-human-number="1">
+    
+
+<p><strong>Takeaways:</strong><br>
+1. What is a CSS class?<br>
+2. What are the differences between classes &amp; IDs?<br>
+3. What are the ways you can combine and chain classes?<br>
+4. What is a better class name, <code>.orange</code> or <code>.social-links</code> and why?</p>
+
+
+  </div>
+  
+</div>
+
+<div class="step" data-number="1" data-human-number="2">
+  <div class="step-content" data-human-number="2">
+    
+
+<p>Let's take a look at the following: </p>
+
+<div><iframe id="cp_embed_gxzBo" src="./CSS-1_files/gxzBo.html" scrolling="no" frameborder="0" height="268" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe undefined" style="width: 100%; overflow: hidden;"></iframe></div>
+
+<script async="" src="./CSS-1_files/ei.js"></script>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;div&gt;</span>
+  header
+  <span class="nt">&lt;span&gt;</span>logo<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>banner<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>about<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>hours and directions<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div&gt;</span>footer<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>We've written what the <code>&lt;div&gt;</code>s <em>are</em>, but our code doesn't know the difference; they're all just <code>&lt;div&gt;</code>s.</p>
+
+<p>We can reference our <code>&lt;span&gt;</code> separately, because it's the only <code>&lt;span&gt;</code> on the page, right? </p>
+
+<p>If we write the following line of CSS:</p>
+
+<p><code>div {color: red;}</code></p>
+
+<p>it will apply to all of them. So how do we reference our <code>&lt;div&gt;</code>s individually?</p>
+
+
+  </div>
+  
+</div>
+<h2>Classes and IDs</h2>
+<div class="step" data-number="2" data-human-number="3">
+  <div class="step-content" data-human-number="3">
+    
+
+
+
+<p>Classes (and IDs) are just <strong>names</strong> we can apply to any HTML element. They don't have any styling information to them all by themselves. They provide us a way to reference an element by a name.</p>
+
+<h5>IDs are Unique</h5>
+
+<p>Each element can have only one ID, and each page can have only one element with that ID. Use IDs to <em>identify</em> a unique element.</p>
+
+<h5>Classes are Reusable</h5>
+
+<p>You can use the same class on multiple elements, and you can use multiple classes on the same element. Use classes to <em>classify</em> multiple objects or styles.</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;&lt;/a&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;&lt;/span&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>You can now use the class name <code>.widget</code> as your hook to apply the same set of styling to all of these, even though they are different HTML elements.</p>
+
+<h3>Combinations</h3>
+
+<p>Can you have an ID and a class on the same element? Why would you do that?</p>
+
+<div class="toggled-content"><a class="toggle button secondary" data-toggle=".toggled-content::.content">Answer</a><div class="content"><p>There is nothing stopping you from having both an ID and a class on a single element.</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"widget-12345"</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;</span>[widget text]<span class="nt">&lt;div&gt;</span>
+</pre></div>
+
+<p></p></td></tr></tbody></table></div><br>
+<p>Here, <code>.widget</code> is a class for styling all widgets, and <code>#widget-12345</code> is a unique ID that we can use to reference that particular widget in JavaScript, or to link directly to it as a unique URL.</p><br>
+</div></div><p></p>
+
+<h3>Multiples</h3>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>  <span class="nc">.widget</span> <span class="p">{</span>
+    <span class="k">background</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">20px</span><span class="p">;</span>
+    <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div><div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;&lt;/div&gt;</span> <span class="c">&lt;!-- make this one different --&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>What if you need one <code>.widget</code> to be a different color than the rest, but still share all the other attributes?</p>
+
+<div class="toggled-content"><a class="toggle button secondary" data-toggle=".toggled-content::.content">Answer</a><div class="content"><div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget red"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<p></p></td></tr></tbody></table></div><div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="nc">.widget</span> <span class="p">{</span><br>
+  <span class="k">background</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span><br>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">20px</span><span class="p">;</span><br>
+  <span class="k">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span><br>
+<span class="p">}</span><br>
+<span class="nc">.red</span> <span class="p">{</span><br>
+  <span class="k">background</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span><br>
+<span class="p">}</span><br>
+</pre></div><br>
+</td></tr></tbody></table></div></div></div><p></p>
+
+<h3>Chaining</h3>
+
+<p>What is the difference between these two selectors?</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nc">.widget.red</span> <span class="p">{}</span>
+</pre></div>
+</td></tr></tbody></table></div><div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nc">.widget</span> <span class="nc">.red</span> <span class="p">{}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<div class="toggled-content"><a class="toggle button secondary" data-toggle=".toggled-content::.content">Answer</a><div class="content"><p>A single space!</p>
+
+<p>They look nearly identical, but the top one has no space between <code>.widget</code> and <code>.red</code> while the bottom one does. This small difference makes a huge difference in what it does. To some of you, that top selector may seem like a mistake, but it's actually quite useful.</p>
+
+<p><strong>No Space means And</strong></p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nc">.widget.red</span> <span class="p">{}</span>
+</pre></div>
+
+<p></p></td></tr></tbody></table></div><br>
+<p>"Select the element which has a class name of <code>.widget</code> and <strong>also</strong> a class name of <code>.red</code>."</p><p></p>
+
+<p><strong>Space means Descendant</strong></p>
+
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nc">.widget</span> <span class="nc">.red</span> <span class="p">{}</span>
+</pre></div>
+
+<p></p></td></tr></tbody></table></div><br>
+<p>"Select all elements with the class name <code>.red</code> that are <strong>descendents</strong> of the element <code>.widget</code>."</p><br>
+</div></div><p></p>
+
+
+  </div>
+  
+</div>
+<h2>Semantics</h2>
+<div class="step" data-number="3" data-human-number="4">
+  <div class="step-content" data-human-number="4">
+    
+
+
+
+<p><strong>When choosing a class or ID it is important to choose something that has value to the actual context of that element.</strong></p>
+
+<h3>Content, not Style</h3>
+
+<p>"For example, if you have a div with an orange background that contains social media links your first inclination might be to give the div a class of <code>.orange</code>. What happens if that orange background is later changed to blue? Having a class of <code>.orange</code>. no longer makes sense. A better, more semantic, choice for a class would be <code>.social</code>. as it pertains to the contents of the div, not the style."</p>
+
+<p>— <a href="http://learn.shayhowe.com/html-css/elements-semantics">Shay Howe, Elements &amp; Semantics</a></p>
+
+<p>"Class names should never map directly to a CSS property, or a given visual effect you want to achieve (such as floating, or a border effect, or a background colour, etc.). It’s shockingly bad as an ideology because it encourages a direct mapping between class name and display action. A class name, like an ID, should be descriptive in a semantic sense. ie., it should describe something about the content of the tag to which it applies. “float” is not describing content. It is describing an action you want to perform."</p>
+
+<p>— <a href="http://2002-2012.mattwilcox.net/archive/entry/id/1058/">Matt Wilcox, Naming and using id's and classes properly</a></p>
+
+<h3>Redundancy</h3>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://css-tricks.com"</span> <span class="na">class=</span><span class="s">"link"</span><span class="nt">&gt;</span>CSS-Tricks.com<span class="nt">&lt;/a&gt;</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>We already know this element is a link—it's built-in to the element.</p>
+
+<p>If you want to style it like a link, you can use the element <code>&lt;a&gt;</code>. If you are making a more complex site and need to distinguish between types of links, choose a better classname. For example: <code>.search_link</code> and <code>.profile_link</code>.</p>
+
+
+  </div>
+  
+</div>
+<h2>Using IDs</h2>
+<div class="step" data-number="4" data-human-number="5">
+  <div class="step-content" data-human-number="5">
+    
+
+
+
+<h3>Why we don't use IDs</h3>
+
+<p>There can only be one element with an ID per page, so that element is not re-usable on that page.</p>
+
+<p>CSS should always focus on re-usability, about creating patterns instead of one-offs. IDs are unique by nature, therefore they work inherently against reusability. No matter how much you think you’ll only ever use a pattern once, somewhere down the line you’ll find yourself needing it again.</p>
+
+<p>Let's say you have a <code>#search</code> box in your header. Then later you/your designer/etc decides that they want search in the footer, too. So you duplicate your <code>#search</code> div and... everything seems cool.</p>
+
+<p>It's confusing, because your CSS will still apply. However, if you're using JavaScript on that <code>#search</code>, it will now break, because the JavaScript doesn't know which one you mean.</p>
+
+<p>It's almost always better to use reusable classes instead of IDs to prevent this potential issue. A good rule of thumb for me is that unless it's truly unique, like our <code>#widget-12345</code> example, use a class.</p>
+
+<h3>Why we DO use IDs</h3>
+
+<p>Let's take our previous search example. If we used <code>.search</code> instead of <code>#search</code>, the JavaScript will most likely work on <em>both</em> which is almost as bad. This is why we declare uniques with IDs, and reusable elements with classes. </p>
+
+<p>What if there is an element you <strong>know</strong> is going to be unique on every page? One that, if it did appear twice on the page, it would be a signal that something was wrong, e.g. you broke something in a template, or your CMS is spitting out strange chunks of code, etc.</p>
+
+<p>It's a common practice to use an ID to define <em>pages</em> of a site, e.g. <code>&lt;div id="profile-page"&gt;</code> and <code>&lt;div id="signup-page"&gt;</code>. You do this so that as a wrapper on the entire page, any elements that need to be customized can be, with that ID as a parent (that overrides all other classes), and so that you know what page you are on. Using an ID solidifies this in the code. If there happened to be two of those elements, there might be some sort of visual give-away that things aren’t working as expected.</p>
+
+  </div>
+  
+</div>
+
+</div>
+
+</body></html>

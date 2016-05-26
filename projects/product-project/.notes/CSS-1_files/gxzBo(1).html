@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)http://s.codepen.io/elyseholladay/fullembedgrid/gxzBo?type=embed&animations=run -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="google" value="notranslate">
+
+
+    <title>CodePen - 3 Box-Sizing</title>
+    
+    
+    <link rel="stylesheet" href="http://s.codepen.io/assets/reset/reset.css">
+
+    
+        <style>
+      /* Add Padding & Margin */
+div {
+  display: block;
+  background: white;
+  border: 1px solid blue;
+  padding: 20px;
+  margin: 40px;
+}
+
+span {
+  background: pink;
+  display: inline-block;
+  padding: 20px;
+  margin: 20px;
+  width: 400px;
+}
+
+
+/* Add Box Sizing */
+* {	
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+
+
+/* Test Inline */
+/* div, span {
+  display: inline;
+  border: 1px solid red;} */
+
+/* Test Inline w/ Width */
+/* div, span {
+  display: inline;
+  border: 1px solid red;
+  width: 400px;} */
+
+/* Test Inline Block */
+/* div, span {
+  display: inline-block;
+  border: 1px solid green;} */
+
+/* Test Inline Block w/ Width */
+/* div, span {
+  display: inline-block;
+  width: 400px;
+  border: 1px solid green;
+} */
+
+
+body {
+  background: #ccc;
+}
+    </style>
+
+    <script>
+  window.console = window.console || function(t) {};
+  window.open = function(){ console.log("window.open is disabled."); };
+  window.print   = function(){ console.log("window.print is disabled."); };
+</script><style type="text/css"></style>
+
+    
+    
+  </head>
+
+  <body>
+
+    <div>
+  header
+  <span>logo</span>
+</div>
+<div>banner</div>
+<div>about</div>
+<div>hours and directions</div>
+<div>footer</div>
+    
+    
+    
+    <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+    
+  
+
+ 
+</body></html>

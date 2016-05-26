@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <title>CSS Specificity</title>
+    
+    </head>
+  <body>
+    <div class="container">
+    
+    <nav></nav>
+
+    <div class="row">
+      <div class="large-12 small-12">
+        <div class="curriculum" data-doc-id="tx9skmdoGfA" data-ext="mdx"><h1>CSS Specificity</h1>
+<div class="step" data-number="0" data-human-number="1">
+  <div class="step-content" data-human-number="1">
+    
+
+<p><strong>Takeaways</strong><br>
+1. What does CSS stand for and why is the 'C' important?<br>
+2. How do browsers read CSS?<br>
+3. Why does the number of selectors you use in CSS matter?<br>
+4. Why should you organize and comment your code?</p>
+
+
+  </div>
+  
+</div>
+<h2>Cascading Style Sheets</h2>
+<div class="step" data-number="1" data-human-number="2">
+  <div class="step-content" data-human-number="2">
+    
+
+
+
+<p>The "C" in CSS stands for "cascading." We typically take that to mean a style rule later in the stylesheet will override a previous one.</p>
+
+<p>CSS is more complicated, though. It assigns each selector a "weight" based on how specific it is. The more specific your selector, the more precedence it will have.</p>
+
+<h3>Browsers read right to left</h3>
+
+<p>Browsers read right to left. The right-most selector is the "key selector".</p>
+
+<p><code>#home a { }</code></p>
+
+<p>"We’d generally read this selector as "find the element with the ID of <code>#home</code>", then apply these styles to every <code>a</code> it contains". This should be super-fast, right? After all there should only be one <code>#home</code> on the page.</p>
+
+<p>However, browsers read this differently: "find every <code>a</code> element, then check if its parent element is <code>#home</code>, and if not, keep checking parent elements until you find it or reach <code>&lt;html&gt;</code>". That’s a lot less performant than our mental model." </p>
+
+<p>— <a href="http://oli.jp/2011/ids/">Oli.jp</a></p>
+
+
+  </div>
+  
+</div>
+<h2>Efficient Selectors</h2>
+<div class="step" data-number="2" data-human-number="3">
+  <div class="step-content" data-human-number="3">
+    
+
+
+
+<p>There are four kinds of key selectors: ID, class, HTML tag, and universal (*). ID's are the most efficient; universal are the least. Efficiency here means "how fast the browser can read it/find it".</p>
+
+<p>From most to least efficient:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="nf">#main-navigation</span> <span class="p">{</span>   <span class="p">}</span>      <span class="c">/* ID */</span>
+<span class="nt">body</span><span class="nc">.home</span> <span class="nf">#page-wrap</span> <span class="p">{</span>   <span class="p">}</span>  <span class="c">/* ID */</span>
+<span class="nc">.main-navigation</span> <span class="p">{</span>   <span class="p">}</span>      <span class="c">/* Class */</span>
+<span class="nt">ul</span> <span class="nt">li</span> <span class="nt">a</span><span class="nc">.current</span> <span class="p">{</span>   <span class="p">}</span>       <span class="c">/* Class *</span>
+<span class="c">ul {   }                    /* Tag */</span>
+<span class="nt">ul</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>  <span class="p">}</span>                <span class="c">/* Tag */</span>
+<span class="o">*</span> <span class="p">{</span>   <span class="p">}</span>                     <span class="c">/* Universal (Slowest) */</span>
+<span class="nf">#content</span> <span class="o">[</span><span class="nt">title</span><span class="o">=</span><span class="s1">'home'</span><span class="o">]</span>     <span class="c">/* Universal */</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>When we combine this right-to-left reading, and the key selector idea, we can see that even though it feels counter-intuitive, this selector isn't very efficient:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#main-nav &gt; li {   }  /* li's that are children of #main-nav ID... slower than it might seem */</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>Since ID's are so efficient we would think the browser could just find that ID quickly and then find the li children quickly. But in reality, the relatively slow li tag selector is run first.</p>
+
+
+  </div>
+  
+</div>
+<h2>Tips for Efficient CSS</h2>
+<div class="step" data-number="3" data-human-number="4">
+  <div class="step-content" data-human-number="4">
+    
+
+
+
+<h3>Grouping and Chaining</h3>
+
+<p>Developers will often use a very high specificity selector when a simpler one will suffice:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nf">#foo</span> <span class="nf">#bar</span> <span class="nf">#baz</span> <span class="nc">.something</span> <span class="nt">a</span> <span class="p">{</span>
+    <span class="k">text-decoration</span><span class="o">:</span> <span class="k">underline</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>is probably better written as</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nc">.something</span> <span class="nt">a</span> <span class="p">{</span>
+     <span class="k">text-decoration</span><span class="o">:</span> <span class="k">underline</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>Additionally, writing styles like:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="nf">#foo-1</span><span class="o">,</span>
+<span class="nf">#foo-2</span><span class="o">,</span>
+<span class="nf">#foo-3</span><span class="o">,</span>
+<span class="nf">#foo-4</span> <span class="p">{</span>
+    <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>are better written as:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nc">.foo</span> <span class="p">{</span>
+    <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>and then you could add another class, <code>.foo-1</code> to apply an individual color to each one, if you wanted. If you needed to access them individually with JavaScript, you could <em>also</em> add <code>#foo-1</code>.</p>
+
+<p>This is also much more readable as a human! When you're reading a long CSS file, it makes more sense when you see the same 3-4 lines of code in a reusable class rather than seeing that 3-4 lines duplicated all over in different IDs that may or may not relate to each other.</p>
+
+<h3>Don't tag-qualify</h3>
+
+<p>Don't do this:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">ul</span><span class="err">#</span><span class="n">main</span><span class="o">-</span><span class="n">navigation</span> <span class="p">{</span>  <span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>IDs are unique, so they don't need a tag name to go along with it. Doing so makes the selector less efficient.</p>
+
+<p>Don't do it with class names either, if you can avoid it. Classes aren't unique, so theoretically you could have a class name do something that could be useful on multiple different elements. Take our, our <code>.widget</code> class example. We could use it on <code>&lt;a&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;span&gt;</code>, etc.</p>
+
+<p>On occasion, you need the styling be different depending on the element. Then you might need to tag-qualify. The only time I have ever seen this happen is for buttons. Browsers apply extra spacing and font styles to <code>&lt;button&gt;</code> elements, but a lot of times we want both <code>&lt;a&gt;</code> and <code>&lt;button&gt;</code> elements to look the same, like a button. So then you might get something like this:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nc">.button</span> <span class="p">{</span> <span class="k">background</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span> <span class="k">padding</span><span class="o">:</span> <span class="m">15px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">button</span><span class="nc">.button</span> <span class="p">{</span> <span class="k">font-weight</span><span class="o">:</span> <span class="k">normal</span><span class="p">;</span> <span class="k">padding</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>to override the padding due to extra space on the element.</p>
+
+<h3>Descendant selectors are expensive</h3>
+
+<p>The descendant selector is the most expensive selector in CSS. It is dreadfully expensive—especially if the selector a tag or (*) universal. This is an efficiency disaster:</p>
+
+<p>html body ul li a {  }</p>
+
+<p>It's also really difficult to understand <em>why</em> this might have been written. What is in that list? What are those links? <em>Why do they have those styles?</em> </p>
+
+<h3>Consider why you are writing the selector</h3>
+
+<p>Consider this:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nf">#main-navigation</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span> <span class="k">font-family</span><span class="o">:</span> <span class="n">Georgia</span><span class="o">,</span> <span class="n">Serif</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>Font-family cascades, so you may not need a selector that is that specific to begin with (if all you are doing is changing the font). This is just as effective, and far more efficient:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nf">#main-navigation</span> <span class="p">{</span> <span class="k">font-family</span><span class="o">:</span> <span class="n">Georgia</span><span class="o">,</span> <span class="n">Serif</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>But this would be even better:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nc">.main-navigation</span> <span class="p">{</span> <span class="k">font-family</span><span class="o">:</span> <span class="n">Georgia</span><span class="o">,</span> <span class="n">Serif</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>"Using an ID over a class also ratchets up the specificity all the way to Darth Sidious in <a href="http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html">Andy Clarke’s Star Wars-themed guide to CSS specificity</a>. While you might not think this is a big deal, it quickly leads to a full-on selector battle.</p>
+
+<p>This problem becomes worse as the CSS gets larger, and more people get involved, leading to crazy-specific selectors like:</p>
+<div class="block-code"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">.</span><span class="n">entry</span> <span class="err">#</span><span class="n">content_main</span> <span class="n">div</span><span class="p">.</span><span class="n">post</span> <span class="n">a</span> <span class="p">{</span><span class="err">…</span><span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<p>This rule could probably be rewritten at least as <code>.entry .post a {…}</code>, or maybe <code>.post a {…}</code>, but changing it to <code>.post-link {…}</code> would be even better.</p>
+
+<p><strong>My rule of thumb is three CSS selectors max — any more than this and it’s generally a sign of (specificity) problems.</strong>"</p>
+
+<p>— <a href="http://oli.jp/2011/ids/">Oli.jp</a></p>
+
+
+  </div>
+  
+</div>
+<h2>Specificity Weight</h2>
+<div class="step" data-number="4" data-human-number="5">
+  <div class="step-content" data-human-number="5">
+    
+
+
+
+<ul>
+<li>Give each HTML element selector 1 point. Example: <code>p</code></li>
+<li>Give each class selector 10 points. Example: <code>.column</code></li>
+<li>Give each id selector 100 point. Example: <code>#wrap</code></li>
+<li>Add up the points for each piece of the selector to get the full value of the selector.</li>
+</ul>
+
+<div><iframe id="cp_embed_LpgHc" src="./CSS-2_files/LpgHc.html" scrolling="no" frameborder="0" height="268" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe undefined" style="width: 100%; overflow: hidden;"></iframe></div>
+
+<script async="" src="./CSS-2_files/ei.js"></script>
+
+<p>&nbsp;</p>
+
+
+  </div>
+  
+</div>
+<h2>Exercises</h2>
+<div class="step" data-number="5" data-human-number="6">
+  <div class="step-content" data-human-number="6">
+    
+
+
+
+<p>Use the <a href="http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html">Star Wars-themed guide to CSS specificity</a> and <a href="http://specificity.keegan.st/">this specificity calculator</a> to calculate the specificity of the following selectors:</p>
+
+<ul>
+<li><code>div</code></li>
+<li><code>div p</code></li>
+<li><code>div p.tree</code></li>
+<li><code>div p.tree.redwood</code></li>
+<li><code>p.tree.redwood</code></li>
+<li><code>.tree.redwood</code></li>
+<li><code>.tree.redwood#sequoia</code></li>
+<li><code>#sequioa</code></li>
+<li><code>.tree:only-of-type</code></li>
+<li><code>ul li.tree</code></li>
+<li><code>.nav-link</code></li>
+<li><code>a.nav-link</code></li>
+<li><code>nav a.nav-link</code></li>
+<li><code>#header nav a.nav-link</code></li>
+<li><code>body #header nav a.nav-link</code></li>
+</ul>
+
+<p>Look around on some websites you frequent to see if you can find some examples of CSS specificity. Use the dev inspector. If you see styles crossed out, can you tell if they are from the same selector being used later in the stylesheet, or from a more-specific selector?</p>
+
+<p>Can you find some examples of specificity in action in your own work? If not, can you create some?</p>
+
+
+  </div>
+  
+</div>
+<h2>More Reading</h2>
+<div class="step" data-number="6" data-human-number="7">
+  <div class="step-content" data-human-number="7">
+    
+<ul>
+<li><a href="http://css-tricks.com/specifics-on-css-specificity/">CSS Tricks Specifics of Specificity</a> — this is the best primer!</li>
+<li><a href="http://www.stuffandnonsense.co.uk/archives/css_specificity_wars.html">Specificity Wars</a></li>
+<li><a href="http://oli.jp/2011/ids/">Oli.jp on IDs</a></li>
+<li><a href="http://coding.smashingmagazine.com/2007/07/27/css-specificity-things-you-should-know/">Smashing Magazine on CSS Specificity</a></li>
+<li><a href="http://coding.smashingmagazine.com/2010/04/07/css-specificity-and-inheritance/">more from Smashing Magazine on Specificity and Inheritance</a></li>
+<li><a href="https://github.com/necolas/idiomatic-css#general-principles">Idiomatic CSS Style Guide</a></li>
+<li><a href="http://csswizardry.com/2012/04/my-html-css-coding-style/">CSS Wizardry CSS Style Guide</a></li>
+</ul>
+
+  </div>
+  
+</div>
+</div>
+
+</body></html>

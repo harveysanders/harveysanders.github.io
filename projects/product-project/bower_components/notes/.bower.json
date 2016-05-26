@@ -1,0 +1,30 @@
+{
+  "name": "notes",
+  "version": "0.0.4",
+  "homepage": "https://github.com/OperationSpark/notes",
+  "authors": [
+    "John Fraboni <john@operationspark.org>"
+  ],
+  "description": "A set of tools to support curriculum",
+  "main": "notes.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  },
+  "_release": "0.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.4",
+    "commit": "9af2fe2f7f4a4707995693ff201b3feaed04bad7"
+  },
+  "_source": "https://github.com/OperationSpark/notes.git",
+  "_target": "~0.0.4",
+  "_originalSource": "notes"
+}

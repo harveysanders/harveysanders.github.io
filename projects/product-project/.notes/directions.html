@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Product Project : Directions</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.2/gist-embed.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../bower_components/notes/notes.css" type="text/css" />
+    <style type="text/css">
+        .gist {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <h1>Product Project : Directions</h1>
+
+        <section>
+            <h3><a href="#overview">Overview</a></h3>
+            <p>You've been given some product data in the file located at <code>data/product.json</code>, and from this dataset, you're going to create a page of searchable and filterable products! You can style the project and layout the products as you
+                see fit.</p>
+
+            <p>Have a look at the data available <code>data/product.json</code> - this will give you an idea of the ways in which a user can search or filter on products by type, search for products by description keyword queries, order by cost, and maybe
+                build in other features, like if there's less than 10 products, show <strong>"Hurry, only x left in stock!"</strong>. The page should feel like an Amazon product search experience.</p>
+
+            <p>You'll want to make use of forms and layouts, and of course, your functional programming chops! Below we've listed a set of review-resources to help you in your work.</p>
+            <hr>
+        </section>
+        <section>
+            <h3><a href="#setup">Setup</a></h3>
+
+            <h4>Create the products.js File</h4>
+            <ol>
+                <li>
+                    <input type="checkbox">In the root directory of product-project, you'll find a directory named <code>js</code>, and in the <code>js</code> directory, create a file called <code>products.js</code>, and paste in the following starter code:
+                </li>
+            </ol>
+
+            <code class="gist" data-gist-id="6a4b220e0224af9d5a37" data-gist-file="products-template.js" data-gist-hide-footer="true"></code>
+
+            <p>All of your code for this project will go in this <code>products.js</code> file, and we've already linked it to your <code>index.html</code> file, so you're good to go!</p>
+            <hr>
+            <h4>Load the Product Data</h4>
+            <ol>
+                <li>
+                    <input type="checkbox">We need to first load our data before we can display it in any way: our product data is located in a file at <code>data/product.json</code>. We can use the <code>$.getJSON()</code> method to load our data. Google it, or find examples
+                    from our previous projects.
+                </li>
+            </ol>
+            <hr>
+            <h4>Display the List of Product</h4>
+            <ol>
+                <li>
+                    <input type="checkbox">Now that we have our data loaded, we need to display it in some fancy way to our user. Make us of jQuery to build a list of product! First thing to do would be to get the data on the page, next, make it pretty! Review all the material below for ideas!
+                </li>
+                <li>
+                    <input type="checkbox">Note that there are also product thumbnails and full size images within the <code>img/product</code> directory!  The file names of the images are referenced in the <code>product.json</code> file as, <code>image</code>, so you should use them in your product profiles.
+                </li>
+                <li>
+                    <input type="checkbox">Finally, because you have both a thumbnail and full size image for the products, both named the same with respective thumbnails in the directory <code>img/product/thumbs</code>, you'll receive big bonus points if you design you product project to show product details when a user clicks on a product within the list.
+                </li>
+            </ol>
+            <hr>
+            <h4>Search & Filter Features</h4>
+            <p>Just like search for crap on Amazon, you want to allow your user to execute keyword searches or fitler by product type, or lowest to highest cost.  Go nuts here, you have <a href="https://lodash.com/docs" target="_blank">lodash installed in your client project, so you can make use of all its functional goodies</a> as you would with underscore.js.</p>
+            <hr>
+        </section>
+        <section>
+            <h4>Hiding the Directions Button</h4>
+            <p>Most of our projects will show you a Directions button on your <code>index.html</code> page. While developing, you may want to hide this <strong>ugly</strong> button, so, in your <code>index.html</code> file, you can either comment-out or
+                delete the call to show notes, or even call <code>opspark.notes.hide();</code>, like so:</p>
+            <code class="gist" data-gist-id="6a4b220e0224af9d5a37" data-gist-file="index-hide-directions.html" data-gist-hide-footer="true"></code>
+            <p>The Directions button won't show up on your live site, so don't worry too much about it.</p>
+            <hr>
+        </section>
+
+        <h2>Quick Review</h2>
+
+        <h3>HTML</h3>
+        <p>
+            <a href="HTML-1.html">[HTML One]</a>
+            <a href="HTML-2.html">[HTML Two]</a>
+        </p>
+
+        <h3>CSS</h3>
+        <p>
+            <a href="CSS-1.html">[CSS One]</a>
+            <a href="CSS-2.html">[CSS Two]</a>
+        </p>
+
+        <h3>Javascript</h3>
+        <p>
+            <a href="JS-1.html">[JavaScript One]</a>
+            <a href="JS-2.html">[JavaScript Two]</a>
+        </p>
+        <hr>
+        <h2>In-Depth Review</h2>
+
+        <h3>HTML & CSS</h3>
+        <p>
+            <a href="https://www.learnhowtoprogram.com/lessons/block-elements">Start Here</a> (click "next section" in bottom left to advance)
+        </p>
+        <p><a href="basic_html.html">Some basic HTML examples are here.</a></p>
+
+        <h3>Layouts</h3>
+        <p><a href="http://learnlayout.com/" target="_blank">This is a great resource for a more in-depth understanding of CSS layouts.</a></p>
+        <p><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">Flexbox is a handy layout system to use.</a></p>
+        <p>Here's <a href="simple-grid-example.html">a simple multi-column, container-bound layout example.</a></p>
+        <p>Alternately, consider building off of <a href="complex-grid-example.html">a slightly more complex layout</a>. (download the library code <a href="grid.css">here</a>)</p>
+
+        <h3>Javascript</h3>
+        <p>
+            <a href="https://www.learnhowtoprogram.com/sections/javascript-primitives-methods-and-functions">[JavaScript One]</a>
+            <a href="https://www.learnhowtoprogram.com/sections/branching-and-looping-in-javascript">[JavaScript Two]</a>
+        </p>
+        <hr>
+        </section>
+
+        <section>
+
+            <h2>More JQuery Resources</h2>
+            <p>
+                <li>Watch the first of these <a href="https://www.learnhowtoprogram.com/sections/jquery">videos about jQuery</a></li>
+                <li>Or try a similar resource <a href="https://www.codeschool.com/courses/try-jquery">from CodeSchool</a></li>
+                </ul>
+            </p>
+            <hr>
+        </section>
+    </div>
+</body>
+
+</html>
