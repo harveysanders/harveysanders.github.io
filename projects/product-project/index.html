@@ -6,10 +6,11 @@
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="bower_components/react/react.js"></script>
+        <script type="text/javascript" src="bower_components/react/react-dom.js"></script>
         <script type="text/javascript" src="bower_components/notes/notes.js"></script>
         <script type="text/javascript" src="js/lib/spin.min.js"></script>
         <script type="text/javascript" src="js/view/pacifier.js"></script>
-        <script type="text/javascript" src="js/products.js"></script>
         <title>Product Project</title>
     </head>
     <body>
@@ -17,11 +18,25 @@
             <nav>
                 <h1>Product Project</h1>
             </nav>
-            <main>
-                
+
+            <main id="app">
+              <form role="form">
+                <div class="form-group"> 
+                    <label for="searchInput">
+                        Search
+                    </label>
+                    <input 
+                      type="text" 
+                      class="form-control"
+                      id="searchInput"
+                      placeholder="ex: gold galaxy" />
+                </div>
+              </form>
+              <div id="products"></div>
             </main>
             
         </div>
+        <script type="text/javascript" src="js/products.js"></script>
         <script>
             $(function () {
                 window.opspark.notes.show();
